@@ -97,6 +97,12 @@ the base.
 
 ![img_6.png](images/img_6.png)
 
+<h3> Buff/debuff selection screen </h3>
+
+After having defeated a boss, a player can choose a buff and a debuff to alter gameplay.
+
+![debuff_screen_mockup.png](images/debuff_screen_mockup.png)
+
 
 <h1>Appendix</h1>
 
