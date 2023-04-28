@@ -103,6 +103,54 @@ After having defeated a boss, a player can choose a buff and a debuff to alter g
 
 ![debuff_screen_mockup.png](images/debuff_screen_mockup.png)
 
+<h1> Development Time Line</h1>
+
+## Pre-Production (Weeks 1-2)
+
+- **Week 1**: Concept development, initial game design document, and team formation
+- **Week 2**: Research and planning (game mechanics, art style, audio, and platform requirements)
+
+## Production (Weeks 3-7)
+
+### Art and Audio
+
+- **Week 3-4**: Create character models, animations, and environment assets
+- **Week 5**: Design UI elements, including menus, HUD, and in-game prompts
+- **Week 6**: Compose music tracks, sound effects, and implement audio
+
+## Programming
+
+- **Week 3-4**: Implement core game mechanics, enemy AI, tower functionality, and pathfinding
+- **Week 5**: Develop basic level design and progression system
+- **Week 6**: Implement player data management and integrate art and audio assets
+- **Week 7**: Implement UI and menus, create a basic tutorial level (if applicable)
+
+## Testing and Polishing (Weeks 8-9)
+
+- **Week 8**: Internal playtesting, bug fixing, and gathering feedback
+- **Week 9**: Final bug fixes, optimizations, polish, and prepare for release
+
+# Project Team Members
+
+1. **Mathew Shardin** (Project Leader)  
+   Email: mathew.shardin@student.nhlstenden.com  
+   The role of a Project Leader is to guide and lead the rest of the team to a better outcome and to a more successful result of the project, by explaining the details of every task that needs to be achieved and giving them feedback on their results to improve. 
+
+2. **Miroslav Penchev** (Secretary)  
+   Email: miroslav.penchev@student.nhlstenden.com  
+   The purpose of Minutes is to have notes on every single important detail when we are gathering information in meetings with the clients or in team meetings which will guide us on what task needs to be done.
+
+3. **Dimitri Vastenhout** (Co-Team Leader)  
+   Email: dimitri.vastenhout@student.nhlstenden.com  
+   The role of the Co-leader is to take the role of the team leader when the leader is not available.
+
+4. **Teodor Folea** (Quality Control)  
+   Email: teodor.folea@student.nhlstenden.com   
+   The role of quality control is to establish and ensure a high quality of work is produced and delivered by the team with regards to documentation and software.
+
+5. **Costache Alin** (Minutes taker)  
+   Email: alin.costache@student.nhlstenden.com   
+   A minute taker oversees taking the minutes of the meeting. These minutes are required to provide a formal account of who was at the meeting, what was discussed, what actions were agreed upon, and who would carry out these actions.
 
 <h1>Appendix</h1>
 
