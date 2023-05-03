@@ -131,6 +131,9 @@ As the game progresses, the enemies will become stronger and the player will hav
 The higher the unit's level, the more expensive it will be to upgrade it. The player will have to choose which units to upgrade and which to leave behind.
 Of course, the stronger the enemies, the more gold they will drop. The player will have to find the right balance between upgrading their units and buying new ones.
 
+# Class Diagram
+![class.png](images/Screenshot 2023-04-28 114045.png)
+
 
 # Development Timeline 
 
