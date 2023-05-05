@@ -15,6 +15,6 @@ public partial class main_menu : Node2D
 
 	private void _on_start_pressed()
 	{
-		GetTree().ChangeScene("res://testScene.tscn");
+		GetTree().ChangeSceneToFile("res://testScene.tscn");
 	}
 }
