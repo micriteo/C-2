@@ -204,12 +204,19 @@ This chapter describes the test cases to validate the final product.
 | 1    | Select and click a "Buy unit" button. Drag a unit to its location | Money deducted, unit appears on game field, idle animation displayed|
 | 2    | Wait for enemy to come to unit's attack range  | Enemy gets damaged, enemy HP deducted, attack animation displayed |
 
-### 6. Units
+### 6. Castle (Player) damage
 
 | Step | Action             | Expected Results          |
 |------|--------------------|---------------------------|
-| 1    | Select and click a "Buy unit" button. Drag a unit to its location | Money deducted, unit appears on game field, idle animation displayed|
-| 2    | Wait for enemy to come to unit's attack range  | Enemy gets damaged, enemy HP deducted, attack animation displayed |
+| 1    | Start a game and wait for enemies to come near the castle and attack | Castle (Player) HP get reduced |
+| 2    | Wait for the HP to go to 0  | Game over screen displayed. Game stops |
+
+### 7. Boss battle
+
+| Step | Action             | Expected Results          |
+|------|--------------------|---------------------------|
+| 1    | Play the game for 4 waves | Game goes on. There is 15-sec break between each wave of enemies |
+| 2    | Wait for wave 5 to start  | A boss type enemy appears  |
 
 # Project Team Members
 
