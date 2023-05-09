@@ -22,6 +22,8 @@ Shogun Stand also incorporates a progression system where players can unlock new
 
 Embrace the challenge and test your strategic prowess in Shogun Stand, where captivating Japanese elements and dynamic game mechanics come together to create an unforgettable tower defense adventure
 
+The game is developed using Godot 4 game engine and .NET 6. Godot engine utilizes its own custom UI-framework.
+
 
 <h3> What is a Tower Defense game? </h3>
 The tower defense genre is a subgenre of strategy video games that revolves 
