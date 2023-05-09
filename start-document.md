@@ -164,6 +164,53 @@ Of course, the stronger the enemies, the more gold they will drop. The player wi
 - **Week 8**: Internal playtesting, bug fixing, and gathering feedback
 - **Week 9**: Final bug fixes, optimizations, polish, and prepare for release
 
+
+# Test Plan
+
+This chapter describes the test cases to validate the final product.
+
+### 1. Start Screen
+
+| Step | Action             | Expected Results          |
+|------|--------------------|---------------------------|
+| 1    | Press start button | Change scene. Game starts |
+| 2    |  | Player starts with N amount of currency |
+
+### 2. Start Executable
+
+| Step | Action             | Expected Results          |
+|------|--------------------|---------------------------|
+| 1    | Open executable file | Game application opens |
+
+### 3. Buff/debuff screen
+
+| Step | Action             | Expected Results          |
+|------|--------------------|---------------------------|
+| 1    | Progress in the game to kill a boss type enemy | Buff/debuff screen pops-up, game paused |
+| 2    | Press "confirm" button without selecting anything  | Buff/debuff screen stays up |
+| 3    | Select a single option and press "confirm"  | Buff/debuff screen closes, buff/debuff applied, game unpaused |
+
+### 4. Game pause
+
+| Step | Action             | Expected Results          |
+|------|--------------------|---------------------------|
+| 1    | Press "Escape" key | Game paused |
+| 2    | Press "Escape" key again  | Game unpaused |
+
+### 5. Units
+
+| Step | Action             | Expected Results          |
+|------|--------------------|---------------------------|
+| 1    | Select and click a "Buy unit" button. Drag a unit to its location | Money deducted, unit appears on game field, idle animation displayed|
+| 2    | Wait for enemy to come to unit's attack range  | Enemy gets damaged, enemy HP deducted, attack animation displayed |
+
+### 6. Units
+
+| Step | Action             | Expected Results          |
+|------|--------------------|---------------------------|
+| 1    | Select and click a "Buy unit" button. Drag a unit to its location | Money deducted, unit appears on game field, idle animation displayed|
+| 2    | Wait for enemy to come to unit's attack range  | Enemy gets damaged, enemy HP deducted, attack animation displayed |
+
 # Project Team Members
 
 1. **Mathew Shardin** (Project Leader)  
