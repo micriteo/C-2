@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SamuraiStandOff (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SamuraiStandOff (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
