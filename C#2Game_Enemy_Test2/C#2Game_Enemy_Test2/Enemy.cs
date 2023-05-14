@@ -26,6 +26,7 @@ namespace C_2Game_Enemy_Test2
         private int pathProgress { get; set; }
         private bool isActive { get; set; }
         private EnemyType enemyType { get; set; }
+        private int powerLevel { get; set; }
 
         // basic structure of an enemy class
         private UIElement placeHolder { get; set; }
@@ -143,6 +144,13 @@ namespace C_2Game_Enemy_Test2
              Requires a deep clone operation each time you create an enemy, which could negate the performance benefits if not done correctly.*/
         }
 
+        public int PowerLevel
+        {
+            get { return this.powerLevel; }
+            private set { this.powerLevel = value; }
+
+        }
+
         public void takeDamage(int damage)
         {
             this.health -= damage;
@@ -153,7 +161,7 @@ namespace C_2Game_Enemy_Test2
             }
         }
 
-        private double getAttackRangeByType(EnemyType enemy)
+        public double getAttackRangeByType(EnemyType enemy)
         {
             // Set the damage based on the enemy type
             return enemyType switch
@@ -170,7 +178,7 @@ namespace C_2Game_Enemy_Test2
             return this.placeHolder;
         }
 
-        private int getDamageByType(EnemyType enemyType)
+        public int getDamageByType(EnemyType enemyType)
         {
             // Set the damage based on the enemy type
             return enemyType switch
@@ -257,7 +265,7 @@ namespace C_2Game_Enemy_Test2
             };
         }
 
-        private void UpdateAttackCooldown(double deltaTime)
+        public void UpdateAttackCooldown(double deltaTime)
         {
             this.attackTimer += deltaTime;
 
@@ -268,12 +276,12 @@ namespace C_2Game_Enemy_Test2
             }
         }
 
-        private bool CanAttack()
+        public bool CanAttack()
         {
             return  this.attackTimer >= this.attackCooldown;
         }
 
-        private void ResetAttackCooldown()
+        public void ResetAttackCooldown()
         {
             this.attackTimer = 0.0;
         }
