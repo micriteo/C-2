@@ -15,7 +15,7 @@
             <StackPanel.Resources>
                 <FontFamily x:Key="CustomFont">/Assets/StayPixelRegular-EaOxl.ttf#Stay Pixel</FontFamily>
             </StackPanel.Resources>
-            <Grid Margin="0,100,0,0">
+            <Grid Margin="40,100,0,0">
                 <!-- Black outline -->
                 <TextBlock Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
                 <TextBlock Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
@@ -26,13 +26,26 @@
             </Grid>
             <Button x:Name="myButton" 
                     Click="myButton_Click" 
-                    Content="Start" 
-                    Foreground="#FFFFFF"
                     FontSize="50" 
                     FontFamily="{StaticResource CustomFont}" 
-                    Margin="-3,10,0,0"
-                    BorderThickness="0"
-                    Background="Transparent"/>
+                    Margin="0,40,0,0"
+                    Background="Transparent" 
+                    BorderThickness="0" 
+                    Width="200" 
+                    Height="100"
+                    HorizontalAlignment="Left">
+
+                <Grid>
+                    <!-- Black outline -->
+                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
+                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
+                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
+                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
+                    <!-- White text -->
+                    <TextBlock Text="Start" Foreground="#FFFFFF" FontSize="50" FontFamily="{StaticResource CustomFont}" />
+                </Grid>
+            </Button>
+            <TextBlock Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
         </StackPanel>
     </Grid>
 </Window>
