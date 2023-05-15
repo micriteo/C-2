@@ -30,6 +30,8 @@ namespace C_2Game_Enemy_Test2
                 initialPosition = e.GetCurrentPoint(this).Position;
                 Canvas.SetZIndex((UIElement)sender, 1);
                 ((Button)sender).CapturePointer(e.Pointer);
+                System.Console.WriteLine(initialPosition.X);
+                System.Console.WriteLine(initialPosition.Y);
             }
         }
 
@@ -43,6 +45,8 @@ namespace C_2Game_Enemy_Test2
                 Canvas.SetLeft((UIElement)sender, Canvas.GetLeft((UIElement)sender) + offsetX);
                 Canvas.SetTop((UIElement)sender, Canvas.GetTop((UIElement)sender) + offsetY);
                 initialPosition = currentPosition;
+                System.Console.WriteLine(initialPosition.X);
+                System.Console.WriteLine(initialPosition.Y);
             }
         }
 
@@ -52,6 +56,8 @@ namespace C_2Game_Enemy_Test2
             {
                 ((Button)sender).ReleasePointerCapture(e.Pointer);
                 Canvas.SetZIndex((UIElement)sender, 0);
+                System.Console.WriteLine(initialPosition.X);
+                System.Console.WriteLine(initialPosition.Y);
             }
         }
     }

@@ -9,6 +9,7 @@
     xmlns:local="using:C_2Game_Enemy_Test2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
     
     
@@ -16,7 +17,7 @@
 
     <Canvas x:Name="gameCanvas">
         <local:DraggablePanel Canvas.Top="0" Canvas.Left="400">
-            <StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <Button Content="Button 1" Width="100" Height="50"/>
                 <Button Content="Button 2" Width="100" Height="50"/>
                 <Button Content="Button 3" Width="100" Height="50"/>
