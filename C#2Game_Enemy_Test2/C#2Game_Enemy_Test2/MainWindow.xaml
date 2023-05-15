@@ -1,6 +1,7 @@
 <!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
+    
 <Window
     x:Class="C_2Game_Enemy_Test2.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -10,6 +11,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     
-    <Canvas x:Name="gameCanvas" />
+    
+
+
+    <Canvas x:Name="gameCanvas">
+        <local:DraggablePanel Canvas.Top="0" Canvas.Left="400">
+            <StackPanel>
+                <Button Content="Button 1" Width="100" Height="50"/>
+                <Button Content="Button 2" Width="100" Height="50"/>
+                <Button Content="Button 3" Width="100" Height="50"/>
+            </StackPanel>
+        </local:DraggablePanel>
+    </Canvas>
 
 </Window>
