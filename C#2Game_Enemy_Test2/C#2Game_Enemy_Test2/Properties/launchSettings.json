@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "C#2Game_Enemy_Test2 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "C#2Game_Enemy_Test2 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
