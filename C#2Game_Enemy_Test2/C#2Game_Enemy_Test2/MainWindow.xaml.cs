@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -8,6 +9,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.UI.Xaml.Shapes;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -32,21 +34,37 @@ namespace C_2Game_Enemy_Test2
     public sealed partial class MainWindow : Window
     {
         private List<Enemy> enemies = new List<Enemy>();
+        private List<Tower> towerList = new List<Tower>();
         private Tower tower;
         private DispatcherTimer gameLoopTimer;
+        List<Vector2> waypoints = new List<Vector2>()
+        {
+            new Vector2(0, 0),
+            new Vector2(100, 0),
+            new Vector2(100, 100),
+            new Vector2(30, 100),
+            new Vector2(50, 80),
+            new Vector2(0, 100),
+
+
+        };
+
 
 
         public MainWindow()
         {
             
             this.InitializeComponent();
+            Path enemyPath = new Path(waypoints);
 
-            enemies.Add(new Enemy(100, 1.0, new Vector2(0, 0), EnemyType.Melee));
-            enemies.Add(new Enemy(200, 0.5, new Vector2(50, 50), EnemyType.Ranged));
-            enemies.Add(new Enemy(300, 0.2, new Vector2(100, 115), EnemyType.Tank));
+
+            enemies.Add(new Enemy(100, 50, new Vector2(0, 0), EnemyType.Melee,enemyPath));
+           // enemies.Add(new Enemy(200, 10, new Vector2(50, 50), EnemyType.Ranged));
+            //enemies.Add(new Enemy(300, 10, new Vector2(100, 115), EnemyType.Tank));
 
             //creating the tower
-            tower = new Tower(60, new Vector2(100, 120));
+            tower = new Tower(60, new Vector2(90, 50));
+
 
             // Add the placeholders to the Canvas
             foreach (var enemy in enemies)
@@ -63,6 +81,8 @@ namespace C_2Game_Enemy_Test2
             gameLoopTimer.Tick += GameLoopTimer_Tick;
             gameLoopTimer.Interval = TimeSpan.FromMilliseconds(16); // Update at approximately 60 FPS
             gameLoopTimer.Start();
+
+            
         }
 
         private void GameLoopTimer_Tick(object sender, object e)
@@ -78,6 +98,22 @@ namespace C_2Game_Enemy_Test2
         }
         private void UpdateGame() 
         {
+           /* // Add the path to the Canvas
+            foreach (var waypoint in waypoints)
+            {
+                Rectangle pathStep = new Rectangle
+                {
+                    Width = 10,
+                    Height = 10,
+                    Fill = new SolidColorBrush(Colors.Gray),
+                };
+
+                Canvas.SetLeft(pathStep, waypoint.X);
+                Canvas.SetTop(pathStep, waypoint.Y);
+
+                gameCanvas.Children.Add(pathStep);
+            }*/
+
             double delta = gameLoopTimer.Interval.TotalSeconds;
 
             // Update enemies
