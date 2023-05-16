@@ -38,6 +38,7 @@ namespace C_2Game_Enemy_Test2
 
         private double attackRange { get; set; }
 
+
         private int damage { get; set; }
 
         private double attackTimer { get; set; } // Timer to track elapsed time since last attack
@@ -77,6 +78,8 @@ namespace C_2Game_Enemy_Test2
             this.placeHolder = createPlaceholderByType(enemyType);
 
             this.attackCooldown = getAttackCooldownByType(enemyType);
+
+            this.powerLevel = getPowerLevel(enemyType);
 
 
             /* Option 1: Create a new placeholder for each enemy in the constructor
@@ -203,6 +206,18 @@ namespace C_2Game_Enemy_Test2
                 EnemyType.Melee => 10,   // Set melee enemy damage
                 EnemyType.Ranged => 20,  // Set ranged enemy damage
                 EnemyType.Tank => 30,    // Set tank enemy damage
+                _ => throw new ArgumentException($"Unsupported enemy type: {enemyType}")
+            };
+        }
+
+        public int getPowerLevel(EnemyType enemyType)
+        {
+            // Set the powerLevel based on the enemy type
+            return enemyType switch
+            {
+                EnemyType.Melee => 1,   // Set melee enemy power
+                EnemyType.Ranged => 2,  // Set ranged enemy power
+                EnemyType.Tank => 3,    // Set tank enemy power
                 _ => throw new ArgumentException($"Unsupported enemy type: {enemyType}")
             };
         }
