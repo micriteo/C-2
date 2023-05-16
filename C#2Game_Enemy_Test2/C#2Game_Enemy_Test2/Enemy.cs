@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Controls;
 using System.Collections;
 using Serilog;
 using System.Diagnostics;
+using System.IO;
 
 namespace C_2Game_Enemy_Test2
 {
@@ -43,13 +44,22 @@ namespace C_2Game_Enemy_Test2
 
         private double attackCooldown {get;set; } // Cooldown in seconds
 
-        public Enemy(int health, double speed, Vector2 position, EnemyType enemyType)
+        private Path path;
+
+        private const float waypointThreshold = 0.5f;
+
+        private int currentWaypoint = 0; // Field to keep track of the current waypoint
+
+
+
+        public Enemy(int health, double speed, Vector2 position, EnemyType enemyType, Path path)
         {
             this.health = health;
             this.speed = speed;
             this.position = position;
             this.isActive = true;
             this.enemyType = enemyType;
+            this.path = path;
 
             // Initialize attack timer    
             this.attackTimer = 0.0; 
@@ -151,6 +161,13 @@ namespace C_2Game_Enemy_Test2
 
         }
 
+        public Path Path
+        {
+            get { return this.path; }
+            private set { this.path = value; }
+
+        }
+
         public void takeDamage(int damage)
         {
             this.health -= damage;
@@ -166,7 +183,7 @@ namespace C_2Game_Enemy_Test2
             // Set the damage based on the enemy type
             return enemyType switch
             {
-                EnemyType.Melee => 10,   // Set melee enemy range
+                EnemyType.Melee => 30,   // Set melee enemy range
                 EnemyType.Ranged => 20,  // Set ranged enemy range
                 EnemyType.Tank => 30,    // Set tank enemy range
                 _ => throw new ArgumentException($"Unsupported enemy type: {enemyType}")
@@ -235,10 +252,14 @@ namespace C_2Game_Enemy_Test2
                 if(tower != null )
                 { 
                     double distance = Vector2.Distance(this.position, tower.Position);
+                    Debug.WriteLine($"Distance to tower: {distance}"); // Debug output
+
                     if (distance <= this.attackRange && distance < closestDistance)
                     {
                         closestTower = tower;
                         closestDistance = distance;
+                        Debug.WriteLine("Tower in range found!"); // Debug output
+
                     }
                 }
             }
@@ -258,7 +279,7 @@ namespace C_2Game_Enemy_Test2
             // Set attack cooldown based on enemy type
             return enemyType switch
             {
-                EnemyType.Melee => 0.5,   // Melee enemy attacks every 1 second
+                EnemyType.Melee => 0.2,   // Melee enemy attacks every 1 second
                 EnemyType.Ranged => 2.5,  // Ranged enemy attacks every 5 seconds
                 EnemyType.Tank => 5.0,   // Tank enemy attacks every 10 seconds
                 _ => throw new ArgumentException($"Unsupported enemy type: {enemyType}")
@@ -286,6 +307,35 @@ namespace C_2Game_Enemy_Test2
             this.attackTimer = 0.0;
         }
 
+        public void Move( List<Tower> towers , double deltaTime)
+        {
+            //check if there is a tower in range before moving
+            Tower towerInRange = findClosestTower(towers);
+            if (towerInRange != null)
+            {
+                //If there is a tower in range, stop moving and return
+                return;
+
+            }
+            // Check if we have reached the current waypoint
+            if (Vector2.Distance(this.position, path.Waypoints[currentWaypoint]) <= waypointThreshold)
+            {
+                // Move to next waypoint
+                currentWaypoint = (currentWaypoint + 1) % path.Waypoints.Count;
+            }
+
+            // Calculate direction to next waypoint
+            Vector2 direction = Vector2.Normalize(path.Waypoints[currentWaypoint] - this.position);
+
+            // Move in that direction
+            this.position += direction * (float)(speed * deltaTime);
+
+            // Update placeholder position on the canvas
+            Canvas.SetLeft(this.placeHolder, this.position.X);
+            Canvas.SetTop(this.placeHolder, this.position.Y);
+
+        }
+
 
 
         public void update(List<Tower> towers,double deltaTime)
@@ -294,10 +344,33 @@ namespace C_2Game_Enemy_Test2
             // If it reaches the end of the path, set IsActive to false.
             // This is a placeholder - you'll need to replace it with your actual pathfinding logic.
 
+            Tower towerInRange = findClosestTower(towers);
+            if (towerInRange != null)
+            {
+                //if there is a tower in range attack it.
+                UpdateAttackCooldown(deltaTime);
+                if (CanAttack())
+                {
+                    attackTower(towerInRange);
+                    if (towerInRange.Health <= 0)
+                    {
+                        towers.Remove(towerInRange);
+                    }
+                    ResetAttackCooldown();
+                }
+            }
+            else
+            { 
+                Move(towers,deltaTime);
+            }
+
+           /* Move(deltaTime);
             List<Tower> towerToRemove = new List<Tower>();// List to store towers to be removed. This is used to avoid  
 
             if (towers.Count == 0)
             {
+                
+                
                 // No towers to attack
                 return;
             }
@@ -305,11 +378,11 @@ namespace C_2Game_Enemy_Test2
             Tower targetTower = findClosestTower(towers);
             if (targetTower != null)
             {
-                /* attackTower(targetTower);
-                 if (targetTower.Health <= 0)
-                 {
-                     towerToRemove.Add(targetTower); // Add the tower to the remove list
-                 }*/
+                attackTower(targetTower);
+                if (targetTower.Health <= 0)
+                {
+                    towerToRemove.Add(targetTower); // Add the tower to the remove list
+                }
 
                 // Update attack cooldown and timer
                 UpdateAttackCooldown(deltaTime);
@@ -329,7 +402,7 @@ namespace C_2Game_Enemy_Test2
             foreach (var towersToRemove in towerToRemove)
             {
                 towers.Remove(towersToRemove);
-            }
+            }*/
 
         }
 
