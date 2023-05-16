@@ -259,6 +259,7 @@ namespace C_2Game_Enemy_Test2
                         closestTower = tower;
                         closestDistance = distance;
                         Debug.WriteLine("Tower in range found!"); // Debug output
+                        Debug.WriteLine(closestTower.Health);
 
                     }
                 }

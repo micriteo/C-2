@@ -52,7 +52,6 @@ namespace C_2Game_Enemy_Test2
                 this.health = 0;
                 // Perform any other actions when the tower is destroyed
             }
-            Console.WriteLine(this.health);
         }
 
         public void createPlaceHolder()

@@ -34,8 +34,7 @@ namespace C_2Game_Enemy_Test2
     public sealed partial class MainWindow : Window
     {
         private List<Enemy> enemies = new List<Enemy>();
-        private List<Tower> towerList = new List<Tower>();
-        private Tower tower;
+        private List<Tower> towers = new List<Tower>();
         private DispatcherTimer gameLoopTimer;
         List<Vector2> waypoints = new List<Vector2>()
         {
@@ -59,12 +58,14 @@ namespace C_2Game_Enemy_Test2
 
 
             enemies.Add(new Enemy(100, 50, new Vector2(0, 0), EnemyType.Melee,enemyPath));
-           // enemies.Add(new Enemy(200, 10, new Vector2(50, 50), EnemyType.Ranged));
+            // enemies.Add(new Enemy(200, 10, new Vector2(50, 50), EnemyType.Ranged));
             //enemies.Add(new Enemy(300, 10, new Vector2(100, 115), EnemyType.Tank));
 
             //creating the tower
-            tower = new Tower(60, new Vector2(90, 50));
+            //tower = new Tower(60, new Vector2(90, 50));
 
+            towers.Add(new Tower(60, new Vector2(90, 50)));
+            towers.Add(new Tower(80, new Vector2(120, 70)));
 
             // Add the placeholders to the Canvas
             foreach (var enemy in enemies)
@@ -74,8 +75,10 @@ namespace C_2Game_Enemy_Test2
             }
 
             // Add the tower's placeholder to the gameCanvas
-            gameCanvas.Children.Add(tower.PlaceHolder);
-
+            foreach (var tower in towers)
+            {
+                gameCanvas.Children.Add(tower.PlaceHolder);
+            }
             // Start the game loop timer
             gameLoopTimer = new DispatcherTimer();
             gameLoopTimer.Tick += GameLoopTimer_Tick;
@@ -96,9 +99,9 @@ namespace C_2Game_Enemy_Test2
             // Write the attack message to the debug output
             Debug.WriteLine(message);
         }
-        private void UpdateGame() 
+        private void UpdateGame()
         {
-           /* // Add the path to the Canvas
+            // Add the path to the Canvas
             foreach (var waypoint in waypoints)
             {
                 Rectangle pathStep = new Rectangle
@@ -112,7 +115,7 @@ namespace C_2Game_Enemy_Test2
                 Canvas.SetTop(pathStep, waypoint.Y);
 
                 gameCanvas.Children.Add(pathStep);
-            }*/
+            }
 
             double delta = gameLoopTimer.Interval.TotalSeconds;
 
@@ -121,19 +124,33 @@ namespace C_2Game_Enemy_Test2
             {
                 enemy.AttackEvent += AttackEvent_Handler;
 
-                enemy.update(new List<Tower> {tower },delta);
+                enemy.update(towers, delta);
                 enemy.AttackEvent -= AttackEvent_Handler;
 
             }
-            // Remove destroyed tower
-            if (tower != null)
+
+            //Determine which towers need to be removed
+            List<Tower> towersToRemove = new List<Tower>();
+            foreach (var tower in towers)
             {
-                if (tower.Health <= 0)
+                if (tower.Health <= 10)
                 {
                     gameCanvas.Children.Remove(tower.PlaceHolder);
-                    tower = null;
+                    towersToRemove.Add(tower);
+
+                    // Force UI refresh
+                    gameCanvas.InvalidateMeasure();
+                    gameCanvas.UpdateLayout();
                 }
             }
+           
+                // Remove destroyed tower
+                foreach (var tower in towersToRemove)
+                {
+                    towers.Remove(tower);
+
+                }
+            
         }
 
 
