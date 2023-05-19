@@ -48,6 +48,7 @@
     <PRIResource Remove="rsc\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Assets\PathImage.png" />
     <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
     <None Remove="img\backgroung.jpg" />
     <None Remove="img\StayPixelRegular-EaOxl.ttf" />
@@ -55,6 +56,9 @@
   <ItemGroup>
     <Content Update="Assets\backgroung.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\PathImage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\StayPixelRegular-EaOxl.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
