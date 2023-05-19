@@ -4,7 +4,6 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
@@ -29,16 +28,10 @@ namespace SamuraiStandOff
         {
             this.InitializeComponent();
         }
-        private void startButton_Click(object sender, RoutedEventArgs e)
+
+        private void myButton_Click(object sender, RoutedEventArgs e)
         {
-            backgroundImage.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/map.jpg"));
-            startButton.Visibility = Visibility.Collapsed;
-            copyrightText.Visibility = Visibility.Collapsed;
-            shogunStandOffTextBlack1.Visibility = Visibility.Collapsed;
-            shogunStandOffTextBlack2.Visibility = Visibility.Collapsed;
-            shogunStandOffTextBlack3.Visibility = Visibility.Collapsed;
-            shogunStandOffTextBlack4.Visibility = Visibility.Collapsed;
-            shogunStandOffTextWhite.Visibility = Visibility.Collapsed;
+            myButton.Content = "Clicked";
         }
     }
 }
