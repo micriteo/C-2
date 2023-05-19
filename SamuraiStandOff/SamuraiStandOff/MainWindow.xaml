@@ -9,7 +9,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Assets/backgroung.jpg" Stretch="UniformToFill"/>
+           <ImageBrush x:Name="backgroundImage" ImageSource="Assets/backgroung.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
             <StackPanel.Resources>
@@ -17,15 +17,15 @@
             </StackPanel.Resources>
             <Grid Margin="40,100,0,0">
                 <!-- Black outline -->
-                <TextBlock Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
-                <TextBlock Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
-                <TextBlock Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
-                <TextBlock Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
+                <TextBlock x:Name="shogunStandOffTextBlack1" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
+                <TextBlock x:Name="shogunStandOffTextBlack2" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
+                <TextBlock x:Name="shogunStandOffTextBlack3" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
+                <TextBlock x:Name="shogunStandOffTextBlack4" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
                 <!-- White text -->
-                <TextBlock Text="Shogun StandOff" FontSize="90" Foreground="White" FontFamily="{StaticResource CustomFont}" />
+                <TextBlock x:Name="shogunStandOffTextWhite" Text="Shogun StandOff" FontSize="90" Foreground="White" FontFamily="{StaticResource CustomFont}" />
             </Grid>
-            <Button x:Name="myButton" 
-                    Click="myButton_Click" 
+            <Button x:Name="startButton" 
+                    Click="startButton_Click" 
                     FontSize="50" 
                     FontFamily="{StaticResource CustomFont}" 
                     Margin="0,40,0,0"
@@ -45,7 +45,8 @@
                     <TextBlock Text="Start" Foreground="#FFFFFF" FontSize="50" FontFamily="{StaticResource CustomFont}" />
                 </Grid>
             </Button>
-            <TextBlock Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
+            <Rectangle x:Name="blueRectangle" Width="200" Height="100" Fill="Blue" Visibility="Collapsed" />
+            <TextBlock x:Name="copyrightText" Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
         </StackPanel>
     </Grid>
 </Window>
