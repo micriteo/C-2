@@ -45,16 +45,26 @@
                     <TextBlock Text="Start" Foreground="#FFFFFF" FontSize="50" FontFamily="{StaticResource CustomFont}" />
                 </Grid>
             </Button>
+            <Button x:Name="damageButton" 
+                    Click="damageButton_Click" 
+                    FontSize="20" 
+                    FontFamily="{StaticResource CustomFont}" 
+                    Margin="0,0,0,0" 
+                    Background="black" 
+                    BorderThickness="0" 
+                    Width="100" 
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Content="Damage" />
             <Rectangle x:Name="healthIndicator" Height="10" Margin="0,300,0,0" VerticalAlignment="Top" Grid.Row="1">
                 <Rectangle.Fill>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                         <GradientStop Color="Green" Offset="0" />
-                        <GradientStop Color="Red" Offset="1" />
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="rectangle" Fill="#00FFFF" Height="250" Margin="0,10,0,0" Stroke="White" VerticalAlignment="Top" Width="100"/>
-
+            <Rectangle x:Name="baseTower" Fill="#00FFFF" Height="250" Margin="0,10,0,0" Stroke="White" VerticalAlignment="Top" Width="100"/>
             <TextBlock x:Name="copyrightText" Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
         </StackPanel>
     </Grid>
