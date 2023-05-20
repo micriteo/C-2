@@ -25,9 +25,12 @@ namespace SamuraiStandOff
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private Castle castle;
+
         public MainWindow()
         {
             this.InitializeComponent();
+            castle = new Castle(100);
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)
@@ -40,7 +43,31 @@ namespace SamuraiStandOff
             shogunStandOffTextBlack3.Visibility = Visibility.Collapsed;
             shogunStandOffTextBlack4.Visibility = Visibility.Collapsed;
             shogunStandOffTextWhite.Visibility = Visibility.Collapsed;
+            rectangle.Visibility = Visibility.Visible;
+            healthIndicator.Visibility = Visibility.Visible;
+            castle.Health -= 10; // Example update
+            UpdateRectangleVisibility();
         }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            healthIndicator.Visibility = Visibility.Collapsed;
+            rectangle.Visibility = Visibility.Collapsed;
+        }
+
+
+        private void UpdateRectangleVisibility()
+        {
+            if (castle.Health <= 0)
+            {
+                rectangle.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                rectangle.Visibility = Visibility.Visible;
+            }
+        }
+
     }
 }
 
