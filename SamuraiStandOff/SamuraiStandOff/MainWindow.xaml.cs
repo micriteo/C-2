@@ -14,6 +14,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Core;
+using Windows.Media.Playback;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,11 +34,15 @@ namespace SamuraiStandOff
         {
             this.InitializeComponent();
             castle = new Castle(100);
+
+            var mediaPlayer = new MediaPlayer();
+            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/Beautiful Japanese Music  Cherry Blossoms.mp3"));
+            mediaPlayer.Play();
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            backgroundImage.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/PathImage.png"));
+            backgroundImage.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/PathImage.png"));
             startButton.Visibility = Visibility.Collapsed;
             copyrightText.Visibility = Visibility.Collapsed;
             shogunStandOffTextBlack1.Visibility = Visibility.Collapsed;

@@ -9,11 +9,11 @@
 
     <Grid Loaded="MainWindow_Loaded">
         <Grid.Background>
-            <ImageBrush x:Name="backgroundImage" ImageSource="Assets/backgroung.jpg" Stretch="UniformToFill"/>
+            <ImageBrush x:Name="backgroundImage" ImageSource="Assets/Images/backgroung.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
             <StackPanel.Resources>
-                <FontFamily x:Key="CustomFont">/Assets/StayPixelRegular-EaOxl.ttf#Stay Pixel</FontFamily>
+                <FontFamily x:Key="CustomFont">/Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel</FontFamily>
             </StackPanel.Resources>
             <Grid Margin="40,100,0,0">
                 <!-- Black outline -->
