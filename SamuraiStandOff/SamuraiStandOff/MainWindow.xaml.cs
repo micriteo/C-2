@@ -33,10 +33,10 @@ namespace SamuraiStandOff
         public MainWindow()
         {
             this.InitializeComponent();
-            castle = new Castle(100);
+            castle = new Castle(20);
 
             var mediaPlayer = new MediaPlayer();
-            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/Beautiful Japanese Music  Cherry Blossoms.mp3"));
+            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/X2Download.app - Monster Hunter Rise - Main Menu Theme (128 kbps).mp3"));
             mediaPlayer.Play();
         }
 
@@ -53,8 +53,6 @@ namespace SamuraiStandOff
             baseTower.Visibility = Visibility.Visible;
             healthIndicator.Visibility = Visibility.Visible;
             damageButton.Visibility = Visibility.Visible;
-            castle.Health -= 10; // Example update
-            UpdatebaseTowerVisibility();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -79,13 +77,28 @@ namespace SamuraiStandOff
 
         private void damageButton_Click(object sender, RoutedEventArgs e)
         {
-            castle.Health -= 10; // Decrease castle's health by 10 (change the value as needed)
+            castle.Health -= 10; // Decrease castle's health by 10 
             UpdateHealthIndicator();
         }
 
+        private void ShowGameOverScene()
+        {
+            if (baseTower == null || healthIndicator == null || damageButton == null)
+            {
+                throw new Exception("One or more required components are null.");
+            }
+
+            baseTower.Visibility = Visibility.Collapsed;
+            healthIndicator.Visibility = Visibility.Collapsed;
+            damageButton.Visibility = Visibility.Collapsed;
+            GameOverImage.Visibility = Visibility.Visible;
+
+        }
+
+
         private void UpdateHealthIndicator()
         {
-            if (castle.Health >= 0) // only update if health is above 0
+            if (castle.Health > 0) // only update if health is above 0
             {
                 // calculate ratio of green to red
                 double greenRatio = (double)castle.Health / 100;
@@ -103,7 +116,13 @@ namespace SamuraiStandOff
             }
                 };
             }
+
+            if (castle.Health <= 0)
+            {
+                ShowGameOverScene();
+            }
         }
+
     }
 }
 

@@ -43,12 +43,16 @@
   <ItemGroup>
     <None Remove="Assets\PathImage.png" />
     <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
+    <None Remove="GameOverUserControl.xaml" />
     <None Remove="img\backgroung.jpg" />
     <None Remove="img\StayPixelRegular-EaOxl.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Assets\backgroung.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\gameOver.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\PathImage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -60,5 +64,10 @@
   <ItemGroup>
     <Folder Include="Assets\NewFolder1\" />
     <Folder Include="Assets\NewFolder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="GameOverUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>
