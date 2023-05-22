@@ -33,59 +33,50 @@ namespace C_2Game_Enemy_Test2
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private List<Enemy> enemies = new List<Enemy>();
+        
         private List<Tower> towers = new List<Tower>();
         private DispatcherTimer gameLoopTimer;
+        private List<EnemyV2> enemies = new List<EnemyV2>();
         List<Vector2> waypoints = new List<Vector2>()
         {
-            new Vector2(0, 0),
             new Vector2(100, 0),
             new Vector2(100, 100),
             new Vector2(30, 100),
             new Vector2(50, 80),
             new Vector2(0, 100),
 
-
         };
-
-
 
         public MainWindow()
         {
-            
             this.InitializeComponent();
             Path enemyPath = new Path(waypoints);
 
+            // Initialize instances of Melee_Enemy, Tank_Enemy, and Ranged_Enemy
+            Melee_Enemy meleeEnemy = new Melee_Enemy( new Vector2(0, 0), enemyPath); 
+            Tank_Enemy tankEnemy = new Tank_Enemy( new Vector2(0, 0), enemyPath);
+            //Speed_Enemy speedEnemy = new Speed_Enemy( new Vector2(0, 0), enemyPath);
 
-            enemies.Add(new Enemy(100, 50, new Vector2(0, 0), EnemyType.Melee,enemyPath));
-            // enemies.Add(new Enemy(200, 10, new Vector2(50, 50), EnemyType.Ranged));
-            //enemies.Add(new Enemy(300, 10, new Vector2(100, 115), EnemyType.Tank));
+            // Add these instances to your enemies List
+            enemies.Add(meleeEnemy);
+            enemies.Add(tankEnemy);
+            //enemies.Add(speedEnemy);
+
+            // Loop through the enemies List and add each enemy's placeholder to your game canvas (or other UI container)
+            foreach (var enemy in enemies) 
+            {
+                gameCanvas.Children.Add(enemy.CreatePlaceholder());
+            }
 
             //creating the tower
-            //tower = new Tower(60, new Vector2(90, 50));
-
-            towers.Add(new Tower(60, new Vector2(90, 50)));
+            towers.Add(new Tower(200, new Vector2(90, 50)));
             towers.Add(new Tower(80, new Vector2(120, 70)));
 
-            // Add the placeholders to the Canvas
-            foreach (var enemy in enemies)
-            {
-                //Debug.WriteLine("Attack");
-                gameCanvas.Children.Add(enemy.getPlaceHolder());
-            }
-
-            // Add the tower's placeholder to the gameCanvas
-            foreach (var tower in towers)
-            {
-                gameCanvas.Children.Add(tower.PlaceHolder);
-            }
             // Start the game loop timer
             gameLoopTimer = new DispatcherTimer();
             gameLoopTimer.Tick += GameLoopTimer_Tick;
             gameLoopTimer.Interval = TimeSpan.FromMilliseconds(16); // Update at approximately 60 FPS
             gameLoopTimer.Start();
-
-            
         }
 
         private void GameLoopTimer_Tick(object sender, object e)
@@ -99,8 +90,11 @@ namespace C_2Game_Enemy_Test2
             // Write the attack message to the debug output
             Debug.WriteLine(message);
         }
+
         private void UpdateGame()
         {
+            gameCanvas.Children.Clear();
+
             // Add the path to the Canvas
             foreach (var waypoint in waypoints)
             {
@@ -110,49 +104,46 @@ namespace C_2Game_Enemy_Test2
                     Height = 10,
                     Fill = new SolidColorBrush(Colors.Gray),
                 };
-
                 Canvas.SetLeft(pathStep, waypoint.X);
                 Canvas.SetTop(pathStep, waypoint.Y);
-
                 gameCanvas.Children.Add(pathStep);
             }
-
             double delta = gameLoopTimer.Interval.TotalSeconds;
 
             // Update enemies
             foreach (var enemy in enemies.ToList())
             {
                 enemy.AttackEvent += AttackEvent_Handler;
+                enemy.UpdateAttackCooldown(delta);
 
-                enemy.update(towers, delta);
-                enemy.AttackEvent -= AttackEvent_Handler;
+                // Check if the enemy is within attack range of a tower
+                Tower towerInRange = enemy.findClosestTower(towers);
+                if (towerInRange != null)
+                {
+                    if (enemy.CanAttack())
+                    {
+                        enemy.attackTower(towerInRange);
+                        if (towerInRange.Health <= 0)
+                        {
+                            towers.Remove(towerInRange);
+                        }
+                        enemy.ResetAttackCooldown();
+                    }
+                        enemy.Move(towers, 0); // Stop the enemy's movement
+                }
+                enemy.Move(towers, delta); // Move the enemy along the path
 
+                // Update the enemy's position on the canvas
+                Canvas.SetLeft(enemy.PlaceHolder, enemy.Position.X);
+                Canvas.SetTop(enemy.PlaceHolder, enemy.Position.Y);
+                gameCanvas.Children.Add(enemy.PlaceHolder); // Add the enemy's placeholder to the canvas
             }
 
-            //Determine which towers need to be removed
-            List<Tower> towersToRemove = new List<Tower>();
+            // Add the tower's placeholder to the gameCanvas
             foreach (var tower in towers)
             {
-                if (tower.Health <= 10)
-                {
-                    gameCanvas.Children.Remove(tower.PlaceHolder);
-                    towersToRemove.Add(tower);
-
-                    // Force UI refresh
-                    gameCanvas.InvalidateMeasure();
-                    gameCanvas.UpdateLayout();
-                }
-            }
-           
-                // Remove destroyed tower
-                foreach (var tower in towersToRemove)
-                {
-                    towers.Remove(tower);
-
-                }
-            
+                gameCanvas.Children.Add(tower.PlaceHolder);
+            }   
         }
-
-
     }
 }
