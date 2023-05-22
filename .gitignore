@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/C#2Game_Enemy_Test2/C#2Game_Enemy_Test2/Enemy.cs
