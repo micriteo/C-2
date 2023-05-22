@@ -20,6 +20,7 @@ using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Input;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -72,5 +73,35 @@ namespace Samurai_Standoff
             Canvas.SetLeft(image, pos.X);
             Canvas.SetTop(image, pos.Y);
         }
+
+        //---------------- Event handlers for Unit panel ------------
+        private void Button_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            button.CapturePointer(e.Pointer);
+        }
+
+        private void Button_PointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            if (button.PointerCaptures != null && button.PointerCaptures.Count > 0)
+            {
+                PointerPoint pointerPoint = e.GetCurrentPoint(null);
+                Canvas.SetLeft(button, pointerPoint.Position.X - button.ActualWidth / 2);
+                Canvas.SetTop(button, pointerPoint.Position.Y - button.ActualHeight / 2);
+            }
+        }
+
+        private void Button_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            button.ReleasePointerCapture(e.Pointer);
+            buttonPanel.Children.Remove(button);
+            MainCanvas.Children.Add(button);
+            Canvas.SetLeft(button, e.GetCurrentPoint(MainCanvas).Position.X - button.ActualWidth / 2);
+            Canvas.SetTop(button, e.GetCurrentPoint(MainCanvas).Position.Y - button.ActualHeight / 2);
+        }
+
+        //-----------------------------------------------------------
     }
 }

@@ -17,13 +17,23 @@ namespace Samurai_Standoff
 
         public DraggablePanel()
         {
-            //this.InitializeComponent();
+            this.InitializeComponent();
+            
+            //this.PointerPressed += Button_PointerPressed;
+            //this.PointerMoved += Button_PointerMoved;
+            //this.PointerReleased += Button_PointerReleased;
+        }
+
+        public void InitializeComponent()
+        {
+            System.Console.WriteLine("Test");
             this.PointerPressed += Button_PointerPressed;
             this.PointerMoved += Button_PointerMoved;
             this.PointerReleased += Button_PointerReleased;
+            System.Console.WriteLine(initialPosition.X);
         }
 
-        private void Button_PointerPressed(object sender, PointerRoutedEventArgs e)
+        public void Button_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             System.Console.WriteLine(initialPosition.X);
             //if (e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse)
@@ -37,7 +47,7 @@ namespace Samurai_Standoff
             }
         }
 
-        private void Button_PointerMoved(object sender, PointerRoutedEventArgs e)
+        public void Button_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
             if (e.Pointer.PointerDeviceType.Equals(Windows.Devices.Input.PointerDeviceType.Mouse))
             {
@@ -52,7 +62,7 @@ namespace Samurai_Standoff
             }
         }
 
-        private void Button_PointerReleased(object sender, PointerRoutedEventArgs e)
+        public void Button_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             if (e.Pointer.PointerDeviceType.Equals(Windows.Devices.Input.PointerDeviceType.Mouse))
             {
