@@ -16,19 +16,7 @@
            Canvas.Left="0"
            Canvas.Top="300"/>
 
-        
-        <!--<local:DraggablePanel Canvas.Top="0" Canvas.Left="400" x:Name="unitPanel">
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Unit 1" Width="100" Height="50" Background="Black"/>
-                <Button Content="Unit 2" Width="100" Height="50" Background="Black"/>
-                <Button Content="Unit 3" Width="100" Height="50" Background="Black"/>
-            </StackPanel>
-        </local:DraggablePanel>-->
-
-        <StackPanel x:Name="buttonPanel" Orientation="Horizontal">
-            <Button Content="Unit 1" Width="100" Height="50" PointerPressed="Button_PointerPressed" PointerMoved="Button_PointerMoved" PointerReleased="Button_PointerReleased" />
-            <Button Content="Unit 2" Width="100" Height="50" PointerPressed="Button_PointerPressed" PointerMoved="Button_PointerMoved" PointerReleased="Button_PointerReleased" />
-            <Button Content="Unit 3" Width="100" Height="50" PointerPressed="Button_PointerPressed" PointerMoved="Button_PointerMoved" PointerReleased="Button_PointerReleased" />
+        <StackPanel x:Name="buttonPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="400">
         </StackPanel>
     </Canvas>
 </Window>
