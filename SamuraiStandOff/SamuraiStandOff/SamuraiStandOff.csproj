@@ -70,5 +70,7 @@
   <ItemGroup>
     <Folder Include="Assets\NewFolder1\" />
     <Folder Include="Assets\NewFolder\" />
+    <Folder Include="Menu\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>

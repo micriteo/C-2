@@ -21,7 +21,7 @@ using Windows.Media.Playback;
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 
-namespace SamuraiStandOff
+namespace SamuraiStandOff.Controllers
 {
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
