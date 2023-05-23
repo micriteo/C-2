@@ -47,27 +47,19 @@ namespace Samurai_Standoff
             timer.Tick += MoveEnemy;
             timer.Start();
 
+
+            //Create unit panel buttons and attach methods to XAML ui elements
             Button button1 = new Button() { Content = "Unit 1", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
-            //button1.PointerPressed += Button_PointerPressed;
-            //button1.PointerMoved += Button_PointerMoved;
-            //button1.PointerReleased += Button_PointerReleased;
             button1.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button1.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button1.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased), true);
 
-
             Button button2 = new Button() { Content = "Unit 2", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
-            //button2.PointerPressed += Button_PointerPressed;
-            //button2.PointerMoved += Button_PointerMoved;
-            //button2.PointerReleased += Button_PointerReleased;
             button2.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button2.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button2.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased), true);
 
             Button button3 = new Button() { Content = "Unit 3", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
-            //button3.PointerPressed += Button_PointerPressed;
-            //button3.PointerMoved += Button_PointerMoved;
-            //button3.PointerReleased += Button_PointerReleased;
             button3.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button3.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button3.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased), true);
@@ -117,6 +109,7 @@ namespace Samurai_Standoff
             Button button = (Button)sender;
             if (button.PointerCaptures != null && button.PointerCaptures.Count > 0)
             {
+                //Update position of the dragged Button element in real time
                 PointerPoint pointerPoint = e.GetCurrentPoint(null);
                 Canvas.SetLeft(button, pointerPoint.Position.X - button.ActualWidth / 2);
                 Canvas.SetTop(button, pointerPoint.Position.Y - button.ActualHeight / 2);
@@ -134,7 +127,7 @@ namespace Samurai_Standoff
             //buttonPanel.Children.Remove(buttonNew);
             MainCanvas.Children.Add(buttonInsertCopy);
 
-            //Position element where player let go off pointer
+            //Position element where player let go off the pointer
             Canvas.SetLeft(buttonInsertCopy, e.GetCurrentPoint(MainCanvas).Position.X - buttonInsertCopy.ActualWidth / 2);
             Canvas.SetTop(buttonInsertCopy, e.GetCurrentPoint(MainCanvas).Position.Y - buttonInsertCopy.ActualHeight / 2);
         }
