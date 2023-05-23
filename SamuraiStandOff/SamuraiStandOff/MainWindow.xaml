@@ -1,0 +1,77 @@
+﻿<Window
+    x:Class="SamuraiStandOff.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SamuraiStandOff"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Loaded="MainWindow_Loaded">
+        <Grid.Background>
+            <ImageBrush x:Name="backgroundImage" ImageSource="Assets/Images/backgroung.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+            <StackPanel.Resources>
+                <FontFamily x:Key="CustomFont">/Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel</FontFamily>
+            </StackPanel.Resources>
+            <Grid Margin="40,100,0,0">
+                <!-- Black outline -->
+                <TextBlock x:Name="shogunStandOffTextBlack1" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
+                <TextBlock x:Name="shogunStandOffTextBlack2" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
+                <TextBlock x:Name="shogunStandOffTextBlack3" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
+                <TextBlock x:Name="shogunStandOffTextBlack4" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
+                <!-- White text -->
+                <TextBlock x:Name="shogunStandOffTextWhite" Text="Shogun StandOff" FontSize="90" Foreground="White" FontFamily="{StaticResource CustomFont}" />
+            </Grid>
+            <Button x:Name="startButton" 
+                    Click="startButton_Click" 
+                    FontSize="50" 
+                    FontFamily="{StaticResource CustomFont}" 
+                    Margin="0,40,0,0"
+                    Background="Transparent" 
+                    BorderThickness="0" 
+                    Width="200" 
+                    Height="100"
+                    HorizontalAlignment="Left">
+
+                <Grid>
+                    <!-- Black outline -->
+                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
+                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
+                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
+                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
+                    <!-- White text -->
+                    <TextBlock Text="Start" Foreground="#FFFFFF" FontSize="50" FontFamily="{StaticResource CustomFont}" />
+                </Grid>
+            </Button>
+            <Button x:Name="damageButton" 
+                    Click="damageButton_Click" 
+                    FontSize="20" 
+                    FontFamily="{StaticResource CustomFont}" 
+                    Margin="0,0,0,0" 
+                    Background="black" 
+                    BorderThickness="0" 
+                    Width="100" 
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Content="Damage" />
+            <Rectangle x:Name="healthIndicator" Height="10" Margin="0,300,0,0" VerticalAlignment="Top" Grid.Row="1">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="Green" Offset="0" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="baseTower" Height="250" Margin="0,10,0,0" Stroke="White" VerticalAlignment="Top" Width="100">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="ms-appx:///Assets/Images/gameOver.png" Stretch="Uniform" />
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <TextBlock x:Name="copyrightText" Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
+        </StackPanel>
+        <Image x:Name="GameOverImage" Visibility="Collapsed" Source="ms-appx:///Assets/Images/gameOver.png" Stretch="UniformToFill"/>
+    </Grid>
+</Window>
