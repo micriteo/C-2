@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cve6efojryliw"]
-
-[ext_resource type="Texture2D" uid="uid://cmg0digdwf4p1" path="res://bored-ape-nfts.jpg" id="1_x61gs"]
-
-[node name="Node2D" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, -1)
-texture = ExtResource("1_x61gs")
