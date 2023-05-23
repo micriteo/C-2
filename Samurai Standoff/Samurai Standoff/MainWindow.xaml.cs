@@ -46,7 +46,6 @@ namespace Samurai_Standoff
             timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += MoveEnemy;
             timer.Start();
-            System.Diagnostics.Debug.WriteLine("Start test");
 
             Button button1 = new Button() { Content = "Unit 1", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             //button1.PointerPressed += Button_PointerPressed;
@@ -111,8 +110,6 @@ namespace Samurai_Standoff
         {
             Button button = (Button)sender;
             button.CapturePointer(e.Pointer);
-            System.Diagnostics.Debug.WriteLine("Pressed button");
-
         }
 
         public void Button_PointerMoved(object sender, PointerRoutedEventArgs e)
