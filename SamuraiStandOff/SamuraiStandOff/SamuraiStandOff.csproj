@@ -43,7 +43,6 @@
   <ItemGroup>
     <None Remove="Assets\PathImage.png" />
     <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
-    <None Remove="GameOverUserControl.xaml" />
     <None Remove="img\backgroung.jpg" />
     <None Remove="img\StayPixelRegular-EaOxl.ttf" />
   </ItemGroup>
@@ -64,10 +63,5 @@
   <ItemGroup>
     <Folder Include="Assets\NewFolder1\" />
     <Folder Include="Assets\NewFolder\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="GameOverUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
 </Project>
