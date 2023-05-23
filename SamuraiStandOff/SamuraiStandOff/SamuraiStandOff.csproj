@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="MasinScreen.cs" />
     <Content Include="img\backgroung.jpg" />
     <Content Include="img\StayPixelRegular-EaOxl.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -46,6 +47,9 @@
     <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
     <None Remove="img\backgroung.jpg" />
     <None Remove="img\StayPixelRegular-EaOxl.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="MainScreen.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Assets\backgroung.jpg">
