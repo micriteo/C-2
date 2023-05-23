@@ -6,11 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
     <Grid Loaded="MainWindow_Loaded">
-        <Grid.Background>
-            <ImageBrush x:Name="backgroundImage" ImageSource="ms-appx:///Assets/Images/backgroung.jpg" Stretch="UniformToFill"/>
-        </Grid.Background>
+        <Frame x:Name="MainFrame" />
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
             <StackPanel.Resources>
                 <FontFamily x:Key="CustomFont">/Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel</FontFamily>
@@ -72,6 +69,8 @@
 
             <TextBlock x:Name="copyrightText" Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
         </StackPanel>
-        <Image x:Name="GameOverImage" Visibility="Collapsed" Source="ms-appx:///Assets/Images/gameOver.png" Stretch="UniformToFill"/>
+        <Grid.Background>
+            <ImageBrush x:Name="backgroundImage" ImageSource="ms-appx:///Assets/Images/backgroung.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
     </Grid>
 </Window>

@@ -42,7 +42,7 @@ namespace SamuraiStandOff.Controllers
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            backgroundImage.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/PathImage.png"));
+            MainFrame.Navigate(typeof(PlayScreen));
             startButton.Visibility = Visibility.Collapsed;
             copyrightText.Visibility = Visibility.Collapsed;
             shogunStandOffTextBlack1.Visibility = Visibility.Collapsed;
@@ -50,9 +50,6 @@ namespace SamuraiStandOff.Controllers
             shogunStandOffTextBlack3.Visibility = Visibility.Collapsed;
             shogunStandOffTextBlack4.Visibility = Visibility.Collapsed;
             shogunStandOffTextWhite.Visibility = Visibility.Collapsed;
-            baseTower.Visibility = Visibility.Visible;
-            healthIndicator.Visibility = Visibility.Visible;
-            damageButton.Visibility = Visibility.Visible;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -91,8 +88,6 @@ namespace SamuraiStandOff.Controllers
             baseTower.Visibility = Visibility.Collapsed;
             healthIndicator.Visibility = Visibility.Collapsed;
             damageButton.Visibility = Visibility.Collapsed;
-            GameOverImage.Visibility = Visibility.Visible;
-
         }
 
 
