@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using System;
@@ -13,7 +14,7 @@ namespace C_2Game_Enemy_Test2
 {
     public class Tank_Enemy : EnemyV2
     {
-        public Tank_Enemy( Vector2 position, Path path) : base(100, 30, position, path, 10, 0.5, 30, 50)
+        public Tank_Enemy() : base(100, 30, 10, 0.5, 30, 3)
         {
         }
 
@@ -26,8 +27,11 @@ namespace C_2Game_Enemy_Test2
                 Fill = new SolidColorBrush(Colors.Green),// Set the color of the ellipse
                 Margin = new Thickness(Position.X, Position.Y, 0, 0), // Set the position of the ellipse
             };
-
             return placeholder;
+        }
+        public override EnemyV2 Clone()
+        {
+            return new Tank_Enemy();
         }
     }
 }

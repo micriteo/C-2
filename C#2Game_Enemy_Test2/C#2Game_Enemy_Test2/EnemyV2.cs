@@ -3,16 +3,13 @@ using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace C_2Game_Enemy_Test2
 {
-    public abstract class EnemyV2 
+    public abstract class EnemyV2
     {
-
         protected int Health { get; set; }
         protected double Speed { get; set; }
         public Vector2 Position { get; set; }
@@ -21,7 +18,7 @@ namespace C_2Game_Enemy_Test2
         protected double AttackCooldown { get; set; }
         protected double AttackRange { get; set; }
         protected double AttackTimer { get; set; }
-        protected double PowerLevel { get; set; }
+        public int PowerLevel { get; set; }
         public UIElement PlaceHolder { get; set; }
         protected const float waypointThreshold = 0.5f;
         protected int currentWaypoint = 0; // Field to keep track of the current waypoint
@@ -29,22 +26,20 @@ namespace C_2Game_Enemy_Test2
 
 
 
-        public EnemyV2(int health, double speed, Vector2 position, Path path, int damage, double attackCooldown, double attackRange,double powerLevel)
+        public EnemyV2(int health, double speed, int damage, double attackCooldown, double attackRange, int powerLevel)
         {
-            this.Health = health;
-            this.Speed = speed;
-            this.Position = position;
-            this.Follow_Path = path;
-            this.Damage = damage;
-            this.AttackCooldown = attackCooldown;
-            this.AttackRange = attackRange;
-            this.PowerLevel = powerLevel;
-            this.AttackTimer = 0.0;
+            Health = health;
+            Speed = speed;
+            Position = new Vector2(0, 0);
+            Follow_Path = new Path();
+            Damage = damage;
+            AttackCooldown = attackCooldown;
+            AttackRange = attackRange;
+            PowerLevel = powerLevel;
+            AttackTimer = 0.0;
 
             // Create the enemy's placeholder
             PlaceHolder = CreatePlaceholder();
-            Canvas.SetLeft(this.PlaceHolder, this.Position.X);
-            Canvas.SetTop(this.PlaceHolder, this.Position.Y);
         }
 
         /* This method is responsible for finding the closest tower within the attack range of the enemy.
@@ -61,9 +56,9 @@ namespace C_2Game_Enemy_Test2
             {
                 if (tower != null)
                 {
-                    double distance = Vector2.Distance(this.Position, tower.Position);
+                    double distance = Vector2.Distance(Position, tower.Position);
                     Debug.WriteLine($"Distance to tower: {distance}"); // Debug output
-                    if (distance <= this.AttackRange && distance < closestDistance)
+                    if (distance <= AttackRange && distance < closestDistance)
                     {
                         closestTower = tower;
                         closestDistance = distance;
@@ -82,7 +77,7 @@ namespace C_2Game_Enemy_Test2
         public virtual void attackTower(Tower tower)
         {
             // Attack the tower and reduce its health
-            tower.TakeDamage(this.Damage);
+            tower.TakeDamage(Damage);
             Debug.WriteLine($"Enemy attacked tower for {Damage} damage!");
         }
 
@@ -93,11 +88,11 @@ namespace C_2Game_Enemy_Test2
         public virtual void UpdateAttackCooldown(double deltaTime)
         {
             // Update the attack cooldown timer
-            this.AttackTimer += deltaTime;
-            
-            if (this.AttackTimer > this.AttackCooldown) // Ensure the attack cooldown doesn't exceed the desired interval
+            AttackTimer += deltaTime;
+
+            if (AttackTimer > AttackCooldown) // Ensure the attack cooldown doesn't exceed the desired interval
             {
-                this.AttackTimer = this.AttackCooldown;
+                AttackTimer = AttackCooldown;
             }
         }
 
@@ -108,13 +103,13 @@ namespace C_2Game_Enemy_Test2
         public virtual bool CanAttack()
         {
             // Check if the enemy can attack based on the attack cooldown
-            return this.AttackTimer >= this.AttackCooldown;
+            return AttackTimer >= AttackCooldown;
         }
 
         public virtual void ResetAttackCooldown()
         {
             // Reset the attack cooldown timer
-            this.AttackTimer = 0.0;
+            AttackTimer = 0.0;
         }
 
         /*
@@ -131,17 +126,17 @@ namespace C_2Game_Enemy_Test2
                 return; //If there is a tower in range, stop moving and return
             }
 
-            if (Vector2.Distance(this.Position, Follow_Path.Waypoints[currentWaypoint]) <= waypointThreshold) // Check if we have reached the current waypoint
+            if (Vector2.Distance(Position, Follow_Path.Waypoints[currentWaypoint]) <= waypointThreshold) // Check if we have reached the current waypoint
             {
                 currentWaypoint = (currentWaypoint + 1) % Follow_Path.Waypoints.Count; // Move to next waypoint
             }
 
-            Vector2 direction = Vector2.Normalize(Follow_Path.Waypoints[currentWaypoint] - this.Position); // Calculate direction to next waypoint
-            this.Position += direction * (float)(this.Speed * deltaTime);// Move in that direction
+            Vector2 direction = Vector2.Normalize(Follow_Path.Waypoints[currentWaypoint] - Position); // Calculate direction to next waypoint
+            Position += direction * (float)(Speed * deltaTime);// Move in that direction
 
             // Update placeholder position on the canvas
-            Canvas.SetLeft(this.PlaceHolder, this.Position.X);
-            Canvas.SetTop(this.PlaceHolder, this.Position.Y);
+            Canvas.SetLeft(PlaceHolder, Position.X);
+            Canvas.SetTop(PlaceHolder, Position.Y);
         }
 
         /*
@@ -179,6 +174,16 @@ namespace C_2Game_Enemy_Test2
          * This abstract method is implemented by derived classes and is responsible for creating the UI element that represents the enemy on the game canvas. 
          * The placeholder element is used to visualize the enemy's position.
          */
+
+        public UIElement SetupPlaceholder()
+        {
+            Canvas.SetLeft(PlaceHolder, Position.X);
+            Canvas.SetTop(PlaceHolder, Position.Y);
+            return PlaceHolder;
+        }
+
         public abstract UIElement CreatePlaceholder();
+
+        public abstract EnemyV2 Clone();
     }
 }

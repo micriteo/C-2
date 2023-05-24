@@ -18,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Notifications;
@@ -36,38 +37,16 @@ namespace C_2Game_Enemy_Test2
         
         private List<Tower> towers = new List<Tower>();
         private DispatcherTimer gameLoopTimer;
+        
         private List<EnemyV2> enemies = new List<EnemyV2>();
-        List<Vector2> waypoints = new List<Vector2>()
+
+        public  MainWindow()
         {
-            new Vector2(100, 0),
-            new Vector2(100, 100),
-            new Vector2(30, 100),
-            new Vector2(50, 80),
-            new Vector2(0, 100),
-
-        };
-
-        public MainWindow()
-        {
-            this.InitializeComponent();
-            Path enemyPath = new Path(waypoints);
-
-            // Initialize instances of Melee_Enemy, Tank_Enemy, and Ranged_Enemy
-            Melee_Enemy meleeEnemy = new Melee_Enemy( new Vector2(0, 0), enemyPath); 
-            Tank_Enemy tankEnemy = new Tank_Enemy( new Vector2(0, 0), enemyPath);
-            //Speed_Enemy speedEnemy = new Speed_Enemy( new Vector2(0, 0), enemyPath);
-
-            // Add these instances to your enemies List
-            enemies.Add(meleeEnemy);
-            enemies.Add(tankEnemy);
-            //enemies.Add(speedEnemy);
-
+            InitializeComponent();
+            SpawnEnemy enemySpawner = new(1);
+            enemies = enemySpawner.CreateWave();
             // Loop through the enemies List and add each enemy's placeholder to your game canvas (or other UI container)
-            foreach (var enemy in enemies) 
-            {
-                gameCanvas.Children.Add(enemy.CreatePlaceholder());
-            }
-
+            // Task task = Spawner(enemies, gameCanvas);
             //creating the tower
             towers.Add(new Tower(200, new Vector2(90, 50)));
             towers.Add(new Tower(80, new Vector2(120, 70)));
@@ -77,6 +56,19 @@ namespace C_2Game_Enemy_Test2
             gameLoopTimer.Tick += GameLoopTimer_Tick;
             gameLoopTimer.Interval = TimeSpan.FromMilliseconds(16); // Update at approximately 60 FPS
             gameLoopTimer.Start();
+        }
+
+        public static async Task Spawner(List<EnemyV2> enemies, Canvas gameCanvas)
+        {
+            int counter = 0;
+            foreach (var enemy in enemies)
+            {
+                counter++;
+                gameCanvas.Children.Add(enemy.SetupPlaceholder());
+                await Task.Delay(1000);
+            }
+            int count = counter;
+            
         }
 
         private void GameLoopTimer_Tick(object sender, object e)
@@ -96,9 +88,9 @@ namespace C_2Game_Enemy_Test2
             gameCanvas.Children.Clear();
 
             // Add the path to the Canvas
-            foreach (var waypoint in waypoints)
+            /*foreach (var waypoint in waypoints)
             {
-                Rectangle pathStep = new Rectangle
+                Rectangle pathStep = new()
                 {
                     Width = 10,
                     Height = 10,
@@ -107,7 +99,7 @@ namespace C_2Game_Enemy_Test2
                 Canvas.SetLeft(pathStep, waypoint.X);
                 Canvas.SetTop(pathStep, waypoint.Y);
                 gameCanvas.Children.Add(pathStep);
-            }
+            }*/
             double delta = gameLoopTimer.Interval.TotalSeconds;
 
             // Update enemies
