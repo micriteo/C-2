@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid Loaded="MainWindow_Loaded">
+    <Grid MinWidth ="800" MinHeight="600" Loaded="MainWindow_Loaded">
         <Frame x:Name="MainFrame" />
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
             <StackPanel.Resources>
@@ -42,18 +42,7 @@
                     <TextBlock Text="Start" Foreground="#FFFFFF" FontSize="50" FontFamily="{StaticResource CustomFont}" />
                 </Grid>
             </Button>
-            <Button x:Name="damageButton" 
-                    Click="damageButton_Click" 
-                    FontSize="20" 
-                    FontFamily="{StaticResource CustomFont}" 
-                    Margin="0,0,0,0" 
-                    Background="black" 
-                    BorderThickness="0" 
-                    Width="100" 
-                    Height="50"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Content="Damage" />
+
             <Rectangle x:Name="healthIndicator" Height="10" Margin="0,300,0,0" VerticalAlignment="Top" Grid.Row="1">
                 <Rectangle.Fill>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">

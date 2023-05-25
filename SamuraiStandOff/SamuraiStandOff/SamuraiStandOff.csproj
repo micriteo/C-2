@@ -45,6 +45,7 @@
     <None Remove="Assets\Images\pathImage.jpg" />
     <None Remove="Assets\PathImage.png" />
     <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
+    <None Remove="GameOver.xaml" />
     <None Remove="img\backgroung.jpg" />
     <None Remove="img\StayPixelRegular-EaOxl.ttf" />
     <None Remove="PlayScreen.xaml" />
@@ -52,6 +53,9 @@
   <ItemGroup>
     <Content Update="Assets\backgroung.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\deathLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\gameOver.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -77,6 +81,11 @@
     <Folder Include="Assets\NewFolder\" />
     <Folder Include="Menu\" />
     <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="GameOver.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="PlayScreen.xaml">

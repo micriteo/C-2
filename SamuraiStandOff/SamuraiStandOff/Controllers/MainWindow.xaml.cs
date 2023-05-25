@@ -16,6 +16,10 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Media.Playback;
+using Windows.UI.ViewManagement;
+using Windows.Foundation;
+using Windows.UI.ViewManagement;
+using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,20 +33,27 @@ namespace SamuraiStandOff.Controllers
     public sealed partial class MainWindow : Window
     {
         private Castle castle;
-
+        private MediaPlayer media;
         public MainWindow()
         {
             this.InitializeComponent();
-            castle = new Castle(20);
 
-            var mediaPlayer = new MediaPlayer();
-            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/X2Download.app - Monster Hunter Rise - Main Menu Theme (128 kbps).mp3"));
-            mediaPlayer.Play();
+            // Set the fixed resolution for the application window
+            ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            media = new MediaPlayer();
+            media.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/X2Download.app - Monster Hunter Rise - Main Menu Theme (128 kbps).mp3"));
+            media.Play();
         }
+
+
+
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(typeof(PlayScreen));
+            media.Source = null;
             startButton.Visibility = Visibility.Collapsed;
             copyrightText.Visibility = Visibility.Collapsed;
             shogunStandOffTextBlack1.Visibility = Visibility.Collapsed;
@@ -56,68 +67,7 @@ namespace SamuraiStandOff.Controllers
         {
             healthIndicator.Visibility = Visibility.Collapsed;
             baseTower.Visibility = Visibility.Collapsed;
-            damageButton.Visibility = Visibility.Collapsed;
         }
-
-
-        private void UpdatebaseTowerVisibility()
-        {
-            if (castle.Health <= 0)
-            {
-                baseTower.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                baseTower.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void damageButton_Click(object sender, RoutedEventArgs e)
-        {
-            castle.Health -= 10; // Decrease castle's health by 10 
-            UpdateHealthIndicator();
-        }
-
-        private void ShowGameOverScene()
-        {
-            if (baseTower == null || healthIndicator == null || damageButton == null)
-            {
-                throw new Exception("One or more required components are null.");
-            }
-
-            baseTower.Visibility = Visibility.Collapsed;
-            healthIndicator.Visibility = Visibility.Collapsed;
-            damageButton.Visibility = Visibility.Collapsed;
-        }
-
-
-        private void UpdateHealthIndicator()
-        {
-            if (castle.Health > 0) // only update if health is above 0
-            {
-                // calculate ratio of green to red
-                double greenRatio = (double)castle.Health / 100;
-                double redRatio = 1 - greenRatio;
-
-                // update healthIndicator's Fill property
-                healthIndicator.Fill = new LinearGradientBrush
-                {
-                    StartPoint = new Point(0, 0),
-                    EndPoint = new Point(1, 0),
-                    GradientStops = new GradientStopCollection
-            {
-                new GradientStop { Color = Colors.Green, Offset = greenRatio },
-                new GradientStop { Color = Colors.Red, Offset = greenRatio } // start red where green ends
-            }
-                };
-            }
-
-            if (castle.Health <= 0)
-            {
-                ShowGameOverScene();
-            }
-        }
-
     }
 }
 
