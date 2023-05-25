@@ -24,7 +24,7 @@ namespace C_2Game_Enemy_Test2
             {
                 Width = 30 ,// Set the width and height
                 Height = 30,
-                Fill = new SolidColorBrush(Colors.Green),// Set the color of the ellipse
+                Fill = new SolidColorBrush(Colors.Blue),// Set the color of the ellipse
                 Margin = new Thickness(Position.X, Position.Y, 0, 0), // Set the position of the ellipse
             };
             return placeholder;

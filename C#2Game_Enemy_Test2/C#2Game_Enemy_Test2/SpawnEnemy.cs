@@ -16,7 +16,7 @@ namespace C_2Game_Enemy_Test2
         public SpawnEnemy(int wave)
         {
             this.wave = wave;
-            wavePower = this.wave * 8;
+            wavePower = this.wave * 10;
             possibleEnemies = new()
             {
                 new Tank_Enemy(),
