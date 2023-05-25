@@ -17,6 +17,15 @@
                HorizontalAlignment="Right" 
                VerticalAlignment="Center" 
                Height="300"
-               Margin="300,0,200,0"/>
+               Margin="0,0,100,100"/>
+
+        <TextBlock Text="Death" 
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Bottom" 
+                   FontSize="50" 
+                   FontFamily="ms-appx:///Assets/Fonts/CustomFont.ttf#Stay Pixel" 
+                   Foreground="White" 
+                   Margin="0,0,200,150"/>
+
     </Grid>
 </Page>
