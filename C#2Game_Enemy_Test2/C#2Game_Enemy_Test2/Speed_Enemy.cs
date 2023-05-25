@@ -22,7 +22,7 @@ namespace C_2Game_Enemy_Test2
         public override UIElement CreatePlaceholder()
         {
             // Create a new Polygon instance
-            Polygon placeholder = new Polygon()
+            Polygon placeholder = new ()
             {
                 // Set the points to form a triangle
                 Points = new PointCollection()

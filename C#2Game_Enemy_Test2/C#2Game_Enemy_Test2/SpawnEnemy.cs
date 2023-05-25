@@ -13,10 +13,8 @@ namespace C_2Game_Enemy_Test2
         int wavePower = 0;
         List<EnemyV2> possibleEnemies;
 
-        public SpawnEnemy(int wave)
+        public SpawnEnemy()
         {
-            this.wave = wave;
-            wavePower = this.wave * 10;
             possibleEnemies = new()
             {
                 new Tank_Enemy(),
@@ -25,8 +23,11 @@ namespace C_2Game_Enemy_Test2
             };
         }
 
-        public List<EnemyV2> CreateWave()
+        public List<EnemyV2> CreateWave(int waveNum)
         {
+            wave = waveNum;
+            wavePower = 10 * wave;
+
             List<EnemyV2> enemies = new();
             Random _random = new();
             while (wavePower != 0)      

@@ -35,15 +35,16 @@ namespace C_2Game_Enemy_Test2
     public sealed partial class MainWindow : Window
     {
         
-        private List<Tower> towers = new List<Tower>();
+        private List<Tower> towers = new ();
         private DispatcherTimer gameLoopTimer;
-        private List<EnemyV2> enemies = new List<EnemyV2>();
+        private List<EnemyV2> enemies = new ();
+        SpawnEnemy enemySpawner = new();
 
-        public  MainWindow()
+        public MainWindow()
         {
             InitializeComponent();
-            SpawnEnemy enemySpawner = new(1);
-            enemies = enemySpawner.CreateWave();
+            
+            enemies = enemySpawner.CreateWave(1);
             
             //creating the tower
             towers.Add(new Tower(200, new Vector2(90, 50)));
@@ -119,12 +120,12 @@ namespace C_2Game_Enemy_Test2
                     enemy.UpdateAttackCooldown(delta);
 
                     // Check if the enemy is within attack range of a tower
-                    Tower towerInRange = enemy.findClosestTower(towers);
+                    Tower towerInRange = enemy.FindClosestTower(towers);
                     if (towerInRange != null)
                     {
                         if (enemy.CanAttack())
                         {
-                            enemy.attackTower(towerInRange);
+                            enemy.AttackTower(towerInRange);
                             if (towerInRange.Health <= 0)
                             {
                                 gameCanvas.Children.Remove(towerInRange.PlaceHolder);

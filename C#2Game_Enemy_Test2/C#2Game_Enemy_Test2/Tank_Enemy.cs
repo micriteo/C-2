@@ -20,7 +20,7 @@ namespace C_2Game_Enemy_Test2
 
         public override UIElement CreatePlaceholder()
         {
-            Ellipse placeholder = new Ellipse() // Create a new Ellipse instance
+            Ellipse placeholder = new() // Create a new Ellipse instance
             {
                 Width = 30 ,// Set the width and height
                 Height = 30,

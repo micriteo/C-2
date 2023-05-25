@@ -46,7 +46,7 @@ namespace C_2Game_Enemy_Test2
          * It iterates over the list of towers and calculates the distance between the enemy and each tower. 
          * It returns the tower that is closest to the enemy.
          */
-        public virtual Tower findClosestTower(List<Tower> towers)
+        public virtual Tower FindClosestTower(List<Tower> towers)
         {
             Tower closestTower = null;
             double closestDistance = double.MaxValue;
@@ -74,7 +74,7 @@ namespace C_2Game_Enemy_Test2
          * This method is called when the enemy attacks a tower.
          * It reduces the health of the target tower by the enemy's damage value.
          */
-        public virtual void attackTower(Tower tower)
+        public virtual void AttackTower(Tower tower)
         {
             // Attack the tower and reduce its health
             tower.TakeDamage(Damage);
@@ -120,7 +120,7 @@ namespace C_2Game_Enemy_Test2
         public virtual void Move(List<Tower> towers, double deltaTime)
         {
 
-            Tower towerInRange = findClosestTower(towers); //check if there is a tower in range before moving
+            Tower towerInRange = FindClosestTower(towers); //check if there is a tower in range before moving
             if (towerInRange != null)
             {
                 return; //If there is a tower in range, stop moving and return
@@ -144,10 +144,10 @@ namespace C_2Game_Enemy_Test2
          * If a tower is in range, it updates the attack cooldown and performs an attack if possible. 
          * If there is no tower in range, it calls the Move method to move the enemy along the path.
          */
-        public virtual void update(List<Tower> towers, double deltaTime)
+        public virtual void Update(List<Tower> towers, double deltaTime)
         {
             // Check if there is a tower in range
-            Tower towerInRange = findClosestTower(towers);
+            Tower towerInRange = FindClosestTower(towers);
             if (towerInRange != null)
             {
                 UpdateAttackCooldown(deltaTime); // Update the attack cooldown
@@ -155,7 +155,7 @@ namespace C_2Game_Enemy_Test2
                 // Attack the tower if the attack cooldown allows
                 if (CanAttack())
                 {
-                    attackTower(towerInRange);
+                    AttackTower(towerInRange);
                     if (towerInRange.Health <= 0)
                     {
                         towers.Remove(towerInRange);
