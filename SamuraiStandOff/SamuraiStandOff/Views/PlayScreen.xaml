@@ -8,11 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid>
-        <Grid.Background>
+    <Canvas Name="MainCanvas">
+        <Canvas.Background>
             <ImageBrush ImageSource="ms-appx:///Assets/Images/pathImage.jpg"/>
-        </Grid.Background>
+        </Canvas.Background>
         <Frame x:Name="playFrame"/>
+        <StackPanel x:Name="buttonPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="400"></StackPanel>
         <Rectangle x:Name="healthIndicator" Height="10" Margin="30,0,0,250" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Width="100">
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
@@ -36,5 +37,5 @@
                 <ImageBrush ImageSource="ms-appx:///Assets/Images/rsz_tower.png" Stretch="Uniform" />
             </Rectangle.Fill>
         </Rectangle>
-    </Grid>
+    </Canvas>
 </Page>
