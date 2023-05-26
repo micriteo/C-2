@@ -33,5 +33,6 @@ namespace SamuraiStandOff.Controllers
             mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/yoooooo japanese sound  kabuki yoo.mp3"));
             mediaPlayer.Play();
         }
+
     }
 }
