@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/Samurai Standoff/Samurai Standoff/Samurai Standoff.csproj
+/Samurai Standoff/Samurai Standoff/MainWindow.xaml.cs
+/Samurai Standoff/Samurai Standoff/MainWindow.xaml
