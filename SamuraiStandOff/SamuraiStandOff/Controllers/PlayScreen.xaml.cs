@@ -97,6 +97,24 @@ namespace SamuraiStandOff.Controllers
                 ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/gameOver.png")),
                 Stretch = Stretch.Fill
             };
+            //Remove all placed units
+            StackPanel parentContainer = buttonPanel; // Get a reference to the parent container
+            // Remove all unit elements from the draggable panel
+            foreach (UIElement element in parentContainer.Children.ToList())
+            {
+                if (element is Button button)
+                {
+                    parentContainer.Children.Remove(button);
+                }
+            }
+            //Remove all units from canvas
+            foreach (UIElement element in MainCanvas.Children.ToList())
+            {
+                if (element is Button button)
+                {
+                    MainCanvas.Children.Remove(button);
+                }
+            }
         }
 
 
