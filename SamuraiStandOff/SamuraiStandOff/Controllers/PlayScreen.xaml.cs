@@ -14,6 +14,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Input;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -91,7 +92,13 @@ namespace SamuraiStandOff.Controllers
             baseTower.Visibility = Visibility.Collapsed;
             healthIndicator.Visibility = Visibility.Collapsed;
             damageButton.Visibility = Visibility.Collapsed;
+            MainCanvas.Background = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/gameOver.png")),
+                Stretch = Stretch.Fill
+            };
         }
+
 
         //---------------- Event handlers for Unit panel ------------
         public void Button_PointerPressed(object sender, PointerRoutedEventArgs e)

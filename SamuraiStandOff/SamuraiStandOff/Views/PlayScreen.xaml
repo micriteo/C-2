@@ -32,7 +32,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Content="Damage" />
-        <Rectangle x:Name="baseTower" Height="250" Margin="20,0,0,0" Stroke="Transparent" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100">
+        <Rectangle x:Name="baseTower" Height="250" Margin="0,450,0,0" Stroke="Transparent" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="ms-appx:///Assets/Images/rsz_tower.png" Stretch="Uniform" />
             </Rectangle.Fill>

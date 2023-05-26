@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="SamuraiStandOff.Controllers.GameOver"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -8,24 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/Images/gameOver.png"/>
-        </Grid.Background>
-
+    <Canvas x:Name="GameOverCanvas">
         <Image Source="ms-appx:///Assets/Images/deathLogo.png" 
-               HorizontalAlignment="Right" 
-               VerticalAlignment="Center" 
-               Height="300"
-               Margin="0,0,100,100"/>
+               Canvas.Top="100" 
+               Height="300"/>
 
         <TextBlock Text="Death" 
-                   HorizontalAlignment="Right" 
-                   VerticalAlignment="Bottom" 
                    FontSize="50" 
                    FontFamily="ms-appx:///Assets/Fonts/CustomFont.ttf#Stay Pixel" 
-                   Foreground="White" 
-                   Margin="0,0,200,150"/>
-
-    </Grid>
+                   Foreground="White" />
+    </Canvas>
 </Page>
