@@ -14,8 +14,46 @@
                Canvas.Top="200"/>
 
         <TextBlock Text="Death" 
-                   FontSize="50" 
+                   FontSize="50"
+                   Canvas.Left="1104"
+                   Canvas.Top="529"
+                   FontFamily="ms-appx:///Assets/Fonts/CustomFont.ttf#Stay Pixel" 
+                   Foreground="Black" 
+                   Opacity="0.5"/>
+        
+        <TextBlock Text="Death" 
+                   FontSize="50"
+                   Canvas.Left="1100"
+                   Canvas.Top="525"
                    FontFamily="ms-appx:///Assets/Fonts/CustomFont.ttf#Stay Pixel" 
                    Foreground="White" />
+
+        <TextBlock Text="Do you want to continue?" 
+                   FontSize="50"
+                   Canvas.Left="234"
+                   Canvas.Top="354"
+                   FontFamily="ms-appx:///Assets/Fonts/CustomFont.ttf#Stay Pixel" 
+                   Foreground="Black" 
+                   Opacity="0.5"/>
+        
+        
+        <TextBlock Text="Do you want to continue?" 
+                   FontSize="50"
+                   Canvas.Left="230"
+                   Canvas.Top="350"
+                   FontFamily="ms-appx:///Assets/Fonts/CustomFont.ttf#Stay Pixel" 
+                   Foreground="White" />
+
+        <Button Content="Yes" 
+                Width="100"
+                Height="50"
+                Canvas.Left="330"
+                Canvas.Top="440" />
+
+        <Button Content="No" 
+                Width="100"
+                Height="50"
+                Canvas.Left="540"
+                Canvas.Top="440" />
     </Canvas>
 </Page>
