@@ -9,7 +9,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
-    <Canvas x:Name="gameCanvas" />
 
+    <Canvas x:Name="gameCanvas">
+        <Canvas.Background>
+            <ImageBrush ImageSource="C:\Users\costa\Source\Repos\micriteo\C-2\C#2Game_Enemy_Test2\C#2Game_Enemy_Test2\Assets\background_map.jpeg" Stretch="UniformToFill" />
+        </Canvas.Background>
+    </Canvas>
+    
 </Window>
+
+

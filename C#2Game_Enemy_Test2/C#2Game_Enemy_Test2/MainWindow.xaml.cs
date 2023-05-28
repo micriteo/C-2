@@ -22,6 +22,11 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Notifications;
+using Microsoft.UI.Xaml.Controls;
+using WinRT.Interop;
+using Windows.UI.WindowManagement;
+using Windows.UI.ViewManagement;
+
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -39,13 +44,18 @@ namespace C_2Game_Enemy_Test2
         private DispatcherTimer gameLoopTimer;
         private List<EnemyV2> enemies = new ();
         SpawnEnemy enemySpawner = new();
+        Path path = new Path();
+
 
         public MainWindow()
         {
             InitializeComponent();
+
             
+
             enemies = enemySpawner.CreateWave(1);
-            
+            path.DisplayWaypoints(gameCanvas);
+
             //creating the tower
             towers.Add(new Tower(200, new Vector2(90, 50)));
             towers.Add(new Tower(80, new Vector2(120, 70)));
@@ -60,6 +70,8 @@ namespace C_2Game_Enemy_Test2
             gameLoopTimer.Interval = TimeSpan.FromMilliseconds(16); // Update at approximately 60 FPS
             gameLoopTimer.Start();
         }
+
+        
 
         public static async Task SpawnEnemty(List<EnemyV2> enemies, Canvas gameCanvas)
         {
