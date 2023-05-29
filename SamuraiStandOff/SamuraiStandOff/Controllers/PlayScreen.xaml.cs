@@ -15,6 +15,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -88,18 +89,15 @@ namespace SamuraiStandOff.Controllers
 
         private void gameOverScene()
         {
-            playFrame.Navigate(typeof(GameOver));
+            Debug.WriteLine("Entering gameOverScene");
+
             baseTower.Visibility = Visibility.Collapsed;
             healthIndicator.Visibility = Visibility.Collapsed;
             damageButton.Visibility = Visibility.Collapsed;
-            MainCanvas.Background = new ImageBrush
-            {
-                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/gameOver.png")),
-                Stretch = Stretch.Fill
-            };
-            //Remove all placed units
+
+            // Remove all placed units
             StackPanel parentContainer = buttonPanel; // Get a reference to the parent container
-            // Remove all unit elements from the draggable panel
+                                                      // Remove all unit elements from the draggable panel
             foreach (UIElement element in parentContainer.Children.ToList())
             {
                 if (element is Button button)
@@ -107,7 +105,8 @@ namespace SamuraiStandOff.Controllers
                     parentContainer.Children.Remove(button);
                 }
             }
-            //Remove all units from canvas
+
+            // Remove all units from canvas
             foreach (UIElement element in MainCanvas.Children.ToList())
             {
                 if (element is Button button)
@@ -115,7 +114,22 @@ namespace SamuraiStandOff.Controllers
                     MainCanvas.Children.Remove(button);
                 }
             }
+
+            // Try changing the background here, before navigating
+            MainCanvas.Background = null; // Clearing background
+            MainCanvas.Background = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/gameOver.png")),
+                Stretch = Stretch.Fill
+            };
+            Debug.WriteLine("Background should now be GameOver image");
+
+            playFrame.Navigate(typeof(GameOver), MainCanvas);
+
+            Debug.WriteLine("Exiting gameOverScene");
         }
+
+
 
 
         //---------------- Event handlers for Unit panel ------------

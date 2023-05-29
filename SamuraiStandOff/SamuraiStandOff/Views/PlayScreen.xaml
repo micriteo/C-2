@@ -14,7 +14,7 @@
         </Canvas.Background>
         <Frame x:Name="playFrame"/>
         <StackPanel x:Name="buttonPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="400"></StackPanel>
-        <Rectangle x:Name="healthIndicator" Height="10" Margin="30,0,0,250" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Width="100">
+        <Rectangle x:Name="healthIndicator" Height="10" Margin="5,440,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100">
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Color="#00FFFF" Offset="0" />
