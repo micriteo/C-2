@@ -28,10 +28,30 @@
             </Grid.ColumnDefinitions>
 
             <!-- Add 4 buttons -->
-            <Button Content="Button 1" Margin="10" Grid.Row="0"/>
-            <Button Content="Button 2" Margin="10" Grid.Row="1"/>
-            <Button Content="Button 3" Margin="10" Grid.Row="2"/>
-            <Button Content="Button 4" Margin="10" Grid.Row="3"/>
+            <Button Grid.Row="2" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <TextBlock Text="Button 1"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <TextBlock Text="Button 2"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="3" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <TextBlock Text="Button 3"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Image Source="ms-appx:///Assets/Images/attackBuff.jpg" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <TextBlock Text="Button 4"/>
+                </StackPanel>
+            </Button>
         </Grid>
     </Canvas>
 </Page>
