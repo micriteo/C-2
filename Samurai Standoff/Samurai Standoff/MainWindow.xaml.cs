@@ -20,6 +20,7 @@ using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml.Media.Imaging;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,28 +30,46 @@ namespace Samurai_Standoff
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainWindow : Window
+    public partial class MainWindow : Window
     {
         private List<Enemy> enemyList = new List<Enemy>();
+        private List<Unit> unitList = new List<Unit>();
 
         public MainWindow()
         {
             this.InitializeComponent();
+            SpawnUnit();
             SpawnEnemy();
 
             //start a clock that runs a method every 100 miliseconds
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += MoveEnemy;
+            timer.Tick += UnitAttackAsync;
             timer.Start();
         }
 
-        // Event handler for the Tick event
+        //Event handler for unit attacks
+        private async void UnitAttackAsync(object sender, object e)
+        {
+            if(enemyList.Count > 0)
+            {
+                foreach (Unit unit in unitList)
+                {
+                    await unit.FindOrAttackTarget(enemyList, MainCanvas);
+                }
+            }
+        }
+
+        //Event handler for the Tick event
         private void MoveEnemy(object sender, object e)
         {
-            var enemy = enemyList[^1];
-            enemy.Position = new Vector2(enemy.Position.X - enemy.Speed, enemy.Position.Y);
-            Canvas.SetLeft(enemy.EnemyImage, enemy.Position.X);
+            if(enemyList.Count > 0)
+            {
+                var enemy = enemyList[^1];
+                enemy.Position = new Vector2(enemy.Position.X - enemy.Speed, enemy.Position.Y);
+                Canvas.SetLeft(enemy.Image, enemy.Position.X);
+            }
         }
 
         public void SpawnEnemy()
@@ -62,15 +81,34 @@ namespace Samurai_Standoff
             image.Height = 50;
             image.HorizontalAlignment = HorizontalAlignment.Center;
             image.VerticalAlignment = VerticalAlignment.Center;
-            
 
             //enemy object creation
-            Vector2 pos = new(1450, 300);
-            Enemy enemy = new Enemy(3, pos, image);
+            Vector2 pos = new(1300, 300);
+            Enemy enemy = new Enemy(4, pos, image, 100);
             enemyList.Add(enemy);
-            MainCanvas.Children.Add(enemyList[enemyList.Count() - 1].EnemyImage);
+            MainCanvas.Children.Add(enemyList[enemyList.Count() - 1].Image);
             Canvas.SetLeft(image, pos.X);
             Canvas.SetTop(image, pos.Y);
+        }
+
+        public void SpawnUnit()
+        {
+            //unit image creation
+            Image image = new Image();
+            image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teoidle.png"));
+            image.Stretch = Stretch.Uniform;
+            image.Height = 150;
+            image.Width = 150;
+            image.HorizontalAlignment = HorizontalAlignment.Center;
+            image.VerticalAlignment = VerticalAlignment.Center;
+
+            //unit object creation
+            Vector2 pos = new(700, 175);
+            Unit unit = new(pos, 30, 25, 100, image);
+            unitList.Add(unit);
+            MainCanvas.Children.Add(unit.Image);
+            Canvas.SetLeft(unit.Image, pos.X);
+            Canvas.SetTop(unit.Image, pos.Y);
         }
     }
 }

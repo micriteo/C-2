@@ -16,13 +16,14 @@ namespace Samurai_Standoff
         public Vector2 Position { get; set; }
         public int PathProgress { get; set; }
         public bool IsActive { get; set; }
-        public Image EnemyImage { get; set; }
+        public Image Image { get; set; }
 
-        public Enemy(int speed, Vector2 position, Image image) 
+        public Enemy(int speed, Vector2 position, Image image, int health) 
         {
             this.Speed = speed;
             this.Position = position;
-            this.EnemyImage = image;
+            this.Image = image;
+            this.Health = health;
         }
 
         //methods
