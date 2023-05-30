@@ -14,7 +14,7 @@ namespace C_2Game_Enemy_Test2
 {
     public class Melee_Enemy : EnemyV2
     {
-        public Melee_Enemy() : base(100, 30, 10, 0.5, 30, 1){}
+        public Melee_Enemy() : base(100, 150, 10, 0.5, 30, 1){}
 
         public override UIElement CreatePlaceholder()
         {

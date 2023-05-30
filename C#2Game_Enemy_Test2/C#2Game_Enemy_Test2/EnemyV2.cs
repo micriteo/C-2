@@ -30,7 +30,7 @@ namespace C_2Game_Enemy_Test2
         {
             Health = health;
             Speed = speed;
-            Position = new Vector2(0, 0);
+            Position = new Vector2(1100, 170);
             Follow_Path = new Path();
             Damage = damage;
             AttackCooldown = attackCooldown;
@@ -120,21 +120,28 @@ namespace C_2Game_Enemy_Test2
         public virtual void Move(List<Tower> towers, double deltaTime)
         {
 
-            Tower towerInRange = FindClosestTower(towers); //check if there is a tower in range before moving
+            Tower towerInRange = FindClosestTower(towers);
             if (towerInRange != null)
             {
-                return; //If there is a tower in range, stop moving and return
+                return;
             }
 
-            if (Vector2.Distance(Position, Follow_Path.Waypoints[currentWaypoint]) <= waypointThreshold) // Check if we have reached the current waypoint
+            Vector2 direction = Vector2.Normalize(Follow_Path.Waypoints[currentWaypoint] - Position);
+            float distanceToWaypoint = Vector2.Distance(Position, Follow_Path.Waypoints[currentWaypoint]);
+            float movementThisFrame = (float)(Speed * deltaTime);
+
+            // If we're going to move beyond the waypoint this frame, 
+            // set our position to the waypoint directly to avoid overshooting it
+            if (movementThisFrame >= distanceToWaypoint)
             {
-                currentWaypoint = (currentWaypoint + 1) % Follow_Path.Waypoints.Count; // Move to next waypoint
+                Position = Follow_Path.Waypoints[currentWaypoint];
+                currentWaypoint = (currentWaypoint + 1) % Follow_Path.Waypoints.Count;
+            }
+            else
+            {
+                Position += direction * movementThisFrame;
             }
 
-            Vector2 direction = Vector2.Normalize(Follow_Path.Waypoints[currentWaypoint] - Position); // Calculate direction to next waypoint
-            Position += direction * (float)(Speed * deltaTime);// Move in that direction
-
-            // Update placeholder position on the canvas
             Canvas.SetLeft(PlaceHolder, Position.X);
             Canvas.SetTop(PlaceHolder, Position.Y);
         }

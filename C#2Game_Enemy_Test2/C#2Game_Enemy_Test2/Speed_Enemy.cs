@@ -15,26 +15,18 @@ namespace C_2Game_Enemy_Test2
 {
     public class Speed_Enemy : EnemyV2
     {
-        public Speed_Enemy() : base(100, 50.0, 20, 2.0, 0.5, 2)
+        public Speed_Enemy() : base(100, 175.0, 20, 2.0, 0.5, 2)
         {
         }
 
         public override UIElement CreatePlaceholder()
         {
-            // Create a new Polygon instance
-            Polygon placeholder = new ()
+            // Create a red square as the placeholder.
+            Rectangle placeholder = new()
             {
-                // Set the points to form a triangle
-                Points = new PointCollection()
-                {
-                new Point(0, 0),
-                new Point(20, 0),
-                new Point(10, 20),
-                },
-                // Set the color of the polygon
-                Fill = new SolidColorBrush(Colors.Green), // Green color for Ranged Enemy
-                // Set the position of the polygon
-                Margin = new Thickness(Position.X, Position.Y, 0, 0),
+                Width = 10,
+                Height = 10,
+                Fill = new SolidColorBrush(Colors.Green)
             };
             return placeholder;
         }

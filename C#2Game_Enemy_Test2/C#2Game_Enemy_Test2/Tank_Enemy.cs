@@ -14,18 +14,18 @@ namespace C_2Game_Enemy_Test2
 {
     public class Tank_Enemy : EnemyV2
     {
-        public Tank_Enemy() : base(100, 30, 10, 0.5, 30, 3)
+        public Tank_Enemy() : base(100, 150, 10, 0.5, 30, 3)
         {
         }
 
         public override UIElement CreatePlaceholder()
         {
-            Ellipse placeholder = new() // Create a new Ellipse instance
+            // Create a red square as the placeholder.
+            Rectangle placeholder = new()
             {
-                Width = 30 ,// Set the width and height
-                Height = 30,
-                Fill = new SolidColorBrush(Colors.Blue),// Set the color of the ellipse
-                Margin = new Thickness(Position.X, Position.Y, 0, 0), // Set the position of the ellipse
+                Width = 10,
+                Height = 10,
+                Fill = new SolidColorBrush(Colors.Blue)
             };
             return placeholder;
         }
