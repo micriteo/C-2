@@ -20,11 +20,10 @@ namespace C_2Game_Enemy_Test2
         {
             Waypoints = new List<Vector2>
             {
-                new Vector2(1100, 0),
                 new Vector2(1100, 170),
                 new Vector2(1050, 180),
                 new Vector2(1000, 195),
-                new Vector2(970, 230),
+                new Vector2(970, 235),
                 new Vector2(945, 280),
                 new Vector2(920, 380),
                 new Vector2(900, 420),
