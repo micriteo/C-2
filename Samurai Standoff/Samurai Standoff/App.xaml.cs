@@ -44,9 +44,26 @@ namespace Samurai_Standoff
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
+            m_window = new Window();
+
+            Frame rootFrame = m_window.Content as Frame;
+
+            // If the window does not have a frame, let's create one
+            if (rootFrame == null)
+            {
+                rootFrame = new Frame();
+                m_window.Content = rootFrame;
+            }
+
+            // Navigate to the first page
+            if (rootFrame.Content == null)
+            {
+                rootFrame.Navigate(typeof(MainWindow));
+            }
+
             m_window.Activate();
         }
+
 
         private Window m_window;
     }

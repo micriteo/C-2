@@ -30,14 +30,16 @@ namespace Samurai_Standoff
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Page
     {
         private List<Enemy> enemyList = new List<Enemy>();
         private List<Unit> unitList = new List<Unit>();
+        private DispatcherTimer timer;
 
         public MainWindow()
         {
             this.InitializeComponent();
+            NavigateAfterDelay();
             SpawnUnit();
             SpawnEnemy();
 
@@ -110,5 +112,15 @@ namespace Samurai_Standoff
             Canvas.SetLeft(unit.Image, pos.X);
             Canvas.SetTop(unit.Image, pos.Y);
         }
+
+        private async void NavigateAfterDelay()
+        {
+            await Task.Delay(TimeSpan.FromSeconds(5)); // Wait for 5 seconds
+            MainCanvas.Visibility = Visibility.Collapsed; // Hide the main canvas
+            //navigate to scroll page 
+            Frame.Navigate(typeof(ScrollPage));
+
+        }
+
     }
 }
