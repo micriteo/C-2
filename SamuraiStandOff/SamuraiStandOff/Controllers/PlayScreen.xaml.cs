@@ -70,7 +70,7 @@ namespace SamuraiStandOff.Controllers
 
         }
 
-        //Event handler for unit attacks
+        //event handler for units attack
         private async void UnitAttackAsync(object sender, object e)
         {
             if (enemyList.Count > 0)
@@ -121,8 +121,8 @@ namespace SamuraiStandOff.Controllers
             healthIndicator.Visibility = Visibility.Collapsed;
             damageButton.Visibility = Visibility.Collapsed;
 
-            // Remove all placed units
-            StackPanel parentContainer = buttonPanel; // Get a reference to the parent container
+            //remove all placed units
+            StackPanel parentContainer = buttonPanel; 
                                                       // Remove all unit elements from the draggable panel
             foreach (UIElement element in parentContainer.Children.ToList())
             {
@@ -132,7 +132,7 @@ namespace SamuraiStandOff.Controllers
                 }
             }
 
-            // Remove all units from canvas
+            //remove all units from canvas
             foreach (UIElement element in MainCanvas.Children.ToList())
             {
                 if (element is Button button)
@@ -141,7 +141,7 @@ namespace SamuraiStandOff.Controllers
                 }
             }
 
-            // Try changing the background here, before navigating
+            //try changing the background here, before navigating
             MainCanvas.Background = null; // Clearing background
             MainCanvas.Background = new ImageBrush
             {

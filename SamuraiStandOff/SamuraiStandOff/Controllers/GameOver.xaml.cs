@@ -25,14 +25,14 @@ namespace SamuraiStandOff.Controllers
         {
             base.OnNavigatedTo(e);
 
-            // Get the reference to MainCanvas from the navigation parameter
+            //get the reference from the main canvas so we can manipulate it 
             MainCanvas = e.Parameter as Canvas;
 
             var mediaPlayer = new MediaPlayer();
             mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/yoooooo japanese sound  kabuki yoo.mp3"));
             mediaPlayer.Play();
 
-            // Set the background image every time you navigate to this page
+            //set the background image each time when you navigate to the page
             if (MainCanvas != null)
             {
                 try
@@ -45,7 +45,9 @@ namespace SamuraiStandOff.Controllers
                 }
                 catch (UriFormatException ex)
                 {
-                    // Handle the exception here, you might want to log it or show a default image
+                    //exception message
+                    Console.WriteLine("Invalid URI format: " + ex.Message);
+
                 }
             }
         }
@@ -61,7 +63,7 @@ namespace SamuraiStandOff.Controllers
             }
             catch (UriFormatException ex)
             {
-                
+                Console.WriteLine("Invalid URI format: " + ex.Message);
             }
         }
 
@@ -71,7 +73,7 @@ namespace SamuraiStandOff.Controllers
          {
             try
             {
-                MainCanvas.Background = null; // Clearing background
+                MainCanvas.Background = null; //clearing background
                 MainCanvas.Background = new ImageBrush
                 {
                     ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/pathImage.jpg")),
@@ -91,8 +93,7 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
-        // Navigate to the new page
-        // Make sure gameOver is a valid Frame or Navigation object
+        //navigate to the new frame
         gameOver.Navigate(typeof(PlayScreen));
 
         deathBlockText.Visibility = Visibility.Collapsed;
@@ -106,7 +107,7 @@ namespace SamuraiStandOff.Controllers
             {
                 try
                 {
-                    MainCanvas.Background = null; // Clearing background     
+                    MainCanvas.Background = null; 
                     deathLogo.Visibility = Visibility.Collapsed;
                     deathBlockText.Visibility = Visibility.Collapsed;
                     deathBlockTextShader.Visibility = Visibility.Collapsed;
@@ -117,6 +118,7 @@ namespace SamuraiStandOff.Controllers
                 }
                 catch (UriFormatException ex)
                 {
+                    Console.WriteLine("Invalid URI format: " + ex.Message);
 
                 }
 

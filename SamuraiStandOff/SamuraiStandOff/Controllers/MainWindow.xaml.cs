@@ -23,11 +23,11 @@ namespace SamuraiStandOff.Controllers
         {
             this.InitializeComponent();
 
-            // Set the fixed resolution for the application window
+            //Set the fixed resolution for the application window
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-            // Set the minimum size of the window to be the same as the maximum size
+            //Set the minimum size of the window to be the same as the maximum size
 
             media = new MediaPlayer();
             media.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/X2Download.app - Monster Hunter Rise - Main Menu Theme (128 kbps).mp3"));
