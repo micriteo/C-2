@@ -16,6 +16,8 @@ using Windows.Foundation.Collections;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System.Diagnostics;
+using Samurai_Standoff;
+using System.Numerics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,6 +30,9 @@ namespace SamuraiStandOff.Controllers
     public sealed partial class PlayScreen : Page
     {
         private Castle castle;
+        //lists holding the current unit and enemy data
+        private List<Enemy> enemyList = new List<Enemy>();
+        private List<Unit> unitList = new List<Unit>();
         public PlayScreen()
         {
             this.InitializeComponent();
@@ -54,6 +59,27 @@ namespace SamuraiStandOff.Controllers
             buttonPanel.Children.Add(button2);
             buttonPanel.Children.Add(button3);
 
+            //game logic timer
+            //start a clock that runs a method every 100 miliseconds
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(100);
+            //enemy move function
+            //timer.Tick += functionName;
+            timer.Tick += UnitAttackAsync;
+            timer.Start();
+
+        }
+
+        //Event handler for unit attacks
+        private async void UnitAttackAsync(object sender, object e)
+        {
+            if (enemyList.Count > 0)
+            {
+                foreach (Unit unit in unitList)
+                {
+                    await unit.FindOrAttackTarget(enemyList, MainCanvas);
+                }
+            }
         }
 
         private void damageButton_Click(object sender, RoutedEventArgs e)
@@ -128,9 +154,6 @@ namespace SamuraiStandOff.Controllers
 
             Debug.WriteLine("Exiting gameOverScene");
         }
-
-
-
 
         //---------------- Event handlers for Unit panel ------------
         public void Button_PointerPressed(object sender, PointerRoutedEventArgs e)

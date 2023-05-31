@@ -42,6 +42,10 @@
     <PRIResource Remove="rsc\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="Assets\Images\teo_attack.gif" />
+    <Content Remove="Assets\Images\teo_idle.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Assets\Images\pathImage.jpg" />
     <None Remove="Assets\PathImage.png" />
     <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
@@ -79,7 +83,7 @@
   <ItemGroup>
     <Folder Include="Assets\NewFolder1\" />
     <Folder Include="Assets\NewFolder\" />
-    <Folder Include="Menu\" />
+    <Folder Include="Model\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
