@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -28,6 +29,28 @@ namespace Samurai_Standoff
             this.InitializeComponent();
         }
 
-        private void 
+        private void DamageBuff_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Unit unit in MainWindow.Current.UnitList)
+            {
+                Debug.WriteLine($"Unit Damage before buff: {unit.Damage}");
+
+                unit.Damage += 10;
+
+                Debug.WriteLine($"Unit Damage after buff: {unit.Damage}");
+            }
+        }
+
+        private void FireRateBuff_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Unit unit in MainWindow.Current.UnitList)
+            {
+                Debug.WriteLine($"Unit Damage before buff: {unit.FireRate}");
+
+                unit.FireRate += 10;
+
+                Debug.WriteLine($"Unit Damage after buff: {unit.FireRate}");
+            }
+        }
     }
 }

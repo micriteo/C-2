@@ -15,7 +15,7 @@ using System.Threading;
 
 namespace Samurai_Standoff
 {
-    internal class Unit
+    public class Unit
     {
         public Vector2 Position { get; set; }
         public int Range { get; set; }

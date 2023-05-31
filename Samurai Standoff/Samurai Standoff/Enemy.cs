@@ -8,7 +8,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace Samurai_Standoff
 {
-    internal class Enemy
+    public  class Enemy
     {
         //variables
         public int Health { get; set; }

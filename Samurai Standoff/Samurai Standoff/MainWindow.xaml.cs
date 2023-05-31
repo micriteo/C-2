@@ -21,6 +21,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,12 +34,20 @@ namespace Samurai_Standoff
     public partial class MainWindow : Page
     {
         private List<Enemy> enemyList = new List<Enemy>();
-        private List<Unit> unitList = new List<Unit>();
+        private List<Unit> _unitList = new List<Unit>();
+
+        public List<Unit> UnitList
+        {
+            get { return _unitList; }
+            private set { _unitList = value; }
+        }
+
         private DispatcherTimer timer;
+        public static MainWindow Current { get; private set; }
 
         public MainWindow()
         {
-            this.InitializeComponent();
+            Current = this;            this.InitializeComponent();
             NavigateAfterDelay();
             SpawnUnit();
             SpawnEnemy();
@@ -56,7 +65,7 @@ namespace Samurai_Standoff
         {
             if(enemyList.Count > 0)
             {
-                foreach (Unit unit in unitList)
+                foreach (Unit unit in _unitList)
                 {
                     await unit.FindOrAttackTarget(enemyList, MainCanvas);
                 }
@@ -107,7 +116,7 @@ namespace Samurai_Standoff
             //unit object creation
             Vector2 pos = new(700, 175);
             Unit unit = new(pos, 30, 25, 100, image);
-            unitList.Add(unit);
+            _unitList.Add(unit);
             MainCanvas.Children.Add(unit.Image);
             Canvas.SetLeft(unit.Image, pos.X);
             Canvas.SetTop(unit.Image, pos.Y);
@@ -121,6 +130,5 @@ namespace Samurai_Standoff
             Frame.Navigate(typeof(ScrollPage));
 
         }
-
     }
 }
