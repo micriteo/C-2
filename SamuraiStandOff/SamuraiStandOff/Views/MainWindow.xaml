@@ -13,12 +13,11 @@
                 <FontFamily x:Key="CustomFont">/Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel</FontFamily>
             </StackPanel.Resources>
             <Grid Margin="40,100,0,0">
-                <!-- Black outline -->
+                <!--Outline for the image -->
                 <TextBlock x:Name="shogunStandOffTextBlack1" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
                 <TextBlock x:Name="shogunStandOffTextBlack2" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
                 <TextBlock x:Name="shogunStandOffTextBlack3" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
                 <TextBlock x:Name="shogunStandOffTextBlack4" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
-                <!-- White text -->
                 <TextBlock x:Name="shogunStandOffTextWhite" Text="Shogun StandOff" FontSize="90" Foreground="White" FontFamily="{StaticResource CustomFont}" />
             </Grid>
             <Button x:Name="startButton" 
@@ -33,12 +32,10 @@
                     HorizontalAlignment="Left">
 
                 <Grid>
-                    <!-- Black outline -->
                     <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
                     <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
                     <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
                     <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
-                    <!-- White text -->
                     <TextBlock Text="Start" Foreground="#FFFFFF" FontSize="50" FontFamily="{StaticResource CustomFont}" />
                 </Grid>
             </Button>

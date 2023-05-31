@@ -51,7 +51,7 @@
                Canvas.Left="1000"
                Canvas.Top="200"/>
 
-        <!--It is not elegant but this solution is not coliding with packing problems.--> 
+        <!--it is not elegant but this solution is not coliding with packing problems.--> 
         <TextBlock Text="Death" 
                    x:Name="deathBlockTextShader"
                    FontSize="50"
