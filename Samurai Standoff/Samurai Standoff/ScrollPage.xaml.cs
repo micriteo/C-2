@@ -52,5 +52,48 @@ namespace Samurai_Standoff
                 Debug.WriteLine($"Unit Damage after buff: {unit.FireRate}");
             }
         }
+
+        private void Health_Decrease_Debuff(object sender, RoutedEventArgs e)
+        {
+            if (MainWindow.Current.EnemyList.Count <= 0)
+            {
+                Debug.WriteLine("No more enemy");
+            }
+
+            foreach (var enemy in MainWindow.Current.EnemyList)
+            {
+                if (enemy.Health < 10)
+                {
+                    return;
+                }
+                Debug.WriteLine($"Enemy Health before debuff: {enemy.Health}");
+
+                enemy.Health -= 10;
+
+                Debug.WriteLine($"Enemy Health after debuff: {enemy.Health}");
+
+            }
+        }
+
+        private void Damage_Decrease_Debuff(object sender, RoutedEventArgs e)
+        {
+            if(MainWindow.Current.EnemyList.Count <= 0) 
+            {
+                Debug.WriteLine("No more enemy");
+            }
+
+            foreach (var enemy in MainWindow.Current.EnemyList)
+            {
+                if (enemy.Damage < 10)
+                {
+                    return;
+                }
+                Debug.WriteLine($"Enemy Damage before debuff: {enemy.Damage}");
+
+                enemy.Damage -= 10;
+
+                Debug.WriteLine($"Enemy Damage after debuff: {enemy.Damage}");
+            }
+        }
     }
 }

@@ -13,17 +13,22 @@ namespace Samurai_Standoff
         //variables
         public int Health { get; set; }
         public int Speed { get; set; }
+
+        public int Damage { get; set; }
         public Vector2 Position { get; set; }
         public int PathProgress { get; set; }
         public bool IsActive { get; set; }
         public Image Image { get; set; }
 
-        public Enemy(int speed, Vector2 position, Image image, int health) 
+       
+
+        public Enemy(int speed, Vector2 position, Image image, int health,int damage) 
         {
             this.Speed = speed;
             this.Position = position;
             this.Image = image;
             this.Health = health;
+            this.Damage = damage;
         }
 
         //methods

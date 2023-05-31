@@ -42,6 +42,12 @@ namespace Samurai_Standoff
             private set { _unitList = value; }
         }
 
+        public List<Enemy> EnemyList
+        {
+            get { return enemyList; }
+            private set { enemyList = value; }
+        }
+
         private DispatcherTimer timer;
         public static MainWindow Current { get; private set; }
 
@@ -50,6 +56,7 @@ namespace Samurai_Standoff
             Current = this;            this.InitializeComponent();
             NavigateAfterDelay();
             SpawnUnit();
+            SpawnEnemy();
             SpawnEnemy();
 
             //start a clock that runs a method every 100 miliseconds
@@ -95,7 +102,7 @@ namespace Samurai_Standoff
 
             //enemy object creation
             Vector2 pos = new(1300, 300);
-            Enemy enemy = new Enemy(4, pos, image, 100);
+            Enemy enemy = new Enemy(4, pos, image, 100,100);
             enemyList.Add(enemy);
             MainCanvas.Children.Add(enemyList[enemyList.Count() - 1].Image);
             Canvas.SetLeft(image, pos.X);
