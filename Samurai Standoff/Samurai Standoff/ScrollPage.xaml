@@ -16,39 +16,38 @@
         <Frame x:Name="scrollFrame" Width="1600" Height="750"/>
 
         <!-- Adding a grid to contain the buttons -->
-        <Grid Width="1600" Height="750">
+        <Grid Width="1600" Height="750" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="450,200,0,10">
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
 
             <!-- Add 4 buttons -->
-            <Button Grid.Row="2" HorizontalAlignment="Center">
+            <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0">
                 <StackPanel>
-                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,30,10"/>
                     <TextBlock Text="Button 1"/>
                 </StackPanel>
             </Button>
-            <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
+            <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
                     <TextBlock Text="Button 2"/>
                 </StackPanel>
             </Button>
-            <Button Grid.Row="3" HorizontalAlignment="Center">
+            <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0">
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
                     <TextBlock Text="Button 3"/>
                 </StackPanel>
             </Button>
-            <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
+            <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <StackPanel>
-                    <Image Source="ms-appx:///Assets/Images/attackBuff.jpg" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
                     <TextBlock Text="Button 4"/>
                 </StackPanel>
             </Button>
