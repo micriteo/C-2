@@ -20,6 +20,7 @@
     <None Remove="Assets\Images\attackBuff.png" />
     <None Remove="Assets\Images\LuLLL.jpg" />
     <None Remove="Assets\Images\scroll.jpg" />
+    <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
     <None Remove="ScrollPage.xaml" />
   </ItemGroup>
 
@@ -55,6 +56,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\scroll.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Fonts\StayPixelRegular-EaOxl.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -30,25 +30,25 @@
             <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0">
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,30,10"/>
-                    <TextBlock Text="Button 1"/>
+                    <TextBlock Text="Attack Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>
-            <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="HealthBuff_Click">
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
-                    <TextBlock Text="Button 2"/>
+                    <TextBlock Text="Health Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0">
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
-                    <TextBlock Text="Button 3"/>
+                    <TextBlock Text="Attack Debuff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
-                    <TextBlock Text="Button 4"/>
+                    <TextBlock Text="Health Debuff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>
         </Grid>
