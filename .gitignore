@@ -400,3 +400,6 @@ FodyWeavers.xsd
 /Samurai Standoff/Samurai Standoff/MainWindow.xaml.cs
 /Samurai Standoff/Samurai Standoff/Samurai Standoff.csproj
 /Samurai Standoff/Samurai Standoff/MainWindow.xaml
+/C#2Game_Enemy_Test2/C#2Game_Enemy_Test2/Tank_Enemy.cs
+/C#2Game_Enemy_Test2/C#2Game_Enemy_Test2/Speed_Enemy.cs
+/C#2Game_Enemy_Test2/C#2Game_Enemy_Test2/SpawnEnemy.cs
