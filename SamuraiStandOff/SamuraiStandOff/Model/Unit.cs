@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Microsoft.UI.Xaml.Media.Imaging;
 using C_2Game_Enemy_Test2;
+using Microsoft.UI.Xaml;
+using System.Diagnostics;
 
 namespace Samurai_Standoff
 {
@@ -71,22 +73,25 @@ namespace Samurai_Standoff
                 if(attackingEnemy == false)
                 {
                     attackingEnemy = true;
-                    Console.WriteLine("attack");
+                    Debug.WriteLine("Unit Attack");
 
                     Image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_attack.gif"));
 
-                    await Task.Delay(2300);
+                    await Task.Delay(1300);
 
                     //attack target, remove their health, check if health is less than 0 if so remove target
                     Attack();
 
-                    Image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teoidle.png"));
+                    //finish the attack animation 
+                    await Task.Delay(300);
+                    Image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
 
                     if (TargetedEnemy != null)
                     {
                         if (TargetedEnemy.Health <= 0)
                         {
                             window.Children.Remove(TargetedEnemy.PlaceHolder);
+                            TargetedEnemy.PlaceHolder.Visibility = Visibility.Collapsed;
                             enemyList.Remove(TargetedEnemy);
                             TargetedEnemy = null;
                         }

@@ -37,7 +37,6 @@ namespace SamuraiStandOff.Controllers
         private List<Unit> unitList = new List<Unit>();
         private DispatcherTimer gameLoopTimer;
         SpawnEnemy enemySpawner = new();
-        EnemyPath path = new EnemyPath();
         private int money { get; set; }
         public PlayScreen()
         {
@@ -75,12 +74,12 @@ namespace SamuraiStandOff.Controllers
 
             //game logic timer
             //start a clock that runs a method every 100 miliseconds
-           /* DispatcherTimer timer = new DispatcherTimer();
+            DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(100);
             //enemy move function
             //timer.Tick += functionName;
             timer.Tick += UnitAttackAsync;
-            timer.Start();*/
+            timer.Start();
 
             // Start the game loop timer
             gameLoopTimer = new DispatcherTimer();
@@ -189,6 +188,7 @@ namespace SamuraiStandOff.Controllers
                     MainCanvas.Children.Add(enemy.PlaceHolder); // Add the enemy's placeholder to the canvas
                 }
             }
+            UnitAttackAsync(this,null);
         }
 
         private void gameOverScene()
@@ -279,7 +279,7 @@ namespace SamuraiStandOff.Controllers
             //Get Image for Melee Unit
             Image imgMelee = getUnitImage(1);
             //Create instance of Unit
-            Unit unitTempMelee = new(posUnitMelee, 30, 25, 100, imgMelee);
+            Unit unitTempMelee = new(posUnitMelee, 10, 25, 100, imgMelee);
             unitList.Add(unitTempMelee);
             buttonOG.ReleasePointerCapture(e.Pointer);
             //Position unit where player let go off the mouse
