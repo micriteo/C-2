@@ -38,6 +38,7 @@ namespace SamuraiStandOff.Controllers
         private DispatcherTimer gameLoopTimer;
         SpawnEnemy enemySpawner = new();
         EnemyPath path = new EnemyPath();
+        private int money { get; set; }
         public PlayScreen()
         {
             InitializeComponent();
@@ -49,21 +50,24 @@ namespace SamuraiStandOff.Controllers
             //spawn stuff
             Task task = SpawnEnemty(enemies, MainCanvas);
 
+            //Assign starting money balance
+            money = Constants.startBalance;
+
             //Create unit panel buttons and attach methods to XAML ui elements
-            Button button1 = new Button() { Content = "Unit 1", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
+            Button button1 = new Button() { Content = "Melee Unit", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             button1.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button1.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
-            button1.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased), true);
+            button1.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Melee), true);
 
             Button button2 = new Button() { Content = "Unit 2", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             button2.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button2.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
-            button2.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased), true);
+            button2.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Unit2), true);
 
             Button button3 = new Button() { Content = "Unit 3", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             button3.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button3.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
-            button3.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased), true);
+            button3.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Unit3), true);
 
             buttonPanel.Children.Add(button1);
             buttonPanel.Children.Add(button2);
@@ -254,22 +258,67 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
-        public void Button_PointerReleased(object sender, PointerRoutedEventArgs e)
+        public void Button_PointerReleased_Melee(object sender, PointerRoutedEventArgs e)
         {
+            // Check whether a player can afford a unit
+            if (money < Constants.meleePrice) { return; }
+            // Subtract price of the unit
+            money = money - Constants.meleePrice;
+
             Button buttonOG = (Button)sender;
-            //TEMP
-            //TODO Create an instance of Unit and insert
-            //Make a copy of object
-            Button buttonInsertCopy = new Button() { Content = buttonOG.Content, Width = buttonOG.Width, Height = buttonOG.Height, Background = buttonOG.Background };
+            //Get location of mouse and create a vector2 object
+            Vector2 posUnitMelee = new((float)e.GetCurrentPoint(MainCanvas).Position.X, (float)e.GetCurrentPoint(MainCanvas).Position.Y);
+            //Get Image for Melee Unit
+            Image imgMelee = getUnitImage(1);
+            //Create instance of Unit
+            Unit unitTempMelee = new(posUnitMelee, 30, 25, 100, imgMelee);
+            unitList.Add(unitTempMelee);
             buttonOG.ReleasePointerCapture(e.Pointer);
-            //buttonPanel.Children.Remove(buttonNew);
-            MainCanvas.Children.Add(buttonInsertCopy);
-
-            //Position element where player let go off the pointer
-            Canvas.SetLeft(buttonInsertCopy, e.GetCurrentPoint(MainCanvas).Position.X - buttonInsertCopy.ActualWidth / 2);
-            Canvas.SetTop(buttonInsertCopy, e.GetCurrentPoint(MainCanvas).Position.Y - buttonInsertCopy.ActualHeight / 2);
-
+            //Position unit where player let go off the mouse
+            MainCanvas.Children.Add(unitTempMelee.Image);
+            // Offset mouse coordinates by 1/2 of the image size because Images position is defined as top left corner
+            Canvas.SetLeft(unitTempMelee.Image, (float)e.GetCurrentPoint(MainCanvas).Position.X - unitTempMelee.Image.ActualWidth / 2);
+            Canvas.SetTop(unitTempMelee.Image, (float)e.GetCurrentPoint(MainCanvas).Position.Y - unitTempMelee.Image.ActualHeight / 2);
         }
+
+        public void Button_PointerReleased_Unit2(object sender, PointerRoutedEventArgs e)
+        {
+            //TODO Implement with new unit
+        }
+
+        public void Button_PointerReleased_Unit3(object sender, PointerRoutedEventArgs e)
+        {
+            //TODO Implement with new unit
+        }
+
+        //1-melee, 2- , 3-
+        public Image getUnitImage(int unitNumber)
+        {
+            Image image = new Image();
+            // Get appropriate image
+            switch (unitNumber)
+            {
+                case 1:
+                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
+                    break;
+                case 2:
+                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
+                    break;
+                case 3:
+                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
+                    break;
+                default:
+                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
+                    break;
+            }
+            image.Stretch = Stretch.Uniform;
+            image.Height = 150;
+            image.Width = 150;
+            image.HorizontalAlignment = HorizontalAlignment.Center;
+            image.VerticalAlignment = VerticalAlignment.Center;
+            return image;
+        }
+
 
         //-----------------------------------------------------------
 

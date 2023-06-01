@@ -55,7 +55,7 @@ namespace C_2Game_Enemy_Test2
             if (castle != null)
                 {
                     double distance = Vector2.Distance(Position, new Vector2(130, 465));
-                    Debug.WriteLine($"Distance to tower: {distance}"); // Debug output
+                    //Debug.WriteLine($"Distance to tower: {distance}"); // Debug output
                     if (distance <= AttackRange && distance < closestDistance)
                     {
                         closestDistance = distance;
