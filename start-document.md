@@ -240,6 +240,20 @@ This chapter describes the test cases to validate the final product.
    Email: alin.costache@student.nhlstenden.com   
    A minute taker oversees taking the minutes of the meeting. These minutes are required to provide a formal account of who was at the meeting, what was discussed, what actions were agreed upon, and who would carry out these actions.
 
+<h1>Moscow Analysis</h1>
+
+| Must Have                                                             	                                 | Could Have                         	| Should Have                                            	                                     |
+|---------------------------------------------------------------------------------------------------------|------------------------------------	|----------------------------------------------------------------------------------------------|
+| A useable menu screen                                                 	                                 | Boss enemies                       	| Animations and textured units                          	                                     |
+| A defeat screen with the option of  restarting or going back to menu. 	                                 | Different difficulty modes         	| Sound effects on certain events                        	                                     |
+| A game screen with a background and UI elements                                                       	 | Resizable window                   	| Runes gameplay system to buff units and debuff enemies 	                                     |
+| Enemies that move down the path                                       	                                 | Cutscenes or short movies, a story 	| Multiple units with different strengths                	                                     |
+| Units that can attack and kill enemies                                	                                 |                                    	| Scroll Page that displays the runes                                                    	     |
+| Enemies grant gold on their death                                     	                                 |                                    	| 	                                                                                            |
+| Placeable units at the expense of gold                                	                                 |                                    	| 	                                                                                            |
+| Enemies show up in waves                                              	                                 |                                    	| 	                                                                                            |
+
+   
 <h1>Appendix</h1>
 
 
