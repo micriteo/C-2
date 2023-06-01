@@ -239,6 +239,14 @@ namespace SamuraiStandOff.Controllers
             Debug.WriteLine("Exiting gameOverScene");
         }
 
+        public void addMoney(int sum)
+        {
+            if (sum > 0)
+            {
+                money = money + sum;
+            }
+        }
+
         //---------------- Event handlers for Unit panel ------------
         public void Button_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
