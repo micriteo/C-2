@@ -33,21 +33,24 @@ namespace SamuraiStandOff.Controllers
     {
         private Castle castle;
         //lists holding the current unit and enemy data
-        private List<Enemy> enemies = new List<Enemy>();
-        private List<Unit> unitList = new List<Unit>();
+        private List<Enemy> enemies = new ();
+        private List<Unit> unitList = new ();
         private DispatcherTimer gameLoopTimer;
         SpawnEnemy enemySpawner = new();
+        EnemyPath path = new();
         private int money { get; set; }
+        private int WaveCount = 1;
+        private bool GameOver;
         public PlayScreen()
         {
             InitializeComponent();
-
+            GameOver = false;
             castle = new Castle(100);
-            enemies = enemySpawner.CreateWave(1);
+            
             //path.DisplayWaypoints(MainCanvas);
 
             //spawn stuff
-            Task task = SpawnEnemty(enemies, MainCanvas);
+            Task task = SpawnEnemies(MainCanvas);
 
             //Assign starting money balance
             money = Constants.startBalance;
@@ -86,10 +89,10 @@ namespace SamuraiStandOff.Controllers
             gameLoopTimer.Tick += GameLoopTimer_Tick;
             gameLoopTimer.Interval = TimeSpan.FromMilliseconds(16); // Update at approximately 60 FPS
             gameLoopTimer.Start();
-
         }
-        public static async Task SpawnEnemty(List<Enemy> enemies, Canvas gameCanvas)
+        public async Task SpawnEnemies(Canvas gameCanvas)
         {
+            enemies = enemySpawner.CreateWave(WaveCount);
             foreach (var enemy in enemies)
             {
                 gameCanvas.Children.Add(enemy.SetupPlaceholder());
@@ -110,7 +113,7 @@ namespace SamuraiStandOff.Controllers
         {
             if (enemies.Count > 0)
             {
-                foreach (Unit unit in unitList)
+                foreach (Unit unit in unitList.ToList())
                 {
                     await unit.FindOrAttackTarget(enemies, MainCanvas);
                 }
@@ -162,6 +165,13 @@ namespace SamuraiStandOff.Controllers
         private void UpdateGame()
         {
             double delta = gameLoopTimer.Interval.TotalSeconds;
+
+            if (enemies.Count == 0 && GameOver == false)
+            {
+                WaveCount++;
+                Task task = SpawnEnemies(MainCanvas);
+            }
+
             // Update enemies
             foreach (var enemy in enemies.ToList())
             {
@@ -193,6 +203,7 @@ namespace SamuraiStandOff.Controllers
 
         private void gameOverScene()
         {
+            GameOver = true;
             Debug.WriteLine("Entering gameOverScene");
 
             baseTower.Visibility = Visibility.Collapsed;
@@ -225,6 +236,14 @@ namespace SamuraiStandOff.Controllers
                 enemy.PlaceHolder.Visibility = Visibility.Collapsed;
                 enemies.Remove(enemy);
             }
+
+            foreach (Unit unit in unitList.ToList())
+            {
+                MainCanvas.Children.Remove(unit.Image);
+                unit.Image.Visibility = Visibility.Collapsed;
+                unitList.Remove(unit);
+            }
+
             //try changing the background here, before navigating
             MainCanvas.Background = null; // Clearing background
             MainCanvas.Background = new ImageBrush
