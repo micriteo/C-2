@@ -1,4 +1,6 @@
-﻿namespace SamuraiStandOff
+﻿using System.Numerics;
+
+namespace SamuraiStandOff
 {
     public class Castle
     {
@@ -26,9 +28,10 @@
             Health = health;
         }
 
-        public void Draw()
+        public void TakeDamage(int damage)
         {
-          
+            Health -= damage;
+
         }
 
 

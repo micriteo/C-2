@@ -8,7 +8,7 @@ namespace SamuraiStandOff.Model.EnemyTypes
 {
     public class Speed_Enemy : Enemy
     {
-        public Speed_Enemy() : base(1, 175.0, 20, 2.0, 0.5, 2)
+        public Speed_Enemy() : base(1, 175.0, 20, 0.5, 0.5, 2)
         {
         }
 

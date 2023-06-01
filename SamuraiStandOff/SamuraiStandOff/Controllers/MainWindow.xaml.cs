@@ -25,7 +25,6 @@ namespace SamuraiStandOff.Controllers
     /// </summary>
     public sealed partial class MainWindow : Page
     {
-        private Castle castle;
         private MediaPlayer media;
         
         

@@ -35,7 +35,6 @@ namespace SamuraiStandOff.Controllers
         //lists holding the current unit and enemy data
         private List<Enemy> enemies = new List<Enemy>();
         private List<Unit> unitList = new List<Unit>();
-        private List<Tower> towers = new();
         private DispatcherTimer gameLoopTimer;
         SpawnEnemy enemySpawner = new();
         EnemyPath path = new EnemyPath();
@@ -45,14 +44,9 @@ namespace SamuraiStandOff.Controllers
 
             castle = new Castle(100);
             enemies = enemySpawner.CreateWave(1);
-            path.DisplayWaypoints(MainCanvas);
-
-            //creating the tower
-            towers.Add(new Tower(200, new Vector2(90, 50)));
-            towers.Add(new Tower(80, new Vector2(120, 70)));
+            //path.DisplayWaypoints(MainCanvas);
 
             //spawn stuff
-            SpawnTower(towers, MainCanvas);
             Task task = SpawnEnemty(enemies, MainCanvas);
 
             //Create unit panel buttons and attach methods to XAML ui elements
@@ -139,10 +133,10 @@ namespace SamuraiStandOff.Controllers
                     StartPoint = new Point(0, 0),
                     EndPoint = new Point(1, 0),
                     GradientStops = new GradientStopCollection
-            {
-                new GradientStop { Color = Colors.Cyan, Offset = greenRatio },
-                new GradientStop { Color = Colors.Red, Offset = greenRatio } // start red where green ends
-            }
+                    {
+                    new GradientStop { Color = Colors.Cyan, Offset = greenRatio },
+                    new GradientStop { Color = Colors.Red, Offset = greenRatio } // start red where green ends
+                    }
                 };
             }
             if(castle.Health <= 0)
@@ -176,22 +170,18 @@ namespace SamuraiStandOff.Controllers
                     enemy.UpdateAttackCooldown(delta);
 
                     // Check if the enemy is within attack range of a tower
-                    Tower towerInRange = enemy.FindClosestTower(towers);
-                    if (towerInRange != null)
+
+                    if (enemy.FindCastle(castle))
                     {
                         if (enemy.CanAttack())
                         {
-                            enemy.AttackTower(towerInRange);
-                            if (towerInRange.Health <= 0)
-                            {
-                                MainCanvas.Children.Remove(towerInRange.PlaceHolder);
-                                towers.Remove(towerInRange);
-                            }
+                            enemy.AttackCastle(castle);
+                            UpdateHealthIndicator();
                             enemy.ResetAttackCooldown();
                         }
-                        enemy.Move(towers, 0); // Stop the enemy's movement
+                        enemy.Move(castle, 0); // Stop the enemy's movement
                     }
-                    enemy.Move(towers, delta); // Move the enemy along the path
+                    enemy.Move(castle, delta); // Move the enemy along the path
                     MainCanvas.Children.Add(enemy.PlaceHolder); // Add the enemy's placeholder to the canvas
                 }
             }
@@ -225,6 +215,12 @@ namespace SamuraiStandOff.Controllers
                 }
             }
 
+            foreach (Enemy enemy in enemies.ToList())
+            {
+                MainCanvas.Children.Remove(enemy.PlaceHolder);
+                enemy.PlaceHolder.Visibility = Visibility.Collapsed;
+                enemies.Remove(enemy);
+            }
             //try changing the background here, before navigating
             MainCanvas.Background = null; // Clearing background
             MainCanvas.Background = new ImageBrush
