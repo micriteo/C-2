@@ -2,16 +2,10 @@
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.UI.Xaml.Shapes;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Input;
 using Windows.Foundation;
 using Microsoft.UI.Xaml.Media.Imaging;
-using System.Threading;
+using C_2Game_Enemy_Test2;
 
 namespace Samurai_Standoff
 {
@@ -22,7 +16,7 @@ namespace Samurai_Standoff
         public int Damage { get; set; }
         public int FireRate { get; set; }
         public Vector2 Size { get; set; }
-        public Enemy Enemy { get; set; }
+        public Enemy TargetedEnemy { get; set; }
         public int Cost { get; set; }
         public Image Image { get; set; }
         public Rect hitBox { get; set; }
@@ -33,11 +27,11 @@ namespace Samurai_Standoff
         //Constructors
         public Unit(Vector2 position, int range, int damage, int fireRate, Image image)
         {
-            this.Position = position;
-            this.Range = range;
-            this.Damage = damage;
-            this.FireRate = fireRate;
-            this.Image = image;
+            Position = position;
+            Range = range;
+            Damage = damage;
+            FireRate = fireRate;
+            Image = image;
 
             //increase size of unit by its range
             Rect newRect = new();
@@ -67,12 +61,12 @@ namespace Samurai_Standoff
                     (enemy.Position.Y <= (hitBoxPos.Y + hitBox.Height))
                     )
                 {
-                    Enemy = enemy;
+                    TargetedEnemy = enemy;
                     break;
                 }
             }
 
-            if (Enemy != null)
+            if (TargetedEnemy != null)
             {
                 if(attackingEnemy == false)
                 {
@@ -88,13 +82,13 @@ namespace Samurai_Standoff
 
                     Image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teoidle.png"));
 
-                    if (Enemy != null)
+                    if (TargetedEnemy != null)
                     {
-                        if (Enemy.Health <= 0)
+                        if (TargetedEnemy.Health <= 0)
                         {
-                            window.Children.Remove(Enemy.Image);
-                            enemyList.Remove(Enemy);
-                            Enemy = null;
+                            window.Children.Remove(TargetedEnemy.PlaceHolder);
+                            enemyList.Remove(TargetedEnemy);
+                            TargetedEnemy = null;
                         }
                     }
                     attackingEnemy = false;
@@ -104,9 +98,9 @@ namespace Samurai_Standoff
 
         public void Attack()
         {
-            if(Enemy != null)
+            if(TargetedEnemy != null)
             {
-                Enemy.Health -= Damage;
+                TargetedEnemy.Health -= Damage;
             }
         }
 

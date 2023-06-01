@@ -18,6 +18,8 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using System.Diagnostics;
 using Samurai_Standoff;
 using System.Numerics;
+using C_2Game_Enemy_Test2;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,13 +33,27 @@ namespace SamuraiStandOff.Controllers
     {
         private Castle castle;
         //lists holding the current unit and enemy data
-        private List<Enemy> enemyList = new List<Enemy>();
+        private List<Enemy> enemies = new List<Enemy>();
         private List<Unit> unitList = new List<Unit>();
+        private List<Tower> towers = new();
+        private DispatcherTimer gameLoopTimer;
+        SpawnEnemy enemySpawner = new();
+        EnemyPath path = new EnemyPath();
         public PlayScreen()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             castle = new Castle(100);
+            enemies = enemySpawner.CreateWave(1);
+            path.DisplayWaypoints(MainCanvas);
+
+            //creating the tower
+            towers.Add(new Tower(200, new Vector2(90, 50)));
+            towers.Add(new Tower(80, new Vector2(120, 70)));
+
+            //spawn stuff
+            SpawnTower(towers, MainCanvas);
+            Task task = SpawnEnemty(enemies, MainCanvas);
 
             //Create unit panel buttons and attach methods to XAML ui elements
             Button button1 = new Button() { Content = "Unit 1", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
@@ -61,23 +77,45 @@ namespace SamuraiStandOff.Controllers
 
             //game logic timer
             //start a clock that runs a method every 100 miliseconds
-            DispatcherTimer timer = new DispatcherTimer();
+           /* DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(100);
             //enemy move function
             //timer.Tick += functionName;
             timer.Tick += UnitAttackAsync;
-            timer.Start();
+            timer.Start();*/
 
+            // Start the game loop timer
+            gameLoopTimer = new DispatcherTimer();
+            gameLoopTimer.Tick += GameLoopTimer_Tick;
+            gameLoopTimer.Interval = TimeSpan.FromMilliseconds(16); // Update at approximately 60 FPS
+            gameLoopTimer.Start();
+
+        }
+        public static async Task SpawnEnemty(List<Enemy> enemies, Canvas gameCanvas)
+        {
+            foreach (var enemy in enemies)
+            {
+                gameCanvas.Children.Add(enemy.SetupPlaceholder());
+                await Task.Delay(700);
+            }
+        }
+
+        public static void SpawnTower(List<Tower> towers, Canvas gameCanvas)
+        {
+            foreach (var tower in towers)
+            {
+                gameCanvas.Children.Add(tower.PlaceHolder);
+            }
         }
 
         //event handler for units attack
         private async void UnitAttackAsync(object sender, object e)
         {
-            if (enemyList.Count > 0)
+            if (enemies.Count > 0)
             {
                 foreach (Unit unit in unitList)
                 {
-                    await unit.FindOrAttackTarget(enemyList, MainCanvas);
+                    await unit.FindOrAttackTarget(enemies, MainCanvas);
                 }
             }
         }
@@ -110,6 +148,52 @@ namespace SamuraiStandOff.Controllers
             if(castle.Health <= 0)
             {
                 gameOverScene();
+            }
+        }
+        private void GameLoopTimer_Tick(object sender, object e)
+        {
+            // Update the game state
+            UpdateGame();
+        }
+
+        private void AttackEvent_Handler(string message)
+        {
+            // Write the attack message to the debug output
+            Debug.WriteLine(message);
+        }
+
+        private void UpdateGame()
+        {
+            double delta = gameLoopTimer.Interval.TotalSeconds;
+            // Update enemies
+            foreach (var enemy in enemies.ToList())
+            {
+                if (MainCanvas.Children.Contains(enemy.PlaceHolder))
+                {
+                    MainCanvas.Children.Remove(enemy.PlaceHolder);
+
+                    enemy.AttackEvent += AttackEvent_Handler;
+                    enemy.UpdateAttackCooldown(delta);
+
+                    // Check if the enemy is within attack range of a tower
+                    Tower towerInRange = enemy.FindClosestTower(towers);
+                    if (towerInRange != null)
+                    {
+                        if (enemy.CanAttack())
+                        {
+                            enemy.AttackTower(towerInRange);
+                            if (towerInRange.Health <= 0)
+                            {
+                                MainCanvas.Children.Remove(towerInRange.PlaceHolder);
+                                towers.Remove(towerInRange);
+                            }
+                            enemy.ResetAttackCooldown();
+                        }
+                        enemy.Move(towers, 0); // Stop the enemy's movement
+                    }
+                    enemy.Move(towers, delta); // Move the enemy along the path
+                    MainCanvas.Children.Add(enemy.PlaceHolder); // Add the enemy's placeholder to the canvas
+                }
             }
         }
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SamuraiStandOff
+﻿namespace SamuraiStandOff
 {
     public class Castle
     {
@@ -14,7 +8,7 @@ namespace SamuraiStandOff
         {
             get
             {
-                return this._health;
+                return _health;
             }
             set
             {
@@ -23,7 +17,7 @@ namespace SamuraiStandOff
                     value = 0;
                 }
 
-                this._health = value;
+                _health = value;
             }
         }
 
