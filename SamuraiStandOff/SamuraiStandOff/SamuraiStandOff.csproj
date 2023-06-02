@@ -47,6 +47,7 @@
     <Content Remove="Assets\Images\teo_idle.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Assets\coin.png" />
     <None Remove="Assets\Images\attackBuff.png" />
     <None Remove="Assets\Images\increaseFireRate.png" />
     <None Remove="Assets\Images\pathImage.jpg" />

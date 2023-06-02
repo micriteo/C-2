@@ -8,6 +8,8 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using C_2Game_Enemy_Test2;
 using Microsoft.UI.Xaml;
 using System.Diagnostics;
+using SamuraiStandOff.Controllers;
+using SamuraiStandOff.Model.EnemyTypes;
 
 namespace Samurai_Standoff
 {
@@ -50,7 +52,7 @@ namespace Samurai_Standoff
 
         //Methods
 
-        public async Task FindOrAttackTarget(List<Enemy> enemyList, Canvas window)
+        public async Task FindOrAttackTarget(List<Enemy> enemyList, Canvas window, PlayScreen screen)
         {
             foreach (var enemy in enemyList)
             {
@@ -90,6 +92,19 @@ namespace Samurai_Standoff
                     {
                         if (TargetedEnemy.Health <= 0)
                         {
+                            // Add money depending on enemy class
+                            if (TargetedEnemy is Melee_Enemy)
+                            {
+                                screen.addMoney(Constants.enemyMeleeCost);
+                            }
+                            if (TargetedEnemy is Speed_Enemy)
+                            {
+                                screen.addMoney(Constants.enemySpeedCost);
+                            }
+                            if (TargetedEnemy is Tank_Enemy)
+                            {
+                                screen.addMoney(Constants.enemyTankCost);
+                            }
                             window.Children.Remove(TargetedEnemy.PlaceHolder);
                             TargetedEnemy.PlaceHolder.Visibility = Visibility.Collapsed;
                             enemyList.Remove(TargetedEnemy);

@@ -54,6 +54,7 @@ namespace SamuraiStandOff.Controllers
 
             //Assign starting money balance
             money = Constants.startBalance;
+            moneyTextBlock.Text = money.ToString();
 
             //Create unit panel buttons and attach methods to XAML ui elements
             Button button1 = new Button() { Content = "Melee Unit", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
@@ -118,7 +119,7 @@ namespace SamuraiStandOff.Controllers
             {
                 foreach (Unit unit in unitList.ToList())
                 {
-                    await unit.FindOrAttackTarget(enemies, MainCanvas);
+                    await unit.FindOrAttackTarget(enemies, MainCanvas, this);
                 }
             }
         }
@@ -220,6 +221,7 @@ namespace SamuraiStandOff.Controllers
             baseTower.Visibility = Visibility.Collapsed;
             healthIndicator.Visibility = Visibility.Collapsed;
             damageButton.Visibility = Visibility.Collapsed;
+            moneyPanel.Visibility = Visibility.Collapsed;
 
             //remove all placed units
             StackPanel parentContainer = buttonPanel; 
@@ -274,6 +276,16 @@ namespace SamuraiStandOff.Controllers
             if (sum > 0)
             {
                 money = money + sum;
+                moneyTextBlock.Text = money.ToString();
+            }
+        }
+
+        public void removeMoney(int sum)
+        {
+            if (sum > 0)
+            {
+                money = money - sum;
+                moneyTextBlock.Text = money.ToString();
             }
         }
 
@@ -301,7 +313,7 @@ namespace SamuraiStandOff.Controllers
             // Check whether a player can afford a unit
             if (money < Constants.meleePrice) { return; }
             // Subtract price of the unit
-            money = money - Constants.meleePrice;
+            removeMoney(Constants.meleePrice);
 
             Button buttonOG = (Button)sender;
             //Get location of mouse and create a vector2 object
