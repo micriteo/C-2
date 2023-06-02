@@ -47,17 +47,24 @@
     <Content Remove="Assets\Images\teo_idle.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Assets\Images\attackBuff.png" />
+    <None Remove="Assets\Images\increaseFireRate.png" />
     <None Remove="Assets\Images\pathImage.jpg" />
+    <None Remove="Assets\Images\scroll.jpg" />
     <None Remove="Assets\PathImage.png" />
     <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
     <None Remove="GameOver.xaml" />
     <None Remove="img\backgroung.jpg" />
     <None Remove="img\StayPixelRegular-EaOxl.ttf" />
     <None Remove="PlayScreen.xaml" />
+    <None Remove="Views\ScrollPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Assets\backgroung.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\attackBuff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\deathLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -65,10 +72,16 @@
     <Content Update="Assets\Images\gameOver.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Images\increaseFireRate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Images\pathImage.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\rsz_tower.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\scroll.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\tower.png">
@@ -84,7 +97,11 @@
   <ItemGroup>
     <Folder Include="Assets\NewFolder1\" />
     <Folder Include="Assets\NewFolder\" />
-    <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\ScrollPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="GameOver.xaml">

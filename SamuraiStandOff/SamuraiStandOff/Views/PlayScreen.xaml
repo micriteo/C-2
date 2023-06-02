@@ -21,7 +21,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock x:Name="waveCountLabel" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="200,0,0,0" Text="Wave: 1"/>
+        <TextBlock x:Name="waveCountLabel" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="200,0,0,0" Text="Wave: 1" Foreground="White"/>
         <Button x:Name="damageButton" 
                     Click="damageButton_Click" 
                     FontSize="20" 

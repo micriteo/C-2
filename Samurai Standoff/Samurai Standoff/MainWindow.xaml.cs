@@ -53,7 +53,8 @@ namespace Samurai_Standoff
 
         public MainWindow()
         {
-            Current = this;            this.InitializeComponent();
+            Current = this;            
+            this.InitializeComponent();
             NavigateAfterDelay();
             SpawnUnit();
             SpawnEnemy();
