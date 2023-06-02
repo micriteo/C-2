@@ -173,6 +173,7 @@ namespace SamuraiStandOff.Controllers
             {
                 Debug.WriteLine("Wave " + WaveCount + " complete!");
                 WaveCount++;
+                waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
                 Task task = SpawnEnemies(MainCanvas);
             }
             // .WriteLine("Enemies left:" + enemies.Count);

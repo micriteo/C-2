@@ -14,13 +14,14 @@
         </Canvas.Background>
         <Frame x:Name="playFrame"/>
         <StackPanel x:Name="buttonPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="400"></StackPanel>
-        <Rectangle x:Name="healthIndicator" Height="10" Margin="5,440,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100">
+        <Rectangle x:Name="healthIndicator" Height="10" Margin="5,440,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" >
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Color="#00FFFF" Offset="0" />
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
+        <TextBlock x:Name="waveCountLabel" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="200,0,0,0" Text="Wave: 1"/>
         <Button x:Name="damageButton" 
                     Click="damageButton_Click" 
                     FontSize="20" 
