@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samurai Standoff", "Samurai Standoff.csproj", "{EDE4977F-5B69-4135-92B7-992EB19B8647}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Debug|ARM64.Build.0 = Debug|ARM64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Debug|x64.ActiveCfg = Debug|x64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Debug|x64.Build.0 = Debug|x64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Debug|x64.Deploy.0 = Debug|x64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Debug|x86.ActiveCfg = Debug|x86
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Debug|x86.Build.0 = Debug|x86
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Debug|x86.Deploy.0 = Debug|x86
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Release|ARM64.ActiveCfg = Release|ARM64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Release|ARM64.Build.0 = Release|ARM64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Release|ARM64.Deploy.0 = Release|ARM64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Release|x64.ActiveCfg = Release|x64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Release|x64.Build.0 = Release|x64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Release|x64.Deploy.0 = Release|x64
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Release|x86.ActiveCfg = Release|x86
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Release|x86.Build.0 = Release|x86
+		{EDE4977F-5B69-4135-92B7-992EB19B8647}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77ABC4BE-A274-4BB5-A04D-CCE85525925E}
+	EndGlobalSection
+EndGlobal
