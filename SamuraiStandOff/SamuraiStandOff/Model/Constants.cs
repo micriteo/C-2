@@ -9,7 +9,7 @@ namespace C_2Game_Enemy_Test2
     public class Constants
     {
         public const int meleePrice = 100;
-        public const int startBalance = 200;
+        public const int startBalance = 500;
 
         // Enemy stats
         public const int enemyMeleeCost = 50;

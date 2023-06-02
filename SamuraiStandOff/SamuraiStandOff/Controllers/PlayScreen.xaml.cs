@@ -93,10 +93,13 @@ namespace SamuraiStandOff.Controllers
         public async Task SpawnEnemies(Canvas gameCanvas)
         {
             enemies = enemySpawner.CreateWave(WaveCount);
-            foreach (var enemy in enemies)
+            int counter = 0;
+            foreach (var enemy in enemies.ToList())
             {
                 gameCanvas.Children.Add(enemy.SetupPlaceholder());
+                counter++;
                 await Task.Delay(700);
+                Debug.WriteLine("Enemy " + counter + " spawned");
             }
         }
 
@@ -168,9 +171,11 @@ namespace SamuraiStandOff.Controllers
 
             if (enemies.Count == 0 && GameOver == false)
             {
+                Debug.WriteLine("Wave " + WaveCount + " complete!");
                 WaveCount++;
                 Task task = SpawnEnemies(MainCanvas);
             }
+            // .WriteLine("Enemies left:" + enemies.Count);
 
             // Update enemies
             foreach (var enemy in enemies.ToList())
