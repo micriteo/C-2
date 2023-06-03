@@ -59,8 +59,7 @@ namespace SamuraiStandOff.Controllers
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            healthIndicator.Visibility = Visibility.Collapsed;
-            baseTower.Visibility = Visibility.Collapsed;
+
         }
     }
 }

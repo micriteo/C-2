@@ -8,14 +8,18 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas Name="MainCanvas">
+    <Canvas Name="MainCanvas" Margin="0,0,0,0">
         <Canvas.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/Images/scroll.jpg"/>
+            <ImageBrush AlignmentY="Top">
+                <ImageBrush.ImageSource>
+                    <BitmapImage UriSource="ms-appx:///Assets/Images/scroll.jpg" />
+                </ImageBrush.ImageSource>
+            </ImageBrush>
         </Canvas.Background>
 
-        <Frame x:Name="scrollFrame" Width="1600" Height="750"/>
+        <Frame x:Name="scrollFrame" Width="1600" Height="720"/>
 
-        <Grid Width="1600" Height="750" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="450,200,0,10">
+        <Grid Width="1600" Height="720" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="450,200,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

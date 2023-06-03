@@ -21,6 +21,9 @@ using System.Numerics;
 using C_2Game_Enemy_Test2;
 using System.Threading.Tasks;
 
+
+
+
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -176,10 +179,52 @@ namespace SamuraiStandOff.Controllers
                 waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
                 Task task = SpawnEnemies(MainCanvas);
             }
-
-            if(WaveCount == 2)
+            else if(WaveCount == 1)
             {
+
+                baseTower.Visibility = Visibility.Collapsed;
+                healthIndicator.Visibility = Visibility.Collapsed;
+                damageButton.Visibility = Visibility.Collapsed;
+
                 MainCanvas.Visibility = Visibility.Collapsed;
+                //remove all placed units
+                StackPanel parentContainer = buttonPanel;
+                // Remove all unit elements from the draggable panel
+                foreach (UIElement element in parentContainer.Children.ToList())
+                {
+                    if (element is Button button)
+                    {
+                        parentContainer.Children.Remove(button);
+                    }
+                }
+
+                //remove all units from canvas
+                foreach (UIElement element in MainCanvas.Children.ToList())
+                {
+                    if (element is Button button)
+                    {
+                        MainCanvas.Children.Remove(button);
+                    }
+                }
+
+                foreach (Enemy enemy in enemies.ToList())
+                {
+                    MainCanvas.Children.Remove(enemy.PlaceHolder);
+                    enemy.PlaceHolder.Visibility = Visibility.Collapsed;
+                    enemies.Remove(enemy);
+                }
+
+                foreach (Unit unit in unitList.ToList())
+                {
+                    MainCanvas.Children.Remove(unit.Image);
+                    unit.Image.Visibility = Visibility.Collapsed;
+                    unitList.Remove(unit);
+                }
+                if (this.Frame.CanGoBack)
+                {
+                    this.Frame.BackStack.Clear();
+                }
+                
                 Frame.Navigate(typeof(ScrollPage));
             }
 
@@ -210,7 +255,9 @@ namespace SamuraiStandOff.Controllers
                 }
             }
             UnitAttackAsync(this,null);
+            
         }
+
 
         private void gameOverScene()
         {

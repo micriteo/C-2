@@ -40,19 +40,6 @@
                 </Grid>
             </Button>
 
-            <Rectangle x:Name="healthIndicator" Height="10" Margin="0,300,0,0" VerticalAlignment="Top" Grid.Row="1">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                        <GradientStop Color="Green" Offset="0" />
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle x:Name="baseTower" Height="250" Margin="0,10,0,0" Stroke="White" VerticalAlignment="Top" Width="100">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="ms-appx:///Assets/Images/gameOver.png" Stretch="Uniform" />
-                </Rectangle.Fill>
-            </Rectangle>
-
             <TextBlock x:Name="copyrightText" Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
         </StackPanel>
         <Grid.Background>
