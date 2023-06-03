@@ -10,6 +10,7 @@ namespace C_2Game_Enemy_Test2
     {
         public const int meleePrice = 100;
         public const int startBalance = 500;
+        public const int bowPrice = 200;
 
         // Enemy stats
         public const int enemyMeleeCost = 50;
