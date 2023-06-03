@@ -7,8 +7,9 @@ using System.Diagnostics;
 using System.Numerics;
 
 
-namespace C_2Game_Enemy_Test2
+namespace SamuraiStandOff
 {
+    [Serializable]
     public abstract class Enemy
     {
         public int Health { get; set; }

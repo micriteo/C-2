@@ -5,7 +5,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using System.Numerics;
 
-namespace C_2Game_Enemy_Test2
+namespace SamuraiStandOff
 {
     public class Tower
     {

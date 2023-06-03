@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using C_2Game_Enemy_Test2;
-using SamuraiStandOff.Model.EnemyTypes;
+using SamuraiStandOf;
 
 namespace SamuraiStandOff.Controllers
 {

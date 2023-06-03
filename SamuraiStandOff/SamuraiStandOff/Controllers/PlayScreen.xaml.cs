@@ -16,10 +16,10 @@ using Windows.Foundation.Collections;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System.Diagnostics;
-using Samurai_Standoff;
 using System.Numerics;
-using C_2Game_Enemy_Test2;
 using System.Threading.Tasks;
+using SamuraiStandoff;
+using SamuraiStandOff.Model;
 
 
 
@@ -47,13 +47,17 @@ namespace SamuraiStandOff.Controllers
         private DispatcherTimer gameLoopTimer;
         SpawnEnemy enemySpawner = new();
         EnemyPath path = new();
-        private int money { get; set; }
+        private Money money;
+        private Wave wave;
         private int WaveCount = 1;
         private bool GameOver;
+        private GameState savedGameState;
         public bool IsGamePaused { get; set; } = false;
 
         public PlayScreen()
         {
+            wave = new Wave(0);
+            money = new Money(100);
             Current = this;
             InitializeComponent();
             GameOver = false;
@@ -65,8 +69,8 @@ namespace SamuraiStandOff.Controllers
             Task task = SpawnEnemies(MainCanvas);
 
             //Assign starting money balance
-            money = Constants.startBalance;
-            moneyTextBlock.Text = money.ToString();
+            money.Currency = Constants.startBalance;
+            moneyTextBlock.Text = money.Currency.ToString();
 
             //Create unit panel buttons and attach methods to XAML ui elements
             Button button1 = new Button() { Content = "Melee Unit", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
@@ -124,6 +128,22 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
+        public GameState SaveGameState()
+        {
+                    List<string> unitJsons = new List<string>();
+
+            GameState gameState = new GameState
+            {
+                Units = unitList, 
+                Enemies = enemies, 
+                Money = money.Currency,
+                WaveCount = WaveCount
+
+            };
+            return gameState;
+        }
+
+
         //event handler for units attack
         private async void UnitAttackAsync(object sender, object e)
         {
@@ -176,6 +196,12 @@ namespace SamuraiStandOff.Controllers
         {
             IsGamePaused = false;
 
+            unitList = savedGameState.Units;
+            enemies = savedGameState.Enemies;
+            money.Currency = savedGameState.Money;
+            wave.WaveNumber = savedGameState.WaveCount;
+
+
             //restore visibility of game objects
             baseTower.Visibility = Visibility.Visible;
             healthIndicator.Visibility = Visibility.Visible;
@@ -202,6 +228,7 @@ namespace SamuraiStandOff.Controllers
             {
                 Debug.WriteLine("Wave " + WaveCount + " complete!");
                 WaveCount++;
+                wave.WaveNumber = WaveCount;
                 waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
                 Task task = SpawnEnemies(MainCanvas);
             }
@@ -301,6 +328,8 @@ namespace SamuraiStandOff.Controllers
 
         private void TransitionToScrollPage()
         {
+            savedGameState = SaveGameState();
+
             baseTower.Visibility = Visibility.Collapsed;
             healthIndicator.Visibility = Visibility.Collapsed;
             damageButton.Visibility = Visibility.Collapsed;
@@ -364,8 +393,8 @@ namespace SamuraiStandOff.Controllers
         {
             if (sum > 0)
             {
-                money = money + sum;
-                moneyTextBlock.Text = money.ToString();
+                money.Currency = money.Currency + sum;
+                moneyTextBlock.Text = money.Currency.ToString();
             }
         }
 
@@ -373,8 +402,8 @@ namespace SamuraiStandOff.Controllers
         {
             if (sum > 0)
             {
-                money = money - sum;
-                moneyTextBlock.Text = money.ToString();
+                money.Currency = money.Currency - sum;
+                moneyTextBlock.Text = money.Currency.ToString();
             }
         }
 
@@ -400,7 +429,7 @@ namespace SamuraiStandOff.Controllers
         public void Button_PointerReleased_Melee(object sender, PointerRoutedEventArgs e)
         {
             // Check whether a player can afford a unit
-            if (money < Constants.meleePrice) { return; }
+            if (money.Currency < Constants.meleePrice) { return; }
             // Subtract price of the unit
             removeMoney(Constants.meleePrice);
 

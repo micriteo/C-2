@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Microsoft.UI.Xaml.Media.Imaging;
-using C_2Game_Enemy_Test2;
 using Microsoft.UI.Xaml;
 using System.Diagnostics;
 using SamuraiStandOff.Controllers;
-using SamuraiStandOff.Model.EnemyTypes;
+using SamuraiStandOff;
+using SamuraiStandOf;
 
-namespace Samurai_Standoff
+namespace SamuraiStandoff
 {
     public class Unit
     {

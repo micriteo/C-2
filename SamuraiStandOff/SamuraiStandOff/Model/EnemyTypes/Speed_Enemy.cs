@@ -1,10 +1,10 @@
-﻿using C_2Game_Enemy_Test2;
-using Microsoft.UI;
+﻿using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
+using SamuraiStandOff;
 
-namespace SamuraiStandOff.Model.EnemyTypes
+namespace SamuraiStandOf
 {
     public class Speed_Enemy : Enemy
     {

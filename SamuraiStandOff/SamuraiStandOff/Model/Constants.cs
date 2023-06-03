@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C_2Game_Enemy_Test2
+namespace SamuraiStandOff
 {
     public class Constants
     {

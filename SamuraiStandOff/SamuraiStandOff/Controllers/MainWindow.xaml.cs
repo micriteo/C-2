@@ -1,5 +1,4 @@
-﻿using C_2Game_Enemy_Test2;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
