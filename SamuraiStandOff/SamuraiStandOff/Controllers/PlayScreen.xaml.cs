@@ -38,14 +38,23 @@ namespace SamuraiStandOff.Controllers
         //lists holding the current unit and enemy data
         private List<Enemy> enemies = new ();
         private List<Unit> unitList = new ();
+        public List<Unit> UnitList
+        {
+            get { return unitList; }
+            private set { unitList = value; }
+        }
+        public static PlayScreen Current { get; private set; }
         private DispatcherTimer gameLoopTimer;
         SpawnEnemy enemySpawner = new();
         EnemyPath path = new();
         private int money { get; set; }
         private int WaveCount = 1;
         private bool GameOver;
+        public bool IsGamePaused { get; set; } = false;
+
         public PlayScreen()
         {
+            Current = this;
             InitializeComponent();
             GameOver = false;
             castle = new Castle(100);
@@ -163,6 +172,17 @@ namespace SamuraiStandOff.Controllers
             UpdateGame();
         }
 
+        public void ResumeGame()
+        {
+            IsGamePaused = false;
+
+            //restore visibility of game objects
+            baseTower.Visibility = Visibility.Visible;
+            healthIndicator.Visibility = Visibility.Visible;
+            damageButton.Visibility = Visibility.Visible;
+            MainCanvas.Visibility = Visibility.Visible;
+        }
+
         private void AttackEvent_Handler(string message)
         {
             // Write the attack message to the debug output
@@ -173,6 +193,11 @@ namespace SamuraiStandOff.Controllers
         {
             double delta = gameLoopTimer.Interval.TotalSeconds;
 
+            if (IsGamePaused)
+            {
+                return;
+            }
+
             if (enemies.Count == 0 && GameOver == false)
             {
                 Debug.WriteLine("Wave " + WaveCount + " complete!");
@@ -180,53 +205,9 @@ namespace SamuraiStandOff.Controllers
                 waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
                 Task task = SpawnEnemies(MainCanvas);
             }
-            else if(WaveCount == 5)
+            else if(WaveCount == 2)
             {
-
-                baseTower.Visibility = Visibility.Collapsed;
-                healthIndicator.Visibility = Visibility.Collapsed;
-                damageButton.Visibility = Visibility.Collapsed;
-
-                MainCanvas.Visibility = Visibility.Collapsed;
-                //remove all placed units
-                StackPanel parentContainer = buttonPanel;
-                // Remove all unit elements from the draggable panel
-                foreach (UIElement element in parentContainer.Children.ToList())
-                {
-                    if (element is Button button)
-                    {
-                        parentContainer.Children.Remove(button);
-                    }
-                }
-
-                //remove all units from canvas
-                foreach (UIElement element in MainCanvas.Children.ToList())
-                {
-                    if (element is Button button)
-                    {
-                        MainCanvas.Children.Remove(button);
-                    }
-                }
-
-                foreach (Enemy enemy in enemies.ToList())
-                {
-                    MainCanvas.Children.Remove(enemy.PlaceHolder);
-                    enemy.PlaceHolder.Visibility = Visibility.Collapsed;
-                    enemies.Remove(enemy);
-                }
-
-                foreach (Unit unit in unitList.ToList())
-                {
-                    MainCanvas.Children.Remove(unit.Image);
-                    unit.Image.Visibility = Visibility.Collapsed;
-                    unitList.Remove(unit);
-                }
-                if (this.Frame.CanGoBack)
-                {
-                    this.Frame.BackStack.Clear();
-                }
-                
-                Frame.Navigate(typeof(ScrollPage));
+                TransitionToScrollPage();
             }
 
             // Update enemies
@@ -317,6 +298,67 @@ namespace SamuraiStandOff.Controllers
 
             Debug.WriteLine("Exiting gameOverScene");
         }
+
+        private void TransitionToScrollPage()
+        {
+            baseTower.Visibility = Visibility.Collapsed;
+            healthIndicator.Visibility = Visibility.Collapsed;
+            damageButton.Visibility = Visibility.Collapsed;
+
+            MainCanvas.Visibility = Visibility.Collapsed;
+            //remove all placed units
+            StackPanel parentContainer = buttonPanel;
+            // Remove all unit elements from the draggable panel
+            foreach (UIElement element in parentContainer.Children.ToList())
+            {
+                if (element is Button button)
+                {
+                    parentContainer.Children.Remove(button);
+                }
+            }
+
+            //remove all units from canvas
+            foreach (UIElement element in MainCanvas.Children.ToList())
+            {
+                if (element is Button button)
+                {
+                    MainCanvas.Children.Remove(button);
+                }
+            }
+
+            foreach (Enemy enemy in enemies.ToList())
+            {
+                MainCanvas.Children.Remove(enemy.PlaceHolder);
+                enemy.PlaceHolder.Visibility = Visibility.Collapsed;
+                enemies.Remove(enemy);
+            }
+
+            foreach (Unit unit in unitList.ToList())
+            {
+                MainCanvas.Children.Remove(unit.Image);
+                unit.Image.Visibility = Visibility.Collapsed;
+                unitList.Remove(unit);
+            }
+            if (this.Frame.CanGoBack)
+            {
+                this.Frame.BackStack.Clear();
+            }
+
+            IsGamePaused = true;
+
+            Frame.Navigate(typeof(ScrollPage));
+        }
+
+        public void ApplyDamageBuffToAllUnits(int buffAmount)
+        {
+            // iterate over all units
+            foreach (var unit in unitList)
+            {
+                // increase the unit's damage by the buff amount
+                unit.Damage += buffAmount;
+            }
+        }
+
 
         public void addMoney(int sum)
         {
