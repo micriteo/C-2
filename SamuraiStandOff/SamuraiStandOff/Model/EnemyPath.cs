@@ -16,37 +16,40 @@ namespace C_2Game_Enemy_Test2
         {
             Waypoints = new List<Vector2>
             {
-                new Vector2(1100, 170),
-                new Vector2(1050, 180),
-                new Vector2(1000, 195),
-                new Vector2(970, 235),
-                new Vector2(945, 280),
-                new Vector2(920, 380),
-                new Vector2(900, 420),
-                new Vector2(880, 440),
-                new Vector2(830, 455),
-                new Vector2(780, 465),
-                new Vector2(730, 465),
-                new Vector2(680, 450),
-                new Vector2(630, 430),
+                new Vector2(1500, 250),
+                new Vector2(1450, 250),
+                new Vector2(1400, 270),
+                new Vector2(1350, 320),
+                new Vector2(1340, 350),
+                new Vector2(1300, 450),
+                new Vector2(1270, 520),
+                new Vector2(1220, 550),
+                new Vector2(1130, 570),
+                new Vector2(1080, 580),
+                new Vector2(1000, 570),
+                new Vector2(950, 560),
+                new Vector2(900, 540),
 
-                new Vector2(600, 400),
-                new Vector2(570, 300),
+                new Vector2(800, 400),
+                new Vector2(770, 300),
+                new Vector2(750, 250),
+                new Vector2(690, 180),
 
-                new Vector2(520,150),
-                new Vector2(480,110),
-                new Vector2(420,80),
+                new Vector2(540,130),
+                new Vector2(480,120),
+                new Vector2(420,130),
 
-                new Vector2(330, 70),
-                new Vector2(280, 80),
-                new Vector2(240, 110),
-                new Vector2(220, 150),
+                new Vector2(330, 250),
+                new Vector2(300, 350),
+                new Vector2(290, 450),
+                new Vector2(280, 500),
+                new Vector2(250, 550),
+                new Vector2(200, 600),
+                new Vector2(150, 620),
 
-                new Vector2(200, 320),
-                new Vector2(130, 465),
+                //new Vector2(130, 465),
 
 
-                new Vector2(0, 100)
             };
         }
 

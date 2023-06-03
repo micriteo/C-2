@@ -50,7 +50,7 @@ namespace SamuraiStandOff.Controllers
             GameOver = false;
             castle = new Castle(100);
             
-            //path.DisplayWaypoints(MainCanvas);
+            path.DisplayWaypoints(MainCanvas);
 
             //spawn stuff
             Task task = SpawnEnemies(MainCanvas);
@@ -180,7 +180,7 @@ namespace SamuraiStandOff.Controllers
                 waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
                 Task task = SpawnEnemies(MainCanvas);
             }
-            else if(WaveCount == 1)
+            else if(WaveCount == 5)
             {
 
                 baseTower.Visibility = Visibility.Collapsed;

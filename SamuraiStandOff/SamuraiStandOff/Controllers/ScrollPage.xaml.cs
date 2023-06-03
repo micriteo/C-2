@@ -32,14 +32,14 @@ namespace SamuraiStandOff.Controllers
 
         private void DamageBuff_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Unit unit in this.UnitList)
+           /* foreach (Unit unit in this.UnitList)
             {
                 Debug.WriteLine($"Unit Damage before buff: {unit.Damage}");
 
                 unit.Damage += 10;
 
                 Debug.WriteLine($"Unit Damage after buff: {unit.Damage}");
-            }
+            }*/
         }
 
         private void FireRateBuff_Click(object sender, RoutedEventArgs e)
