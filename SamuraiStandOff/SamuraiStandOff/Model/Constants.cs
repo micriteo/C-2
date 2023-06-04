@@ -8,6 +8,7 @@ namespace SamuraiStandOff
 {
     public class Constants
     {
+        public const int rangePrice = 200;
         public const int meleePrice = 100;
         public const int startBalance = 500;
         public const int bowPrice = 200;

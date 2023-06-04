@@ -10,6 +10,8 @@ using System.Diagnostics;
 using SamuraiStandOff.Controllers;
 using SamuraiStandOff;
 using SamuraiStandOf;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Shapes;
 
 namespace SamuraiStandoff
 {
@@ -22,25 +24,31 @@ namespace SamuraiStandoff
         public Vector2 Size { get; set; }
         public Enemy TargetedEnemy { get; set; }
         public int Cost { get; set; }
-        public Image Image { get; set; }
+        public Image CurrentImage { get; set; }
+        public Image ImageIdle { get; set; }
+        public Image ImageAttack { get; set; }
         public Rect hitBox { get; set; }
         public Vector2 hitBoxPos { get; set; }
 
         private bool attackingEnemy = false;
 
         //Constructors
-        public Unit(Vector2 position, int range, int damage, int fireRate, Image image)
+        public Unit(Vector2 position, int range, int damage, int fireRate, Image imageIdle, Image imageAttack)
         {
             Position = position;
             Range = range;
             Damage = damage;
             FireRate = fireRate;
-            Image = image;
+            ImageIdle = imageIdle;
+            ImageAttack = imageAttack;
+
+            //set the current animation of the unit to its idle position
+            CurrentImage = imageIdle;
 
             //increase size of unit by its range
             Rect newRect = new();
-            newRect.Width = (image.Width) + (range * 2);
-            newRect.Height = (image.Height) + (range * 2);
+            newRect.Width = (imageIdle.Width) + (range * 2);
+            newRect.Height = (imageIdle.Height) + (range * 2);
             hitBox = newRect;
 
             //calculate the posiiton of the square
@@ -72,12 +80,25 @@ namespace SamuraiStandoff
 
             if (TargetedEnemy != null)
             {
-                if(attackingEnemy == false)
+
+                //draw hitbox over character
+                //DEBUG CODE
+                /*
+                Rectangle hitboxShape = new Rectangle();
+                hitboxShape.Width = hitBox.Width;
+                hitboxShape.Height = hitBox.Height;
+                hitboxShape.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(1, 255, 255, 255));
+                window.Children.Add(hitboxShape);
+                Canvas.SetLeft(hitboxShape, hitBoxPos.X);
+                Canvas.SetTop(hitboxShape, hitBoxPos.Y);
+                */
+
+                if (attackingEnemy == false)
                 {
                     attackingEnemy = true;
                     Debug.WriteLine("Unit Attack");
 
-                    Image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_attack.gif"));
+                    CurrentImage.Source = ImageAttack.Source;
 
                     await Task.Delay(1300);
 
@@ -86,7 +107,7 @@ namespace SamuraiStandoff
 
                     //finish the attack animation 
                     await Task.Delay(300);
-                    Image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
+                    CurrentImage.Source = ImageIdle.Source;
 
                     if (TargetedEnemy != null)
                     {

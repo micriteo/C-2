@@ -307,8 +307,8 @@ namespace SamuraiStandOff.Controllers
 
             foreach (Unit unit in unitList.ToList())
             {
-                MainCanvas.Children.Remove(unit.Image);
-                unit.Image.Visibility = Visibility.Collapsed;
+                MainCanvas.Children.Remove(unit.ImageIdle);
+                unit.ImageIdle.Visibility = Visibility.Collapsed;
                 unitList.Remove(unit);
             }
 
@@ -364,8 +364,8 @@ namespace SamuraiStandOff.Controllers
 
             foreach (Unit unit in unitList.ToList())
             {
-                MainCanvas.Children.Remove(unit.Image);
-                unit.Image.Visibility = Visibility.Collapsed;
+                MainCanvas.Children.Remove(unit.ImageIdle);
+                unit.ImageIdle.Visibility = Visibility.Collapsed;
                 unitList.Remove(unit);
             }
             if (this.Frame.CanGoBack)
@@ -437,21 +437,49 @@ namespace SamuraiStandOff.Controllers
             //Get location of mouse and create a vector2 object
             Vector2 posUnitMelee = new((float)e.GetCurrentPoint(MainCanvas).Position.X, (float)e.GetCurrentPoint(MainCanvas).Position.Y);
             //Get Image for Melee Unit
-            Image imgMelee = getUnitImage(1);
+            Image imgMeleeIdle = getUnitImageIdle(1);
+            Image imgMeleeAttack = getUnitImageAttack(1);
+            //calculate unit position
+            double unitPosLeft = (float)e.GetCurrentPoint(MainCanvas).Position.X - imgMeleeIdle.ActualWidth / 2;
+            double unitPosTop = (float)e.GetCurrentPoint(MainCanvas).Position.Y - imgMeleeIdle.ActualHeight / 2;
             //Create instance of Unit
-            Unit unitTempMelee = new(posUnitMelee, 10, 25, 100, imgMelee);
+            Unit unitTempMelee = new(new Vector2((float)unitPosLeft, (float)unitPosTop), 10, 25, 100, imgMeleeIdle, imgMeleeAttack);
             unitList.Add(unitTempMelee);
             buttonOG.ReleasePointerCapture(e.Pointer);
             //Position unit where player let go off the mouse
-            MainCanvas.Children.Add(unitTempMelee.Image);
-            // Offset mouse coordinates by 1/2 of the image size because Images position is defined as top left corner
-            Canvas.SetLeft(unitTempMelee.Image, (float)e.GetCurrentPoint(MainCanvas).Position.X - unitTempMelee.Image.ActualWidth / 2);
-            Canvas.SetTop(unitTempMelee.Image, (float)e.GetCurrentPoint(MainCanvas).Position.Y - unitTempMelee.Image.ActualHeight / 2);
+            MainCanvas.Children.Add(unitTempMelee.CurrentImage);
+            //Offset mouse coordinates by 1/2 of the image size because Images position is defined as top left corner
+            Canvas.SetLeft(unitTempMelee.ImageIdle, unitPosLeft);
+            Canvas.SetTop(unitTempMelee.ImageIdle, unitPosTop);
         }
 
         public void Button_PointerReleased_Unit2(object sender, PointerRoutedEventArgs e)
         {
             //TODO Implement with new unit
+
+            // Check whether a player can afford a unit
+            if (money.Currency < Constants.rangePrice) { return; }
+            // Subtract price of the unit
+            removeMoney(Constants.rangePrice);
+
+            Button buttonOG = (Button)sender;
+            //Get location of mouse and create a vector2 object
+            Vector2 posUnitRange = new((float)e.GetCurrentPoint(MainCanvas).Position.X, (float)e.GetCurrentPoint(MainCanvas).Position.Y);
+            //Get Image for Melee Unit
+            Image imgRangeIdle = getUnitImageIdle(2);
+            Image imgRangeAttack = getUnitImageAttack(2);
+            //calculate unit position
+            double unitPosLeft = (float)e.GetCurrentPoint(MainCanvas).Position.X - imgRangeIdle.ActualWidth / 2;
+            double unitPosTop = (float)e.GetCurrentPoint(MainCanvas).Position.Y - imgRangeAttack.ActualHeight / 2;
+            //Create instance of Unit
+            Unit unitTempRange = new(new Vector2((float)unitPosLeft, (float)unitPosTop), 80, 215, 100, imgRangeIdle, imgRangeAttack);
+            unitList.Add(unitTempRange);
+            buttonOG.ReleasePointerCapture(e.Pointer);
+            //Position unit where player let go off the mouse
+            MainCanvas.Children.Add(unitTempRange.CurrentImage);
+            //Offset mouse coordinates by 1/2 of the image size because Images position is defined as top left corner
+            Canvas.SetLeft(unitTempRange.ImageIdle, unitPosLeft);
+            Canvas.SetTop(unitTempRange.ImageIdle, unitPosTop);
         }
 
         public void Button_PointerReleased_Unit3(object sender, PointerRoutedEventArgs e)
@@ -459,18 +487,46 @@ namespace SamuraiStandOff.Controllers
             //TODO Implement with new unit
         }
 
-        //1-melee, 2- , 3-
-        public Image getUnitImage(int unitNumber)
+        //1-melee, 2-range , 3-
+        public Image getUnitImageIdle(int unitNumber)
         {
             Image image = new Image();
             // Get appropriate image
             switch (unitNumber)
             {
                 case 1:
-                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
+                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/Images/teo_idle.png"));
                     break;
                 case 2:
+                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/Images/mathew_idle.png"));
+                    break;
+                case 3:
                     image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
+                    break;
+                default:
+                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
+                    break;
+            }
+            image.Stretch = Stretch.Uniform;
+            image.Height = 150;
+            image.Width = 150;
+            image.HorizontalAlignment = HorizontalAlignment.Center;
+            image.VerticalAlignment = VerticalAlignment.Center;
+            return image;
+        }
+
+        //1-melee, 2-range , 3-
+        public Image getUnitImageAttack(int unitNumber)
+        {
+            Image image = new Image();
+            // Get appropriate image
+            switch (unitNumber)
+            {
+                case 1:
+                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/Images/teo_attack.gif"));
+                    break;
+                case 2:
+                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/Images/mathew_attack.gif"));
                     break;
                 case 3:
                     image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
