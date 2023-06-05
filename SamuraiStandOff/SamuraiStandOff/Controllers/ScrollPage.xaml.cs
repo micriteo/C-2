@@ -31,14 +31,22 @@ namespace SamuraiStandOff.Controllers
 
         private void DamageBuff_Click(object sender, RoutedEventArgs e)
         {
+            // Apply the buff first
             PlayScreen.Current.ApplyDamageBuffToAllUnits(10);
 
+            // Save the game state after applying the buff
+            //PlayScreen.Current.SaveGameState();
+
             // Resume the game
-            PlayScreen.Current.ResumeGame();
+            //PlayScreen.Current.ResumeGame();
 
             // Navigate back to the PlayScreen
             this.Frame.Navigate(typeof(PlayScreen));
+
+            PlayScreen.Current.ShowElements();
+
         }
+
 
         private void FireRateBuff_Click(object sender, RoutedEventArgs e)
         {
