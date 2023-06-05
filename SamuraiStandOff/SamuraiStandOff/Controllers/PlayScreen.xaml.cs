@@ -55,6 +55,8 @@ namespace SamuraiStandOff.Controllers
         private int WaveCount = 1;
         private bool GameOver;
         public Window scrollWin;
+        int turn = 0;
+
         public bool IsGamePaused { get; set; } = false;
 
         public PlayScreen()
@@ -187,17 +189,26 @@ namespace SamuraiStandOff.Controllers
 
         private void UpdateGame()
         {
+            Debug.WriteLine(IsGamePaused);
             double delta = gameLoopTimer.Interval.TotalSeconds;
 
             if (enemies.Count == 0 && GameOver == false && IsGamePaused == false)
             {
-                Debug.WriteLine("Wave " + WaveCount + " complete!");
-                WaveCount++;
-                wave.WaveNumber = WaveCount;
-                Debug.WriteLine(wave.WaveNumber);
-                waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
-                Task task = SpawnEnemies(MainCanvas);
-                TransitionToScrollPage();
+                if(turn == 0)
+                {
+                    TransitionToScrollPage();
+                    turn = 1;
+                }
+                else
+                {
+                    Debug.WriteLine("Wave " + WaveCount + " complete!");
+                    WaveCount++;
+                    wave.WaveNumber = WaveCount;
+                    Debug.WriteLine(wave.WaveNumber);
+                    waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
+                    Task task = SpawnEnemies(MainCanvas);
+                    turn = 0;
+                }
             }
 
             // Update enemies
@@ -296,6 +307,8 @@ namespace SamuraiStandOff.Controllers
             ScrollPage page = new ScrollPage(this);
             scrollWin.Content = page;
             scrollWin.Activate();
+            IsGamePaused = true;
+            Debug.WriteLine("Game is paused");
         }
 
         public void closeScrollWindow()

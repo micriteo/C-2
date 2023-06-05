@@ -33,6 +33,7 @@ namespace SamuraiStandOff.Controllers
 
         private void DamageBuff_Click(object sender, RoutedEventArgs e)
         {
+            mainScreen.IsGamePaused = false;
             //Apply the buff first
             mainScreen.ApplyDamageBuffToAllUnits(10);
             //Close window
