@@ -26,6 +26,9 @@ namespace SamuraiStandOff
         public int currentWaypoint = 0; // Field to keep track of the current waypoint
         public event Action<string> AttackEvent;
 
+        public bool hasReachedDestination = false; 
+
+
 
 
         public Enemy(int health, double speed, int damage, double attackCooldown, double attackRange, int powerLevel)
@@ -44,28 +47,18 @@ namespace SamuraiStandOff
             PlaceHolder = CreatePlaceholder();
         }
 
-        /* This method is responsible for finding the closest tower within the attack range of the enemy.
-         * It iterates over the list of towers and calculates the distance between the enemy and each tower. 
-         * It returns the tower that is closest to the enemy.
-         */
+        
         public virtual bool FindCastle(Castle castle)
         {
-            double closestDistance = double.MaxValue;
-            bool isInRange = false;
-            // Find the closest tower within attack range
-            if (castle != null)
-                {
-                    double distance = Vector2.Distance(Position, new Vector2(130, 465));
-                    //Debug.WriteLine($"Distance to tower: {distance}"); // Debug output
-                    if (distance <= AttackRange && distance < closestDistance)
-                    {
-                        closestDistance = distance;
-                        Debug.WriteLine("Tower in range found!"); // Debug output
-                        Debug.WriteLine(castle.Health);
-                        isInRange = true;
-                    }
-                }
-            return isInRange;
+            // Check if the enemy has reached the destination (150, 620)
+            if (hasReachedDestination)
+            {
+                Debug.WriteLine("Tower in range found!"); // Debug output
+                Debug.WriteLine(castle.Health);
+                return true;
+            }
+
+            return false;
         }
 
         /*
@@ -118,29 +111,39 @@ namespace SamuraiStandOff
         public virtual void Move(Castle castle, double deltaTime)
         {
 
-            if (FindCastle(castle))
+            if (!hasReachedDestination)
             {
-                return;
+                Vector2 direction = Vector2.Normalize(Follow_Path.Waypoints[currentWaypoint] - Position);
+                float distanceToWaypoint = Vector2.Distance(Position, Follow_Path.Waypoints[currentWaypoint]);
+                float movementThisFrame = (float)(Speed * deltaTime);
+
+                // If we're going to move beyond the waypoint this frame, 
+                // set our position to the waypoint directly to avoid overshooting it
+                if (movementThisFrame >= distanceToWaypoint)
+                {
+                    Position = Follow_Path.Waypoints[currentWaypoint];
+                    currentWaypoint = (currentWaypoint + 1) % Follow_Path.Waypoints.Count;
+
+                    if (Position == new Vector2(150, 620))
+                    {
+                        hasReachedDestination = true;
+                    }
+                }
+                else
+                {
+                    Position += direction * movementThisFrame;
+                }
+
+                Canvas.SetLeft(PlaceHolder, Position.X);
+                Canvas.SetTop(PlaceHolder, Position.Y);
             }
 
-            Vector2 direction = Vector2.Normalize(Follow_Path.Waypoints[currentWaypoint] - Position);
-            float distanceToWaypoint = Vector2.Distance(Position, Follow_Path.Waypoints[currentWaypoint]);
-            float movementThisFrame = (float)(Speed * deltaTime);
-
-            // If we're going to move beyond the waypoint this frame, 
-            // set our position to the waypoint directly to avoid overshooting it
-            if (movementThisFrame >= distanceToWaypoint)
+            // Attack the tower if we have reached the specific position (150, 620)
+            if (hasReachedDestination && CanAttack())
             {
-                Position = Follow_Path.Waypoints[currentWaypoint];
-                currentWaypoint = (currentWaypoint + 1) % Follow_Path.Waypoints.Count;
+                AttackCastle(castle);
+                ResetAttackCooldown();
             }
-            else
-            {
-                Position += direction * movementThisFrame;
-            }
-
-            Canvas.SetLeft(PlaceHolder, Position.X);
-            Canvas.SetTop(PlaceHolder, Position.Y);
         }
 
         /*

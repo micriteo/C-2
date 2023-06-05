@@ -45,9 +45,9 @@ namespace SamuraiStandOff
                 new Vector2(280, 500),
                 new Vector2(250, 550),
                 new Vector2(200, 600),
-                new Vector2(150, 620),
+                 new Vector2(150, 620),
 
-                //new Vector2(130, 465),
+               // new Vector2(130, 465),
 
 
             };
