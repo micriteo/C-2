@@ -24,16 +24,19 @@ namespace SamuraiStandOff.Controllers
     /// </summary>
     public sealed partial class ScrollPage : Page
     {
-        public ScrollPage()
+        private PlayScreen mainScreen;
+        public ScrollPage(PlayScreen mainScreen)
         {
             this.InitializeComponent();
+            this.mainScreen = mainScreen;
         }
 
         private void DamageBuff_Click(object sender, RoutedEventArgs e)
         {
-            // Apply the buff first
-            PlayScreen.Current.ApplyDamageBuffToAllUnits(10);
-
+            //Apply the buff first
+            mainScreen.ApplyDamageBuffToAllUnits(10);
+            //Close window
+            mainScreen.closeScrollWindow();
             // Save the game state after applying the buff
             //PlayScreen.Current.SaveGameState();
 
@@ -41,9 +44,9 @@ namespace SamuraiStandOff.Controllers
             //PlayScreen.Current.ResumeGame();
 
             // Navigate back to the PlayScreen
-            this.Frame.Navigate(typeof(PlayScreen));
+            //this.Frame.Navigate(typeof(PlayScreen));
 
-            PlayScreen.Current.ShowElements();
+            //PlayScreen.Current.ShowElements();
 
         }
 

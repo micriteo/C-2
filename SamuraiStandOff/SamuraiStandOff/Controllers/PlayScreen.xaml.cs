@@ -54,7 +54,7 @@ namespace SamuraiStandOff.Controllers
         private Wave wave;
         private int WaveCount = 1;
         private bool GameOver;
-        //private GameState savedGameState;
+        public Window scrollWin;
         public bool IsGamePaused { get; set; } = false;
 
         public PlayScreen()
@@ -131,25 +131,6 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
-        //public GameState SaveGameState()
-        //{
-        //    List<string> unitJsons = new List<string>();
-
-        //    GameState gameState = new GameState
-        //    {
-        //        Units = unitList, 
-        //        Enemies = enemies, 
-        //        Money = money.Currency,
-        //        WaveCount = WaveCount
-
-        //    };
-
-        //    ApplicationData.Current.LocalSettings.Values["WaveCount"] = WaveCount;
-        //    Debug.WriteLine(WaveCount);
-        //    return gameState;
-        //}
-
-
         //event handler for units attack
         private async void UnitAttackAsync(object sender, object e)
         {
@@ -197,34 +178,6 @@ namespace SamuraiStandOff.Controllers
             // Update the game state
             UpdateGame();
         }
-
-        //public void ResumeGame()
-        //{
-
-        //    if (ApplicationData.Current.LocalSettings.Values.TryGetValue("WaveCount", out object waveCountObject))
-        //    {
-        //        wave.WaveNumber = (int)waveCountObject;
-        //    }
-
-
-        //    IsGamePaused = false;
-
-
-        //    unitList = savedGameState.Units;
-        //    enemies = savedGameState.Enemies;
-        //    money.Currency = savedGameState.Money;
-        //    wave.WaveNumber = savedGameState.WaveCount;
-        //    WaveCount = savedGameState.WaveCount;  // make sure to update WaveCount
-        //    waveCountLabel.Text = "Wave: " + WaveCount;
-        //    Debug.WriteLine(waveCountLabel.Text);
-
-
-        //    //restore visibility of game objects
-        //    baseTower.Visibility = Visibility.Visible;
-        //    healthIndicator.Visibility = Visibility.Visible;
-        //    damageButton.Visibility = Visibility.Visible;
-        //    MainCanvas.Visibility = Visibility.Visible;
-        //}
 
         private void AttackEvent_Handler(string message)
         {
@@ -338,47 +291,16 @@ namespace SamuraiStandOff.Controllers
 
         private void TransitionToScrollPage()
         {
-            Window scrollWindow = new Window();
-            ScrollPage page = new ScrollPage();
-            scrollWindow.Content = page;
-            scrollWindow.Activate();
+            //Create the scroll window, but keep it closed
+            scrollWin = new Window();
+            ScrollPage page = new ScrollPage(this);
+            scrollWin.Content = page;
+            scrollWin.Activate();
         }
 
-        public void ShowElements()
+        public void closeScrollWindow()
         {
-            //   baseTower.Visibility = Visibility.Visible;
-            // healthIndicator.Visibility = Visibility.Visible;
-            //damageButton.Visibility = Visibility.Visible;
-            Debug.WriteLine("Test");
-            //MainCanvas.Visibility = Visibility.Visible;
-
-
-            unitList = GameState.Units.ToList();
-            enemies = GameState.Enemies.ToList();
-            money = GameState.MoneyClass;
-            wave = GameState.WaveClass;
-
-            moneyTextBlock.Text = money.Currency.ToString();
-            waveCountLabel.Text = "Wave: " + WaveCount;
-
-            foreach (Enemy enemy in enemies)
-            {
-                enemy.PlaceHolder.Visibility = Visibility.Visible;
-
-
-            }
-
-            foreach (Unit unit in unitList.ToList())
-            {
-                //unit.ImageIdle.Visibility = Visibility.Visible;
-                Debug.WriteLine(unit.Position);
-                MainCanvas.Children.Add(unit.CurrentImage);
-                Canvas.SetLeft(unit.ImageIdle, unit.Position.X);
-                Canvas.SetTop(unit.ImageIdle, unit.Position.Y);
-            }
-
-            IsGamePaused = false;
-            gameLoopTimer.Start();
+            scrollWin.Close();
         }
 
         public void ApplyDamageBuffToAllUnits(int buffAmount)
@@ -388,9 +310,9 @@ namespace SamuraiStandOff.Controllers
             {
                 // increase the unit's damage by the buff amount
                 unit.Damage += buffAmount;
+                Debug.WriteLine(unit.Damage.ToString());
             }
         }
-
 
         public void addMoney(int sum)
         {
