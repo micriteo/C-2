@@ -80,10 +80,10 @@ namespace SamuraiStandOff.Controllers
             button1.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button1.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Melee), true);
 
-            Button button2 = new Button() { Content = "Unit 2", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
+            Button button2 = new Button() { Content = "Archer Unit", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             button2.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button2.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
-            button2.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Unit2), true);
+            button2.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Archer), true);
 
             Button button3 = new Button() { Content = "Unit 3", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             button3.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
@@ -470,9 +470,9 @@ namespace SamuraiStandOff.Controllers
 
         public void Button_PointerReleased_Melee(object sender, PointerRoutedEventArgs e)
         {
-            // Check whether a player can afford a unit
+            //Check whether a player can afford a unit
             if (money.Currency < Constants.meleePrice) { return; }
-            // Subtract price of the unit
+            //Subtract price of the unit
             removeMoney(Constants.meleePrice);
 
             Button buttonOG = (Button)sender;
@@ -481,7 +481,7 @@ namespace SamuraiStandOff.Controllers
             //Get Image for Melee Unit
             Image imgMeleeIdle = getUnitImageIdle(1);
             Image imgMeleeAttack = getUnitImageAttack(1);
-            //calculate unit position
+            //Calculate unit position
             double unitPosLeft = (float)e.GetCurrentPoint(MainCanvas).Position.X - imgMeleeIdle.ActualWidth / 2;
             double unitPosTop = (float)e.GetCurrentPoint(MainCanvas).Position.Y - imgMeleeIdle.ActualHeight / 2;
             //Create instance of Unit
@@ -495,10 +495,8 @@ namespace SamuraiStandOff.Controllers
             Canvas.SetTop(unitTempMelee.ImageIdle, unitPosTop);
         }
 
-        public void Button_PointerReleased_Unit2(object sender, PointerRoutedEventArgs e)
+        public void Button_PointerReleased_Archer(object sender, PointerRoutedEventArgs e)
         {
-            //TODO Implement with new unit
-
             // Check whether a player can afford a unit
             if (money.Currency < Constants.rangePrice) { return; }
             // Subtract price of the unit
