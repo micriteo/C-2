@@ -20,6 +20,8 @@ using System.Numerics;
 using System.Threading.Tasks;
 using SamuraiStandoff;
 using SamuraiStandOff.Model;
+using Windows.Storage;
+using Newtonsoft.Json;
 
 
 
@@ -78,10 +80,10 @@ namespace SamuraiStandOff.Controllers
             button1.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button1.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Melee), true);
 
-            Button button2 = new Button() { Content = "Unit 2", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
+            Button button2 = new Button() { Content = "Archer Unit", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             button2.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button2.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
-            button2.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Unit2), true);
+            button2.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Archer), true);
 
             Button button3 = new Button() { Content = "Unit 3", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             button3.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
@@ -128,20 +130,23 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
-        public GameState SaveGameState()
-        {
-                    List<string> unitJsons = new List<string>();
+        //public GameState SaveGameState()
+        //{
+        //    List<string> unitJsons = new List<string>();
 
-            GameState gameState = new GameState
-            {
-                Units = unitList, 
-                Enemies = enemies, 
-                Money = money.Currency,
-                WaveCount = WaveCount
+        //    GameState gameState = new GameState
+        //    {
+        //        Units = unitList, 
+        //        Enemies = enemies, 
+        //        Money = money.Currency,
+        //        WaveCount = WaveCount
 
-            };
-            return gameState;
-        }
+        //    };
+
+        //    ApplicationData.Current.LocalSettings.Values["WaveCount"] = WaveCount;
+        //    Debug.WriteLine(WaveCount);
+        //    return gameState;
+        //}
 
 
         //event handler for units attack
@@ -192,22 +197,33 @@ namespace SamuraiStandOff.Controllers
             UpdateGame();
         }
 
-        public void ResumeGame()
-        {
-            IsGamePaused = false;
+        //public void ResumeGame()
+        //{
 
-            unitList = savedGameState.Units;
-            enemies = savedGameState.Enemies;
-            money.Currency = savedGameState.Money;
-            wave.WaveNumber = savedGameState.WaveCount;
+        //    if (ApplicationData.Current.LocalSettings.Values.TryGetValue("WaveCount", out object waveCountObject))
+        //    {
+        //        wave.WaveNumber = (int)waveCountObject;
+        //    }
 
 
-            //restore visibility of game objects
-            baseTower.Visibility = Visibility.Visible;
-            healthIndicator.Visibility = Visibility.Visible;
-            damageButton.Visibility = Visibility.Visible;
-            MainCanvas.Visibility = Visibility.Visible;
-        }
+        //    IsGamePaused = false;
+
+
+        //    unitList = savedGameState.Units;
+        //    enemies = savedGameState.Enemies;
+        //    money.Currency = savedGameState.Money;
+        //    wave.WaveNumber = savedGameState.WaveCount;
+        //    WaveCount = savedGameState.WaveCount;  // make sure to update WaveCount
+        //    waveCountLabel.Text = "Wave: " + WaveCount;
+        //    Debug.WriteLine(waveCountLabel.Text);
+
+
+        //    //restore visibility of game objects
+        //    baseTower.Visibility = Visibility.Visible;
+        //    healthIndicator.Visibility = Visibility.Visible;
+        //    damageButton.Visibility = Visibility.Visible;
+        //    MainCanvas.Visibility = Visibility.Visible;
+        //}
 
         private void AttackEvent_Handler(string message)
         {
@@ -231,6 +247,7 @@ namespace SamuraiStandOff.Controllers
                 wave.WaveNumber = WaveCount;
                 waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
                 Task task = SpawnEnemies(MainCanvas);
+                //SaveGameState();
             }
             else if(WaveCount == 2)
             {
@@ -328,7 +345,7 @@ namespace SamuraiStandOff.Controllers
 
         private void TransitionToScrollPage()
         {
-            savedGameState = SaveGameState();
+            //savedGameState = SaveGameState();
 
             baseTower.Visibility = Visibility.Collapsed;
             healthIndicator.Visibility = Visibility.Collapsed;
@@ -337,6 +354,13 @@ namespace SamuraiStandOff.Controllers
             MainCanvas.Visibility = Visibility.Collapsed;
             //remove all placed units
             StackPanel parentContainer = buttonPanel;
+
+            foreach(Unit unit1 in unitList.ToList()) 
+            {
+                unit1.CurrentImage.Visibility = Visibility.Collapsed;
+            }
+
+
             // Remove all unit elements from the draggable panel
             foreach (UIElement element in parentContainer.Children.ToList())
             {
@@ -364,9 +388,8 @@ namespace SamuraiStandOff.Controllers
 
             foreach (Unit unit in unitList.ToList())
             {
-                MainCanvas.Children.Remove(unit.ImageIdle);
+                //MainCanvas.Children.Remove(unit.ImageIdle);
                 unit.ImageIdle.Visibility = Visibility.Collapsed;
-                unitList.Remove(unit);
             }
             if (this.Frame.CanGoBack)
             {
@@ -376,6 +399,25 @@ namespace SamuraiStandOff.Controllers
             IsGamePaused = true;
 
             Frame.Navigate(typeof(ScrollPage));
+        }
+
+        public void ShowElements()
+        {
+            baseTower.Visibility = Visibility.Visible;
+            healthIndicator.Visibility = Visibility.Visible;
+            damageButton.Visibility = Visibility.Visible;
+
+            MainCanvas.Visibility = Visibility.Visible;
+
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.PlaceHolder.Visibility = Visibility.Visible;
+            }
+
+            foreach(Unit unit in unitList.ToList())
+            {
+                unit.ImageIdle.Visibility = Visibility.Visible;
+            }
         }
 
         public void ApplyDamageBuffToAllUnits(int buffAmount)
@@ -428,9 +470,9 @@ namespace SamuraiStandOff.Controllers
 
         public void Button_PointerReleased_Melee(object sender, PointerRoutedEventArgs e)
         {
-            // Check whether a player can afford a unit
+            //Check whether a player can afford a unit
             if (money.Currency < Constants.meleePrice) { return; }
-            // Subtract price of the unit
+            //Subtract price of the unit
             removeMoney(Constants.meleePrice);
 
             Button buttonOG = (Button)sender;
@@ -439,7 +481,7 @@ namespace SamuraiStandOff.Controllers
             //Get Image for Melee Unit
             Image imgMeleeIdle = getUnitImageIdle(1);
             Image imgMeleeAttack = getUnitImageAttack(1);
-            //calculate unit position
+            //Calculate unit position
             double unitPosLeft = (float)e.GetCurrentPoint(MainCanvas).Position.X - imgMeleeIdle.ActualWidth / 2;
             double unitPosTop = (float)e.GetCurrentPoint(MainCanvas).Position.Y - imgMeleeIdle.ActualHeight / 2;
             //Create instance of Unit
@@ -453,10 +495,8 @@ namespace SamuraiStandOff.Controllers
             Canvas.SetTop(unitTempMelee.ImageIdle, unitPosTop);
         }
 
-        public void Button_PointerReleased_Unit2(object sender, PointerRoutedEventArgs e)
+        public void Button_PointerReleased_Archer(object sender, PointerRoutedEventArgs e)
         {
-            //TODO Implement with new unit
-
             // Check whether a player can afford a unit
             if (money.Currency < Constants.rangePrice) { return; }
             // Subtract price of the unit

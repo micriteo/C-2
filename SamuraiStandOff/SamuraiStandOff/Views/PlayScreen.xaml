@@ -39,8 +39,8 @@
         </Rectangle>
         <StackPanel x:Name="moneyPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="770" Background="Black" Width="170" Height="50" >
             <TextBlock Text="0" FontSize="20" Foreground="White" x:Name="moneyTextBlock" VerticalAlignment="Center" Margin="5,0,0,0"/>
-            <Image Source="ms-appx:///Assets/Images/coin.png" Width="50" Height="50"/>
-            <TextBlock x:Name="waveCountLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Text="Wave: 1" FontSize="20" Foreground="White"/>
+            <Image Source="ms-appx:///Assets/Images/coin.png" Width="25" Height="25"/>
+            <TextBlock x:Name="waveCountLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Text="Wave: 1" FontSize="20" Foreground="White"/>
         </StackPanel>
     </Canvas>
 </Page>
