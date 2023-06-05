@@ -1,4 +1,5 @@
 ﻿using SamuraiStandoff;
+using SamuraiStandOff.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,13 @@ using System.Threading.Tasks;
 namespace SamuraiStandOff
 {
     [Serializable]
-    public class GameState
+    public static class GameState
     {
-        public List<Unit> Units { get; set; }
-        public List<Enemy> Enemies { get; set; }
-        public int Money{ get; set; }
-        public int WaveCount { get; set; }
-
+        public static List<Unit> Units { get; set; }
+        public static List<Enemy> Enemies { get; set; }
+        public static Money MoneyClass { get; set; }
+        public static Wave WaveClass { get; set; }
+            
     }
 }
  

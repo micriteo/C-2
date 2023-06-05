@@ -22,6 +22,7 @@ using SamuraiStandoff;
 using SamuraiStandOff.Model;
 using Windows.Storage;
 using Newtonsoft.Json;
+using Microsoft.UI.Xaml.Markup;
 
 
 
@@ -38,8 +39,8 @@ namespace SamuraiStandOff.Controllers
     {
         private Castle castle;
         //lists holding the current unit and enemy data
-        private List<Enemy> enemies = new ();
-        private List<Unit> unitList = new ();
+        private List<Enemy> enemies = new();
+        private List<Unit> unitList = new();
         public List<Unit> UnitList
         {
             get { return unitList; }
@@ -53,19 +54,19 @@ namespace SamuraiStandOff.Controllers
         private Wave wave;
         private int WaveCount = 1;
         private bool GameOver;
-        private GameState savedGameState;
+        //private GameState savedGameState;
         public bool IsGamePaused { get; set; } = false;
 
         public PlayScreen()
         {
             wave = new Wave(0);
-            money = new Money(100);
+            money = new Money(Constants.startBalance);
             Current = this;
             InitializeComponent();
             GameOver = false;
             castle = new Castle(100);
-            
-            path.DisplayWaypoints(MainCanvas);
+
+            //path.DisplayWaypoints(MainCanvas);
 
             //spawn stuff
             Task task = SpawnEnemies(MainCanvas);
@@ -186,7 +187,7 @@ namespace SamuraiStandOff.Controllers
                     }
                 };
             }
-            if(castle.Health <= 0)
+            if (castle.Health <= 0)
             {
                 gameOverScene();
             }
@@ -235,22 +236,14 @@ namespace SamuraiStandOff.Controllers
         {
             double delta = gameLoopTimer.Interval.TotalSeconds;
 
-            if (IsGamePaused)
-            {
-                return;
-            }
-
-            if (enemies.Count == 0 && GameOver == false)
+            if (enemies.Count == 0 && GameOver == false && IsGamePaused == false)
             {
                 Debug.WriteLine("Wave " + WaveCount + " complete!");
                 WaveCount++;
                 wave.WaveNumber = WaveCount;
+                Debug.WriteLine(wave.WaveNumber);
                 waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
                 Task task = SpawnEnemies(MainCanvas);
-                //SaveGameState();
-            }
-            else if(WaveCount == 2)
-            {
                 TransitionToScrollPage();
             }
 
@@ -280,8 +273,8 @@ namespace SamuraiStandOff.Controllers
                     MainCanvas.Children.Add(enemy.PlaceHolder); // Add the enemy's placeholder to the canvas
                 }
             }
-            UnitAttackAsync(this,null);
-            
+            UnitAttackAsync(this, null);
+
         }
 
 
@@ -296,8 +289,8 @@ namespace SamuraiStandOff.Controllers
             moneyPanel.Visibility = Visibility.Collapsed;
 
             //remove all placed units
-            StackPanel parentContainer = buttonPanel; 
-                                                      // Remove all unit elements from the draggable panel
+            StackPanel parentContainer = buttonPanel;
+            // Remove all unit elements from the draggable panel
             foreach (UIElement element in parentContainer.Children.ToList())
             {
                 if (element is Button button)
@@ -345,79 +338,47 @@ namespace SamuraiStandOff.Controllers
 
         private void TransitionToScrollPage()
         {
-            //savedGameState = SaveGameState();
-
-            baseTower.Visibility = Visibility.Collapsed;
-            healthIndicator.Visibility = Visibility.Collapsed;
-            damageButton.Visibility = Visibility.Collapsed;
-
-            MainCanvas.Visibility = Visibility.Collapsed;
-            //remove all placed units
-            StackPanel parentContainer = buttonPanel;
-
-            foreach(Unit unit1 in unitList.ToList()) 
-            {
-                unit1.CurrentImage.Visibility = Visibility.Collapsed;
-            }
-
-
-            // Remove all unit elements from the draggable panel
-            foreach (UIElement element in parentContainer.Children.ToList())
-            {
-                if (element is Button button)
-                {
-                    parentContainer.Children.Remove(button);
-                }
-            }
-
-            //remove all units from canvas
-            foreach (UIElement element in MainCanvas.Children.ToList())
-            {
-                if (element is Button button)
-                {
-                    MainCanvas.Children.Remove(button);
-                }
-            }
-
-            foreach (Enemy enemy in enemies.ToList())
-            {
-                MainCanvas.Children.Remove(enemy.PlaceHolder);
-                enemy.PlaceHolder.Visibility = Visibility.Collapsed;
-                enemies.Remove(enemy);
-            }
-
-            foreach (Unit unit in unitList.ToList())
-            {
-                //MainCanvas.Children.Remove(unit.ImageIdle);
-                unit.ImageIdle.Visibility = Visibility.Collapsed;
-            }
-            if (this.Frame.CanGoBack)
-            {
-                this.Frame.BackStack.Clear();
-            }
-
-            IsGamePaused = true;
-
-            Frame.Navigate(typeof(ScrollPage));
+            Window scrollWindow = new Window();
+            ScrollPage page = new ScrollPage();
+            scrollWindow.Content = page;
+            scrollWindow.Activate();
         }
 
         public void ShowElements()
         {
-            baseTower.Visibility = Visibility.Visible;
-            healthIndicator.Visibility = Visibility.Visible;
-            damageButton.Visibility = Visibility.Visible;
+            //   baseTower.Visibility = Visibility.Visible;
+            // healthIndicator.Visibility = Visibility.Visible;
+            //damageButton.Visibility = Visibility.Visible;
+            Debug.WriteLine("Test");
+            //MainCanvas.Visibility = Visibility.Visible;
 
-            MainCanvas.Visibility = Visibility.Visible;
+
+            unitList = GameState.Units.ToList();
+            enemies = GameState.Enemies.ToList();
+            money = GameState.MoneyClass;
+            wave = GameState.WaveClass;
+
+            moneyTextBlock.Text = money.Currency.ToString();
+            waveCountLabel.Text = "Wave: " + WaveCount;
 
             foreach (Enemy enemy in enemies)
             {
                 enemy.PlaceHolder.Visibility = Visibility.Visible;
+
+
             }
 
-            foreach(Unit unit in unitList.ToList())
+            foreach (Unit unit in unitList.ToList())
             {
-                unit.ImageIdle.Visibility = Visibility.Visible;
+                //unit.ImageIdle.Visibility = Visibility.Visible;
+                Debug.WriteLine(unit.Position);
+                MainCanvas.Children.Add(unit.CurrentImage);
+                Canvas.SetLeft(unit.ImageIdle, unit.Position.X);
+                Canvas.SetTop(unit.ImageIdle, unit.Position.Y);
             }
+
+            IsGamePaused = false;
+            gameLoopTimer.Start();
         }
 
         public void ApplyDamageBuffToAllUnits(int buffAmount)
