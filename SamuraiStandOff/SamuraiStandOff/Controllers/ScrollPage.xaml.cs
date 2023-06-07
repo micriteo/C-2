@@ -38,30 +38,16 @@ namespace SamuraiStandOff.Controllers
             mainScreen.ApplyDamageBuffToAllUnits(10);
             //Close window
             mainScreen.closeScrollWindow();
-            // Save the game state after applying the buff
-            //PlayScreen.Current.SaveGameState();
-
-            // Resume the game
-            //PlayScreen.Current.ResumeGame();
-
-            // Navigate back to the PlayScreen
-            //this.Frame.Navigate(typeof(PlayScreen));
-
-            //PlayScreen.Current.ShowElements();
-
         }
 
 
         private void FireRateBuff_Click(object sender, RoutedEventArgs e)
         {
-            //foreach (Unit unit in MainWindow.Current.UnitList)
-            //{
-            //    Debug.WriteLine($"Unit Damage before buff: {unit.FireRate}");
-
-            //    unit.FireRate += 10;
-
-            //    Debug.WriteLine($"Unit Damage after buff: {unit.FireRate}");
-            //}
+            mainScreen.IsGamePaused = false;
+            //Apply the buff first
+            mainScreen.ApplyDamageBuffToAllUnits(10);
+            //Close window
+            mainScreen.closeScrollWindow();
         }
 
         private void Health_Decrease_Debuff(object sender, RoutedEventArgs e)

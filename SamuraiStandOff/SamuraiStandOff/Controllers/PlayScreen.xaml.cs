@@ -327,6 +327,15 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
+        public void FireRateBuffToAllUnits(int buffAmount)
+        {
+            foreach (var unit in unitList)
+            {
+                unit.FireRate += buffAmount;
+                Debug.WriteLine(unit.FireRate.ToString());
+            }
+        }
+
         public void addMoney(int sum)
         {
             if (sum > 0)

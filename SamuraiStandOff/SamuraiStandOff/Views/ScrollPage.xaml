@@ -31,13 +31,13 @@
 
             <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0" Click="FireRateBuff_Click">
                 <StackPanel>
-                    <Image Source="ms-appx:///Assets/Images/increaseFireRate.png" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <Image Source="ms-appx:///Assets/Images/increaseFireRate.png" Width="100" Height="100" Margin="0,10,15,10"/>
                     <TextBlock Text="FireRate Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="DamageBuff_Click">
                 <StackPanel>
-                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,10,15,10"/>
                     <TextBlock Text="Damage Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>
