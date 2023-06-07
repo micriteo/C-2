@@ -336,6 +336,25 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
+        public void HealthDecreaseDebuff(int debuffAmount)
+        {
+            foreach(var unit in enemies)
+            {
+                unit.Health -= debuffAmount;
+                Debug.WriteLine(unit.Health.ToString());
+            }
+        }
+
+        public void DamageDecreaseDebuff(int defbuffAmount)
+        {
+            foreach(var unit in enemies)
+            {
+                unit.PowerLevel -= defbuffAmount;
+                Debug.WriteLine(unit.PowerLevel.ToString());
+            }
+        }
+
+
         public void addMoney(int sum)
         {
             if (sum > 0)

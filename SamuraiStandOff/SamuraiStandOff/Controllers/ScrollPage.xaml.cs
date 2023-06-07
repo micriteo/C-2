@@ -45,52 +45,27 @@ namespace SamuraiStandOff.Controllers
         {
             mainScreen.IsGamePaused = false;
             //Apply the buff first
-            mainScreen.ApplyDamageBuffToAllUnits(10);
+            mainScreen.FireRateBuffToAllUnits(10);
             //Close window
             mainScreen.closeScrollWindow();
         }
 
         private void Health_Decrease_Debuff(object sender, RoutedEventArgs e)
         {
-            //if (MainWindow.Current.EnemyList.Count <= 0)
-            //{
-            //    Debug.WriteLine("No more enemy");
-            //}
-
-            //foreach (var enemy in MainWindow.Current.EnemyList)
-            //{
-            //    if (enemy.Health < 10)
-            //    {
-            //        return;
-            //    }
-            //    Debug.WriteLine($"Enemy Health before debuff: {enemy.Health}");
-
-            //    enemy.Health -= 10;
-
-            //    Debug.WriteLine($"Enemy Health after debuff: {enemy.Health}");
-
-            //}
+            mainScreen.IsGamePaused = false;
+            //Apply the debuff first
+            mainScreen.HealthDecreaseDebuff(10);
+            //Close window
+            mainScreen.closeScrollWindow();
         }
 
         private void Damage_Decrease_Debuff(object sender, RoutedEventArgs e)
         {
-            //if(MainWindow.Current.EnemyList.Count <= 0) 
-            //{
-            //    Debug.WriteLine("No more enemy");
-            //}
-
-            //foreach (var enemy in MainWindow.Current.EnemyList)
-            //{
-            //    if (enemy.Damage < 10)
-            //    {
-            //        return;
-            //    }
-            //    Debug.WriteLine($"Enemy Damage before debuff: {enemy.Damage}");
-
-            //    enemy.Damage -= 10;
-
-            //    Debug.WriteLine($"Enemy Damage after debuff: {enemy.Damage}");
-            //}
+            mainScreen.IsGamePaused = false;
+            //Apply the debuff first
+            mainScreen.DamageDecreaseDebuff(10);
+            //Close window
+            mainScreen.closeScrollWindow();
         }
     }
 }

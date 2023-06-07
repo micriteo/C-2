@@ -31,25 +31,25 @@
 
             <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0" Click="FireRateBuff_Click">
                 <StackPanel>
-                    <Image Source="ms-appx:///Assets/Images/increaseFireRate.png" Width="100" Height="100" Margin="0,10,15,10"/>
+                    <Image Source="ms-appx:///Assets/Images/hanzoAttack.gif" Width="100" Height="100" Margin="0,10,15,10"/>
                     <TextBlock Text="FireRate Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="DamageBuff_Click">
                 <StackPanel>
-                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,10,15,10"/>
+                    <Image Source="ms-appx:///Assets/Images/buff.gif" Width="100" Height="100" Margin="0,10,15,10"/>
                     <TextBlock Text="Damage Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0" Click=" Damage_Decrease_Debuff">
                 <StackPanel>
-                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <Image Source="ms-appx:///Assets/Images/tengu_selestionatk1.gif" Width="100" Height="100" Margin="0,0,0,10"/>
                     <TextBlock Text="Attack Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Health_Decrease_Debuff" >
                 <StackPanel>
-                    <Image Source="ms-appx:///Assets/Images/attackBuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
+                    <Image Source="ms-appx:///Assets/Images/Debuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
                     <TextBlock Text="Health Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
                 </StackPanel>
             </Button>

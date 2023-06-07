@@ -30,7 +30,16 @@
                     Width="200" 
                     Height="100"
                     HorizontalAlignment="Left">
-
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Default">
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Transparent"/>
+                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </Button.Resources>
                 <Grid>
                     <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
                     <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
@@ -39,7 +48,6 @@
                     <TextBlock Text="Start" Foreground="#FFFFFF" FontSize="50" FontFamily="{StaticResource CustomFont}" />
                 </Grid>
             </Button>
-
             <TextBlock x:Name="copyrightText" Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
         </StackPanel>
         <Grid.Background>

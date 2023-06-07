@@ -49,9 +49,14 @@
   <ItemGroup>
     <None Remove="Assets\coin.png" />
     <None Remove="Assets\Images\attackBuff.png" />
+    <None Remove="Assets\Images\buff.gif" />
+    <None Remove="Assets\Images\Debuff.png" />
+    <None Remove="Assets\Images\hanzoAttack.gif" />
     <None Remove="Assets\Images\increaseFireRate.png" />
+    <None Remove="Assets\Images\Kitsune.png" />
     <None Remove="Assets\Images\pathImage.jpg" />
     <None Remove="Assets\Images\scroll.jpg" />
+    <None Remove="Assets\Images\tengu_selestionatk1.gif" />
     <None Remove="Assets\PathImage.png" />
     <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
     <None Remove="GameOver.xaml" />
@@ -67,13 +72,25 @@
     <Content Update="Assets\Images\attackBuff.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Images\buff.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Images\deathLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\Debuff.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\gameOver.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Images\hanzoAttack.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Images\increaseFireRate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\Kitsune.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\pathImage.jpg">
@@ -83,6 +100,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\scroll.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\tengu_selestionatk1.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\tower.png">
