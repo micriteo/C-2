@@ -19,7 +19,7 @@
 
         <Frame x:Name="scrollFrame" Width="1600" Height="720"/>
 
-        <Grid Width="1600" Height="720" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="450,200,0,10">
+        <Grid Width="1600" Height="720" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="350,100,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
