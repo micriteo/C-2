@@ -12,6 +12,8 @@ using System.Numerics;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.UI.Windowing;
+using Microsoft.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,6 +33,18 @@ namespace SamuraiStandOff.Controllers
         {
             this.InitializeComponent();
 
+            AppWindow m_appWindow = GetAppWindowForCurrentWindow();
+            if (m_appWindow != null)
+            {
+                m_appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
+            }
+            else
+            {
+                Console.WriteLine("m_appWindow is null");
+            }
+
+
+
             //Set the fixed resolution for the application window
             ApplicationView.PreferredLaunchViewSize = new Size(800, 600);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
@@ -42,7 +56,28 @@ namespace SamuraiStandOff.Controllers
 
             
         }
-        
+
+        private AppWindow GetAppWindowForCurrentWindow()
+        {
+            try
+            {
+                IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+                WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+                AppWindow appWindow = AppWindow.GetFromWindowId(myWndId);
+
+                return appWindow;
+            }
+            catch (InvalidCastException ex)
+            {
+                // Handle or log the exception as necessary.
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+
+
+
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(typeof(PlayScreen));
