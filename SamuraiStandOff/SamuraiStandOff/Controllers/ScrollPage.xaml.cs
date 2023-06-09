@@ -58,6 +58,12 @@ namespace SamuraiStandOff.Controllers
             //Close window
             mainScreen.closeScrollWindow();
         }
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Canvas.SetLeft(CenteredGrid, (MainCanvas.ActualWidth - CenteredGrid.ActualWidth) / 2);
+            Canvas.SetTop(CenteredGrid, (MainCanvas.ActualHeight - CenteredGrid.ActualHeight) / 2);
+        }
+
 
         private void Damage_Decrease_Debuff(object sender, RoutedEventArgs e)
         {

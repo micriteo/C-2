@@ -19,7 +19,7 @@
 
         <Frame x:Name="scrollFrame" Width="1600" Height="720"/>
 
-        <Grid Width="1600" Height="720" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="350,100,0,10">
+        <Grid x:Name ="CenteredGrid" Width="1600" Height="720" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="340,100,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -32,7 +32,7 @@
             <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0" Click="FireRateBuff_Click">
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/hanzoAttack.gif" Width="100" Height="100" Margin="0,10,15,10"/>
-                    <TextBlock Text="FireRate Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
+                    <TextBlock Text="FireRate Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel" Foreground="Black"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="DamageBuff_Click">
