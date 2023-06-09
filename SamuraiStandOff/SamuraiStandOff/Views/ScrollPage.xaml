@@ -7,26 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Canvas Name="MainCanvas" Margin="0,0,0,0">
-        <Canvas.Background>
+    <Grid Name="MainGrid" Margin="0,0,0,0">
+        <Grid.Background>
             <ImageBrush Stretch="UniformToFill" AlignmentY="Top">
                 <ImageBrush.ImageSource>
                     <BitmapImage UriSource="ms-appx:///Assets/Images/scroll.jpg" />
                 </ImageBrush.ImageSource>
             </ImageBrush>
-        </Canvas.Background>
+        </Grid.Background>
 
-        <Frame x:Name="scrollFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="1600" Height="720"/>
+        <Frame x:Name="scrollFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
-        <Grid x:Name ="CenteredGrid" Width="1600" Height="720" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="340,100,0,10">
+        <Grid x:Name ="CenteredGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,300,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="200"/>
+                <RowDefinition Height="300"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="400"/>
             </Grid.ColumnDefinitions>
 
             <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0" Click="FireRateBuff_Click">
@@ -47,12 +46,12 @@
                     <TextBlock Text="Attack Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel" Foreground="Black"/>
                 </StackPanel>
             </Button>
-            <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Health_Decrease_Debuff" >
-                <StackPanel>
-                    <Image Source="ms-appx:///Assets/Images/Debuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
-                    <TextBlock Text="Health Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel" Foreground="Black"/>
-                </StackPanel>
-            </Button>
-        </Grid>
-    </Canvas>
+                <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Health_Decrease_Debuff" >
+                    <StackPanel>
+                        <Image Source="ms-appx:///Assets/Images/Debuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
+                        <TextBlock Text="Health Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel" Foreground="Black"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+    </Grid>
 </Page>

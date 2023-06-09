@@ -69,7 +69,7 @@ namespace SamuraiStandOff.Controllers
             }
             catch (InvalidCastException ex)
             {
-                // Handle or log the exception as necessary.
+               
                 Console.WriteLine(ex.Message);
                 return null;
             }
