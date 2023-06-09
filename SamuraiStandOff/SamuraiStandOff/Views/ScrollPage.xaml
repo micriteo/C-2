@@ -17,15 +17,15 @@
             </ImageBrush>
         </Canvas.Background>
 
-        <Frame x:Name="scrollFrame" Width="1600" Height="720"/>
+        <Frame x:Name="scrollFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="1600" Height="720"/>
 
-        <Grid x:Name ="CenteredGrid" Width="1600" Height="720" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="340,100,0,10">
+        <Grid x:Name ="CenteredGrid" Width="1600" Height="720" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="340,100,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="200"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
 
@@ -38,19 +38,19 @@
             <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="DamageBuff_Click">
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/buff.gif" Width="100" Height="100" Margin="0,10,15,10"/>
-                    <TextBlock Text="Damage Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
+                    <TextBlock Text="Damage Buff" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel" Foreground="Black"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0" Click=" Damage_Decrease_Debuff">
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/tengu_selestionatk1.gif" Width="100" Height="100" Margin="0,0,0,10"/>
-                    <TextBlock Text="Attack Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
+                    <TextBlock Text="Attack Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel" Foreground="Black"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Health_Decrease_Debuff" >
                 <StackPanel>
                     <Image Source="ms-appx:///Assets/Images/Debuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
-                    <TextBlock Text="Health Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel"/>
+                    <TextBlock Text="Health Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel" Foreground="Black"/>
                 </StackPanel>
             </Button>
         </Grid>

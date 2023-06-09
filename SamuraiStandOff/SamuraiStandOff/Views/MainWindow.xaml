@@ -6,21 +6,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid Width ="1600" Height="720" Loaded="MainWindow_Loaded">
-        <Frame x:Name="MainFrame" />
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
-            <StackPanel.Resources>
-                <FontFamily x:Key="CustomFont">/Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel</FontFamily>
-            </StackPanel.Resources>
-            <Grid Margin="40,100,0,0">
-                <!--Outline for the image -->
-                <TextBlock x:Name="shogunStandOffTextBlack1" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
-                <TextBlock x:Name="shogunStandOffTextBlack2" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
-                <TextBlock x:Name="shogunStandOffTextBlack3" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
-                <TextBlock x:Name="shogunStandOffTextBlack4" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
-                <TextBlock x:Name="shogunStandOffTextWhite" Text="Shogun StandOff" FontSize="90" Foreground="White" FontFamily="{StaticResource CustomFont}" />
-            </Grid>
-            <Button x:Name="startButton" 
+    <Viewbox Stretch ="Uniform">
+        <Grid Width ="1600" Height="720" Loaded="MainWindow_Loaded">
+            <Frame x:Name="MainFrame" />
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+                <StackPanel.Resources>
+                    <FontFamily x:Key="CustomFont">/Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel</FontFamily>
+                </StackPanel.Resources>
+                <Grid Margin="40,100,0,0">
+                    <!--Outline for the image -->
+                    <TextBlock x:Name="shogunStandOffTextBlack1" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
+                    <TextBlock x:Name="shogunStandOffTextBlack2" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
+                    <TextBlock x:Name="shogunStandOffTextBlack3" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
+                    <TextBlock x:Name="shogunStandOffTextBlack4" Text="Shogun StandOff" FontSize="90" Foreground="#000000" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
+                    <TextBlock x:Name="shogunStandOffTextWhite" Text="Shogun StandOff" FontSize="90" Foreground="White" FontFamily="{StaticResource CustomFont}" />
+                </Grid>
+                <Button x:Name="startButton" 
                     Click="startButton_Click" 
                     FontSize="50" 
                     FontFamily="{StaticResource CustomFont}" 
@@ -30,28 +31,29 @@
                     Width="200" 
                     Height="100"
                     HorizontalAlignment="Left">
-                <Button.Resources>
-                    <ResourceDictionary>
-                        <ResourceDictionary.ThemeDictionaries>
-                            <ResourceDictionary x:Key="Default">
-                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Transparent"/>
-                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
-                            </ResourceDictionary>
-                        </ResourceDictionary.ThemeDictionaries>
-                    </ResourceDictionary>
-                </Button.Resources>
-                <Grid>
-                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
-                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
-                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
-                    <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
-                    <TextBlock Text="Start" Foreground="#FFFFFF" FontSize="50" FontFamily="{StaticResource CustomFont}" />
-                </Grid>
-            </Button>
-            <TextBlock x:Name="copyrightText" Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
-        </StackPanel>
-        <Grid.Background>
-            <ImageBrush x:Name="backgroundImage" ImageSource="ms-appx:///Assets/Images/backgroung.jpg" Stretch="Fill"/>
-        </Grid.Background>
-    </Grid>
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Default">
+                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Transparent"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                    <Grid>
+                        <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,2,0,0" />
+                        <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,2,0,0" />
+                        <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="2,-2,0,0" />
+                        <TextBlock Text="Start" Foreground="#000000" FontSize="50" FontFamily="{StaticResource CustomFont}" Margin="-2,-2,0,0" />
+                        <TextBlock Text="Start" Foreground="#FFFFFF" FontSize="50" FontFamily="{StaticResource CustomFont}" />
+                    </Grid>
+                </Button>
+                <TextBlock x:Name="copyrightText" Text="© NHL Stenden" FontFamily="{StaticResource CustomFont}" Foreground="White" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,300,50,10"/>
+            </StackPanel>
+            <Grid.Background>
+                <ImageBrush x:Name="backgroundImage" ImageSource="ms-appx:///Assets/Images/backgroung.jpg" Stretch="Fill"/>
+            </Grid.Background>
+        </Grid>
+    </Viewbox>
 </Page>

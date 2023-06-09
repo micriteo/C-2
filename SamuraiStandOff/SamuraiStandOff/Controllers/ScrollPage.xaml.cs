@@ -60,8 +60,8 @@ namespace SamuraiStandOff.Controllers
         }
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Canvas.SetLeft(CenteredGrid, (MainCanvas.ActualWidth - CenteredGrid.ActualWidth) / 2);
-            Canvas.SetTop(CenteredGrid, (MainCanvas.ActualHeight - CenteredGrid.ActualHeight) / 2);
+            Canvas.SetLeft(CenteredGrid, (MainCanvas.ActualWidth + CenteredGrid.ActualWidth) / 2);
+            Canvas.SetTop(CenteredGrid, (MainCanvas.ActualHeight + CenteredGrid.ActualHeight) / 2);
         }
 
 
