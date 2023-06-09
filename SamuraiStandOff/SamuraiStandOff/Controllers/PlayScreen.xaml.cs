@@ -78,24 +78,20 @@ namespace SamuraiStandOff.Controllers
             moneyTextBlock.Text = money.Currency.ToString();
 
             //Create unit panel buttons and attach methods to XAML ui elements
-            Button button1 = new Button() { Content = "Melee Unit", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
+            string meleeName = "Melee - " + Constants.meleePrice.ToString();
+            string rangeName = "Archer - " + Constants.rangePrice.ToString();
+            Button button1 = new Button() { Content = meleeName, Width = 150, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             button1.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button1.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button1.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Melee), true);
 
-            Button button2 = new Button() { Content = "Archer Unit", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
+            Button button2 = new Button() { Content = rangeName, Width = 150, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
             button2.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button2.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button2.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Archer), true);
 
-            Button button3 = new Button() { Content = "Unit 3", Width = 100, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
-            button3.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
-            button3.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
-            button3.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Unit3), true);
-
             buttonPanel.Children.Add(button1);
             buttonPanel.Children.Add(button2);
-            buttonPanel.Children.Add(button3);
 
             //game logic timer
             //start a clock that runs a method every 100 miliseconds
@@ -446,12 +442,7 @@ namespace SamuraiStandOff.Controllers
             Canvas.SetTop(unitTempRange.ImageIdle, unitPosTop);
         }
 
-        public void Button_PointerReleased_Unit3(object sender, PointerRoutedEventArgs e)
-        {
-            //TODO Implement with new unit
-        }
-
-        //1-melee, 2-range , 3-
+        //1-melee, 2-range
         public Image getUnitImageIdle(int unitNumber)
         {
             Image image = new Image();
@@ -463,9 +454,6 @@ namespace SamuraiStandOff.Controllers
                     break;
                 case 2:
                     image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/Images/mathew_idle.png"));
-                    break;
-                case 3:
-                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
                     break;
                 default:
                     image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
@@ -479,7 +467,7 @@ namespace SamuraiStandOff.Controllers
             return image;
         }
 
-        //1-melee, 2-range , 3-
+        //1-melee, 2-range
         public Image getUnitImageAttack(int unitNumber)
         {
             Image image = new Image();
@@ -491,9 +479,6 @@ namespace SamuraiStandOff.Controllers
                     break;
                 case 2:
                     image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/Images/mathew_attack.gif"));
-                    break;
-                case 3:
-                    image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
                     break;
                 default:
                     image.Source = new BitmapImage(new Uri(@"ms-appx:///Assets/teo_idle.png"));
