@@ -169,54 +169,70 @@ Of course, the stronger the enemies, the more gold they will drop. The player wi
 
 This chapter describes the test cases to validate the final product.
 
-### 1. Start Screen
+### 1. Start Screen -> Pass
 
-| Step | Action             | Expected Results          |
-|------|--------------------|---------------------------|
-| 1    | Press start button | Change scene. Game starts |
-| 2    |  | Player starts with N amount of currency |
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|-----|
+| 1    | Press start button | Change scene. Game starts | Music plays on the main menu. Game starts|
+| 2    |  | Player starts with 500 Coins|500 coins are visible |
 
-### 2. Start Executable
+### 2. Start Executable -> Pass
 
-| Step | Action             | Expected Results          |
-|------|--------------------|---------------------------|
-| 1    | Open executable file | Game application opens |
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|-----|
+| 1    | Open executable file | Game application opens | Game opens up|
 
-### 3. Buff/debuff screen
+### 3. Buff/debuff screen -> Pass
 
-| Step | Action             | Expected Results          |
-|------|--------------------|---------------------------|
-| 1    | Progress in the game to kill a boss type enemy | Buff/debuff screen pops-up, game paused |
-| 2    | Press "confirm" button without selecting anything  | Buff/debuff screen stays up |
-| 3    | Select a single option and press "confirm"  | Buff/debuff screen closes, buff/debuff applied, game unpaused |
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|-----|
+| 1    | Progress in the game for 5 waves | Buff/debuff screen pops-up |After wave 5 buff/debuff screen pops up over the game screen|
+| 2    | Select a single option and click it | Buff/debuff screen closes, buff/debuff applied|Screen closes, effects applied|
 
-### 4. Game pause
+### 4. Game pause -> Fail
 
-| Step | Action             | Expected Results          |
-|------|--------------------|---------------------------|
-| 1    | Press "Escape" key | Game paused |
-| 2    | Press "Escape" key again  | Game unpaused |
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|---|
+| 1    | Press "Escape" key | Game paused | Game doesn't pause, functionality not implemnted |
+| 2    | Press "Escape" key again  | Game unpaused | N/A |
 
-### 5. Units
+### 5. Units -> Pass
 
-| Step | Action             | Expected Results          |
-|------|--------------------|---------------------------|
-| 1    | Select and click a "Buy unit" button. Drag a unit to its location | Money deducted, unit appears on game field, idle animation displayed|
-| 2    | Wait for enemy to come to unit's attack range  | Enemy gets damaged, enemy HP deducted, attack animation displayed |
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|--------------|
+| 1    | Choose a unit from unit panel and drag and drop it on to the play screen | Money deducted, unit appears on game field, idle animation displayed|UNit gets placed, money deducted|
+| 2    | Wait for enemy to come to unit's attack range  | Enemy gets damaged, enemy HP deducted, attack animation displayed |Enemies get killed, animation plays out|
 
-### 6. Castle (Player) damage
 
-| Step | Action             | Expected Results          |
-|------|--------------------|---------------------------|
-| 1    | Start a game and wait for enemies to come near the castle and attack | Castle (Player) HP get reduced |
-| 2    | Wait for the HP to go to 0  | Game over screen displayed. Game stops |
+### 5.1 Units Purchase Check -> Pass
 
-### 7. Boss battle
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|--------------|
+| 1    | Buy 5 melee units to spend 500 coins| Coin counter goes to 0, units placed | Coins deducted, units placed on the game field|
+| 2    | Try to buy one more melee unit| Unit doesn't appear on the screen  | Unit didn't appear on the screen|
 
-| Step | Action             | Expected Results          |
-|------|--------------------|---------------------------|
-| 1    | Play the game for 4 waves | Game goes on. There is 15-sec break between each wave of enemies |
-| 2    | Wait for wave 5 to start  | A boss type enemy appears  |
+### 6. Castle (Player) damage -> Pass
+
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|--------------|
+| 1    | Start a game and wait for enemies to come near the castle and attack | Castle (Player) HP get reduced |HP gets reduced, HP bar shows it|
+| 2    | Wait for the HP to go to 0  | Game over screen displayed. Game stops | Game over screen displayed, game stopped, a sound is played|
+
+### 7. Resizable Window -> Fail
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|--------------|
+| 1    | Start a game | Game starts in full screen mode |Game starts in full screen |
+| 2    | Try to resize the window by dragging its corner  | Game field (path, backgound) scales | Game field doesn't stretch|
+
+
+### 8. Game music & Sounds -> Pass
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|--------------|
+| 1    | Open the game | Music plays in the main menu |Music plays in the main menu |
+| 2    | Press play  | Music changes as the game starts | Music changes as the game starts|
+| 3    | Wait for the enemies to kill the tower  | Game end screen is shown, "Game over" sound is played | "Game over" sound is played, screen changed|
+
+
 
 # Project Team Members
 
