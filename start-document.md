@@ -182,12 +182,12 @@ This chapter describes the test cases to validate the final product.
 |------|--------------------|---------------------------|-----|
 | 1    | Open executable file | Game application opens | Game opens up|
 
-### 3. Buff/debuff screen -> Pass
+### 3. Buff/debuff screen -> Pass (defect)
 
 | Step | Action             | Expected Results          |Actual Results|
 |------|--------------------|---------------------------|-----|
 | 1    | Progress in the game for 5 waves | Buff/debuff screen pops-up |After wave 5 buff/debuff screen pops up over the game screen|
-| 2    | Select a single option and click it | Buff/debuff screen closes, buff/debuff applied|Screen closes, effects applied|
+| 2    | Select a single option and click it | Buff/debuff screen closes, buff/debuff applied|Screen closes, effects applied. However, after the screen closes, units' attack animation continues to play with no enemy in sight. Behaviour is fixed, when it attacks an enemy|
 
 ### 4. Game pause -> Fail
 
@@ -224,13 +224,28 @@ This chapter describes the test cases to validate the final product.
 | 1    | Start a game | Game starts in full screen mode |Game starts in full screen |
 | 2    | Try to resize the window by dragging its corner  | Game field (path, backgound) scales | Game field doesn't stretch|
 
-
 ### 8. Game music & Sounds -> Pass
+
 | Step | Action             | Expected Results          |Actual Results|
 |------|--------------------|---------------------------|--------------|
 | 1    | Open the game | Music plays in the main menu |Music plays in the main menu |
 | 2    | Press play  | Music changes as the game starts | Music changes as the game starts|
 | 3    | Wait for the enemies to kill the tower  | Game end screen is shown, "Game over" sound is played | "Game over" sound is played, screen changed|
+
+### 9. Unit Animation -> Pass
+
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|--------------|
+| 1    | Start the game and place down 1 melee unit, 1 archer unit | Units displayed on the field in an idle pose  |Units stand in an idle pose, money subtracted  |
+| 2    | Wait for unit to attack an enemy  | Character appropriate attack animation plays | attack animation plays|
+| 3    | Wait for the unit to kill the enemy, or for the enemy to leave the unit's range of attack  | Unit goes back to the idle pose | Unit goes back to idle pose|
+
+### 10. Enemy path following -> Pass
+| Step | Action             | Expected Results          |Actual Results|
+|------|--------------------|---------------------------|--------------|
+| 1    | Start the game and wait to wave 1 enemies to spawn | Enemies appear on screen  |Enemies appear on screen  |
+| 2    | Wait for the enemy to start moving  | Enemies follow the dirt path to the castle (player) | Enemies follow the path|
+| 3    | Wait for the enemy to reach the castle  | Enemy stops, when it reaches the castle | Enemies stop near the castle|
 
 
 
