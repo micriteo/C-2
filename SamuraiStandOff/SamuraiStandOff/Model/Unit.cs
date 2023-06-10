@@ -25,8 +25,8 @@ namespace SamuraiStandoff
         public Enemy TargetedEnemy { get; set; }
         public int Cost { get; set; }
         public Image CurrentImage { get; set; }
-        public Image ImageIdle { get; set; }
-        public Image ImageAttack { get; set; }
+        readonly public Image ImageIdle;
+        readonly public Image ImageAttack;
         public Rect hitBox { get; set; }
         public Vector2 hitBoxPos { get; set; }
 
@@ -51,7 +51,7 @@ namespace SamuraiStandoff
             newRect.Height = (imageIdle.Height) + (range * 2);
             hitBox = newRect;
 
-            //calculate the posiiton of the square
+            //calculate the position of the square
             Vector2 newPosition = new Vector2();
             newPosition.X = Position.X - range;
             newPosition.Y = Position.Y - range;
@@ -62,15 +62,15 @@ namespace SamuraiStandoff
 
         public async Task FindOrAttackTarget(List<Enemy> enemyList, Canvas window, PlayScreen screen)
         {
-            foreach (var enemy in enemyList)
+            foreach (var enemy  in enemyList)
             {
                 //calculate the enemy in range and set them as enemy dont remove until they are
                 //dead or out of range
                 if(enemy == null ||
-                    ((enemy.Position.X) >= (hitBoxPos.X) && 
+                    (((enemy.Position.X) >= (hitBoxPos.X) && 
                     (enemy.Position.X) <= (hitBoxPos.X + hitBox.Width)) &&
                     (enemy.Position.Y) >= (hitBoxPos.Y) &&
-                    (enemy.Position.Y <= (hitBoxPos.Y + hitBox.Height))
+                    (enemy.Position.Y <= (hitBoxPos.Y + hitBox.Height)))
                     )
                 {
                     TargetedEnemy = enemy;
@@ -83,7 +83,7 @@ namespace SamuraiStandoff
 
                 //draw hitbox over character
                 //DEBUG CODE
-                /*
+                
                 Rectangle hitboxShape = new Rectangle();
                 hitboxShape.Width = hitBox.Width;
                 hitboxShape.Height = hitBox.Height;
@@ -91,8 +91,8 @@ namespace SamuraiStandoff
                 window.Children.Add(hitboxShape);
                 Canvas.SetLeft(hitboxShape, hitBoxPos.X);
                 Canvas.SetTop(hitboxShape, hitBoxPos.Y);
-                */
-
+                
+                //if not attacking an enemy
                 if (attackingEnemy == false)
                 {
                     attackingEnemy = true;

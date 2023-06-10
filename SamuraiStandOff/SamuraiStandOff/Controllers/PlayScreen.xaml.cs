@@ -114,7 +114,7 @@ namespace SamuraiStandOff.Controllers
             int counter = 0;
             foreach (var enemy in enemies.ToList())
             {
-                gameCanvas.Children.Add(enemy.SetupPlaceholder());
+                gameCanvas.Children.Add(enemy.SetUpEnemy());
                 counter++;
                 await Task.Delay(700);
                 Debug.WriteLine("Enemy " + counter + " spawned");

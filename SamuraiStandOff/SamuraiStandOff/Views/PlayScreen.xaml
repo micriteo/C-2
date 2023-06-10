@@ -8,9 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Canvas Name="MainCanvas">
+    <Canvas Name="MainCanvas"  Width="1920" Height="1080">
         <Canvas.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/Images/pathImage.jpg"/>
+            <ImageBrush AlignmentY="Top" AlignmentX="Left" Stretch="UniformToFill" ImageSource="ms-appx:///Assets/Images/pathImage.jpg"/>
         </Canvas.Background>
         <Frame x:Name="playFrame"/>
         <StackPanel x:Name="buttonPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="450"></StackPanel>
@@ -22,16 +22,16 @@
             </Rectangle.Fill>
         </Rectangle>
         <Button x:Name="damageButton" 
-                    Click="damageButton_Click" 
-                    FontSize="20" 
-                    Margin="0,0,0,0" 
-                    Background="black" 
-                    BorderThickness="0" 
-                    Width="100" 
-                    Height="50"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Content="Damage" />
+                        Click="damageButton_Click" 
+                        FontSize="20" 
+                        Margin="0,0,0,0" 
+                        Background="black" 
+                        BorderThickness="0" 
+                        Width="100" 
+                        Height="50"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Content="Damage" />
         <Rectangle x:Name="baseTower" Height="250" Margin="0,450,0,0" Stroke="Transparent" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="ms-appx:///Assets/Images/rsz_tower.png" Stretch="Uniform" />

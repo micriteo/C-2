@@ -1,8 +1,11 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Shapes;
 using SamuraiStandOff;
+using System;
 
 namespace SamuraiStandOf
 {
@@ -12,8 +15,9 @@ namespace SamuraiStandOf
         {
         }
 
-        public override UIElement CreatePlaceholder()
+        public override UIElement CreateEnemy()
         {
+            /*
             // Create a red square as the placeholder.
             Rectangle placeholder = new()
             {
@@ -21,7 +25,14 @@ namespace SamuraiStandOf
                 Height = 10,
                 Fill = new SolidColorBrush(Colors.Green)
             };
-            return placeholder;
+            */
+
+            Image img = new Image();
+            img.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/alin_run.gif"));
+            img.Width = 100;
+            img.Height = 100;
+
+            return img;
         }
 
         public override Enemy Clone()

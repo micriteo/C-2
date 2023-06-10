@@ -1,7 +1,10 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Shapes;
+using System;
 
 namespace SamuraiStandOff
 {
@@ -11,8 +14,9 @@ namespace SamuraiStandOff
         {
         }
 
-        public override UIElement CreatePlaceholder()
+        public override UIElement CreateEnemy()
         {
+            /*
             // Create a red square as the placeholder.
             Rectangle placeholder = new()
             {
@@ -20,7 +24,14 @@ namespace SamuraiStandOff
                 Height = 10,
                 Fill = new SolidColorBrush(Colors.Blue)
             };
-            return placeholder;
+            */
+
+            Image img = new Image();
+            img.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/miro_run.gif"));
+            img.Width = 100;
+            img.Height = 100;
+
+            return img;
         }
         public override Enemy Clone()
         {

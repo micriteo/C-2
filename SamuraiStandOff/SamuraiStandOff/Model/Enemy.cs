@@ -44,7 +44,7 @@ namespace SamuraiStandOff
             AttackTimer = 0.0;
 
             // Create the enemy's placeholder
-            PlaceHolder = CreatePlaceholder();
+            PlaceHolder = CreateEnemy();
         }
 
         
@@ -134,8 +134,9 @@ namespace SamuraiStandOff
                     Position += direction * movementThisFrame;
                 }
 
-                Canvas.SetLeft(PlaceHolder, Position.X);
-                Canvas.SetTop(PlaceHolder, Position.Y);
+                //add 25 to place in the middle of position instead of top left without affecting calculations
+                Canvas.SetLeft(PlaceHolder, Position.X + 25);
+                Canvas.SetTop(PlaceHolder, Position.Y + 25);
             }
 
             // Attack the tower if we have reached the specific position (150, 620)
@@ -157,14 +158,14 @@ namespace SamuraiStandOff
          * The placeholder element is used to visualize the enemy's position.
          */
 
-        public UIElement SetupPlaceholder()
+        public UIElement SetUpEnemy()
         {
             Canvas.SetLeft(PlaceHolder, Position.X);
             Canvas.SetTop(PlaceHolder, Position.Y);
             return PlaceHolder;
         }
 
-        public abstract UIElement CreatePlaceholder();
+        public abstract UIElement CreateEnemy();
 
         public abstract Enemy Clone();
     }
