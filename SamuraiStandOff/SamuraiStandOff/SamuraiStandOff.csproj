@@ -43,7 +43,6 @@
     <PRIResource Remove="rsc\**" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="Assets\Images\button2.png" />
     <Content Remove="Assets\Images\buttonBackground.png" />
     <Content Remove="Assets\mathew_attack.gif" />
     <Content Remove="Assets\mathew_idle.png" />
@@ -122,9 +121,6 @@
     <Folder Include="Assets\NewFolder\" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Assets\Images\button2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Assets\Images\buttonBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
