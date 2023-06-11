@@ -87,22 +87,28 @@ namespace SamuraiStandOff.Controllers
                 Height = 50,
                 Background = new ImageBrush
                 {
-                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/button.png")),
+                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/buttonBackground.png")),
                     Stretch = Stretch.Fill
                 },
                
-                FontSize = 18, // Pixel-like font size
-                FontFamily = new FontFamily("ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel") // Pixel-like font family
+                FontSize = 14, // Pixel-like font size
             };
             button1.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button1.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button1.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Melee), true);
 
             Button button2 = new Button() 
-            { Content = rangeName,
-                Width = 150, 
+            { 
+                Content = rangeName,
+                Width = 150,
                 Height = 50,
-                Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) 
+                Background = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/buttonBackground.png")),
+                    Stretch = Stretch.Fill
+                },
+
+                FontSize = 14, // Pixel-like font size
             };
             button2.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button2.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);

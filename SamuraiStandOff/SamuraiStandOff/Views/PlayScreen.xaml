@@ -37,10 +37,13 @@
                 <ImageBrush ImageSource="ms-appx:///Assets/Images/rsz_tower.png" Stretch="Uniform" />
             </Rectangle.Fill>
         </Rectangle>
-        <StackPanel x:Name="moneyPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="770" Background="Black" Width="170" Height="50" >
-            <TextBlock Text="0" FontSize="20" Foreground="White" x:Name="moneyTextBlock" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <StackPanel x:Name="moneyPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="770"  Width="170" Height="50" >
+            <StackPanel.Background>
+                <ImageBrush ImageSource="ms-appx:///Assets/Images/buttonBackground.png"/>
+            </StackPanel.Background>
+            <TextBlock Text="0" FontSize="14" Foreground="White" x:Name="moneyTextBlock" VerticalAlignment="Center" Margin="25,0,0,0"/>
             <Image Source="ms-appx:///Assets/Images/coin.png" Width="25" Height="25"/>
-            <TextBlock x:Name="waveCountLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Text="Wave: 1" FontSize="20" Foreground="White"/>
+            <TextBlock x:Name="waveCountLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Text="Wave: 1" FontSize="14" Foreground="White"/>
         </StackPanel>
     </Canvas>
 </Page>

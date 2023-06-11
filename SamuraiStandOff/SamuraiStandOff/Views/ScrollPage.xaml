@@ -49,7 +49,7 @@
                 <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Health_Decrease_Debuff" >
                     <StackPanel>
                         <Image Source="ms-appx:///Assets/Images/Debuff.png" Width="100" Height="100" Margin="0,0,0,10"/>
-                        <TextBlock Text="Health Debuff Enemy" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel" Foreground="Black"/>
+                        <TextBlock Text="Health Debuff Enemy - 100" FontFamily="ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel" Foreground="Black"/>
                     </StackPanel>
                 </Button>
             </Grid>

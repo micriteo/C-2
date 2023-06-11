@@ -43,7 +43,8 @@
     <PRIResource Remove="rsc\**" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="Assets\Images\button.png" />
+    <Content Remove="Assets\Images\button2.png" />
+    <Content Remove="Assets\Images\buttonBackground.png" />
     <Content Remove="Assets\mathew_attack.gif" />
     <Content Remove="Assets\mathew_idle.png" />
   </ItemGroup>
@@ -119,6 +120,14 @@
   <ItemGroup>
     <Folder Include="Assets\NewFolder1\" />
     <Folder Include="Assets\NewFolder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\Images\button2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\buttonBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\ScrollPage.xaml">
