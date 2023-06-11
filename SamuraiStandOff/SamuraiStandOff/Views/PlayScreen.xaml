@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Canvas Name="MainCanvas"  Width="1920" Height="1080">
+    <Canvas Name="MainCanvas">
         <Canvas.Background>
             <ImageBrush AlignmentY="Top" AlignmentX="Left" Stretch="UniformToFill" ImageSource="ms-appx:///Assets/Images/pathImage.jpg"/>
         </Canvas.Background>
