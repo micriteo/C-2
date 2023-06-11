@@ -43,6 +43,7 @@
     <PRIResource Remove="rsc\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="Assets\Images\button.png" />
     <Content Remove="Assets\mathew_attack.gif" />
     <Content Remove="Assets\mathew_idle.png" />
   </ItemGroup>

@@ -80,12 +80,30 @@ namespace SamuraiStandOff.Controllers
             //Create unit panel buttons and attach methods to XAML ui elements
             string meleeName = "Melee - " + Constants.meleePrice.ToString();
             string rangeName = "Archer - " + Constants.rangePrice.ToString();
-            Button button1 = new Button() { Content = meleeName, Width = 150, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
+            Button button1 = new Button() 
+            {
+                Content = meleeName,
+                Width = 150,
+                Height = 50,
+                Background = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/button.png")),
+                    Stretch = Stretch.Fill
+                },
+               
+                FontSize = 18, // Pixel-like font size
+                FontFamily = new FontFamily("ms-appx:///Assets/Fonts/StayPixelRegular-EaOxl.ttf#Stay Pixel") // Pixel-like font family
+            };
             button1.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button1.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button1.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Melee), true);
 
-            Button button2 = new Button() { Content = rangeName, Width = 150, Height = 50, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) };
+            Button button2 = new Button() 
+            { Content = rangeName,
+                Width = 150, 
+                Height = 50,
+                Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 0, 0)) 
+            };
             button2.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button2.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
             button2.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(Button_PointerReleased_Archer), true);
