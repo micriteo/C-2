@@ -14,27 +14,16 @@
         </Canvas.Background>
         <Frame x:Name="playFrame"/>
         <StackPanel x:Name="buttonPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="450"></StackPanel>
-        <Rectangle x:Name="healthIndicator" Height="10" Margin="5,440,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" >
+        <Rectangle x:Name="healthIndicator" Height="10" Margin="30,440,20,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" >
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Color="#00FFFF" Offset="0" />
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="damageButton" 
-                        Click="damageButton_Click" 
-                        FontSize="20" 
-                        Margin="0,0,0,0" 
-                        Background="black" 
-                        BorderThickness="0" 
-                        Width="100" 
-                        Height="50"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Content="Damage" />
-        <Rectangle x:Name="baseTower" Height="250" Margin="0,450,0,0" Stroke="Transparent" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100">
+        <Rectangle x:Name="baseTower" Height="250" Margin="-120,500,0,0" Stroke="Transparent" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="450">
             <Rectangle.Fill>
-                <ImageBrush ImageSource="ms-appx:///Assets/Images/rsz_tower.png" Stretch="Uniform" />
+                <ImageBrush ImageSource="ms-appx:///Assets/Images/tower-removebg-preview.png" Stretch="Uniform" />
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel x:Name="moneyPanel" Orientation="Horizontal" Canvas.Top="0" Canvas.Left="770"  Width="170" Height="50" >

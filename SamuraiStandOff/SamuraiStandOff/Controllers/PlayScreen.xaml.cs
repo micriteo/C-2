@@ -269,7 +269,6 @@ namespace SamuraiStandOff.Controllers
 
             baseTower.Visibility = Visibility.Collapsed;
             healthIndicator.Visibility = Visibility.Collapsed;
-            damageButton.Visibility = Visibility.Collapsed;
             moneyPanel.Visibility = Visibility.Collapsed;
 
             //remove all placed units

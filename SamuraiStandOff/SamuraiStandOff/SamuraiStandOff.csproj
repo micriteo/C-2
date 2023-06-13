@@ -58,6 +58,7 @@
     <None Remove="Assets\Images\pathImage.jpg" />
     <None Remove="Assets\Images\scroll.jpg" />
     <None Remove="Assets\Images\tengu_selestionatk1.gif" />
+    <None Remove="Assets\Images\tower-removebg-preview.png" />
     <None Remove="Assets\PathImage.png" />
     <None Remove="Assets\StayPixelRegular-EaOxl.ttf" />
     <None Remove="GameOver.xaml" />
@@ -104,6 +105,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\tengu_selestionatk1.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\tower-removebg-preview.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\tower.png">
