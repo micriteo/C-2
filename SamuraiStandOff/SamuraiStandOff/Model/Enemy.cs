@@ -35,7 +35,7 @@ namespace SamuraiStandOff
         {
             Health = health;
             Speed = speed;
-            Position = new Vector2(1100, 170);
+            Position = new Vector2(1500, 250);
             Follow_Path = new EnemyPath();
             Damage = damage;
             AttackCooldown = attackCooldown;

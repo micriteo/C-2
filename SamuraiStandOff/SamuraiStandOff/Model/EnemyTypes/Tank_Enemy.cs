@@ -10,7 +10,7 @@ namespace SamuraiStandOff
 {
     public class Tank_Enemy : Enemy
     {
-        public Tank_Enemy() : base(1, 150, 10, 0.5, 30, 3)
+        public Tank_Enemy() : base(200, 150, 10, 0.5, 30, 3)
         {
         }
 

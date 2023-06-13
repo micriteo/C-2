@@ -180,7 +180,7 @@ namespace SamuraiStandOff.Controllers
             if (castle.Health > 0) //only update if health is above 0
             {
                 //calculate ratio of green to red
-                double greenRatio = (double)castle.Health / 100;
+                double greenRatio = (double)castle.Health / 300;
                 double redRatio = 1 - greenRatio;
 
                 //update healthIndicator's Fill property
@@ -342,11 +342,11 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
-        public void FireRateBuffToAllUnits(int buffAmount)
+        public void RangeBuffToAllUnits(int buffAmount)
         {
             foreach (var unit in unitList)
             {
-                unit.FireRate += buffAmount;
+                unit.Range += buffAmount;
             }
         }
 
