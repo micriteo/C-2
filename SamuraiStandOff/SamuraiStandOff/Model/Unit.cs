@@ -84,13 +84,13 @@ namespace SamuraiStandoff
                 //draw hitbox over character
                 //DEBUG CODE
                 
-                Rectangle hitboxShape = new Rectangle();
-                hitboxShape.Width = hitBox.Width;
-                hitboxShape.Height = hitBox.Height;
-                hitboxShape.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(1, 255, 255, 255));
-                window.Children.Add(hitboxShape);
-                Canvas.SetLeft(hitboxShape, hitBoxPos.X);
-                Canvas.SetTop(hitboxShape, hitBoxPos.Y);
+                //Rectangle hitboxShape = new Rectangle();
+                //hitboxShape.Width = hitBox.Width;
+                //hitboxShape.Height = hitBox.Height;
+                //hitboxShape.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(1, 255, 255, 255));
+                //window.Children.Add(hitboxShape);
+                //Canvas.SetLeft(hitboxShape, hitBoxPos.X);
+                //Canvas.SetTop(hitboxShape, hitBoxPos.Y);
                 
                 //if not attacking an enemy
                 if (attackingEnemy == false)
