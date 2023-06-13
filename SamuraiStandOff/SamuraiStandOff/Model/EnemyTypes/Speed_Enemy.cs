@@ -17,16 +17,6 @@ namespace SamuraiStandOf
 
         public override UIElement CreateEnemy()
         {
-            /*
-            // Create a red square as the placeholder.
-            Rectangle placeholder = new()
-            {
-                Width = 10,
-                Height = 10,
-                Fill = new SolidColorBrush(Colors.Green)
-            };
-            */
-
             Image img = new Image();
             img.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/alin_run.gif"));
             img.Width = 100;

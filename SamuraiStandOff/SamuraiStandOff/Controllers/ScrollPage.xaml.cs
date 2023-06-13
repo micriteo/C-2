@@ -41,7 +41,7 @@ namespace SamuraiStandOff.Controllers
         }
 
 
-        private void FireRateRange_Click(object sender, RoutedEventArgs e)
+        private void FireRateBuff_Click(object sender, RoutedEventArgs e)
         {
             mainScreen.IsGamePaused = false;
             //Apply the buff first

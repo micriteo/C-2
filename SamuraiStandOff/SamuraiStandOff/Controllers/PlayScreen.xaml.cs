@@ -176,6 +176,7 @@ namespace SamuraiStandOff.Controllers
             castle.Health -= 10;
             UpdateHealthIndicator();
         }
+
         private void UpdateHealthIndicator()
         {
             if (castle.Health > 0) //only update if health is above 0
@@ -221,7 +222,11 @@ namespace SamuraiStandOff.Controllers
             {
                 if(turn == 0)
                 {
-                    TransitionToScrollPage();
+                    //Show the scroll screen on wave 2 and then every 5 waves
+                    if (WaveCount == 1 || WaveCount % 5 == 0)
+                    {
+                        TransitionToScrollPage();
+                    }
                     turn = 1;
                 }
                 else
@@ -373,7 +378,14 @@ namespace SamuraiStandOff.Controllers
         {
             if (sum > 0)
             {
-                money.Currency = money.Currency + sum;
+                if (money.Currency + sum >= Constants.coinCap)
+                {
+                    money.Currency = Constants.coinCap;
+
+                } else
+                {
+                    money.Currency = money.Currency + sum;
+                }
                 moneyTextBlock.Text = money.Currency.ToString();
             }
         }

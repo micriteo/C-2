@@ -25,11 +25,7 @@ namespace SamuraiStandOff
         public const float waypointThreshold = 0.5f;
         public int currentWaypoint = 0; // Field to keep track of the current waypoint
         public event Action<string> AttackEvent;
-
         public bool hasReachedDestination = false; 
-
-
-
 
         public Enemy(int health, double speed, int damage, double attackCooldown, double attackRange, int powerLevel)
         {
@@ -53,8 +49,6 @@ namespace SamuraiStandOff
             // Check if the enemy has reached the destination (150, 620)
             if (hasReachedDestination)
             {
-                Debug.WriteLine("Tower in range found!"); // Debug output
-                Debug.WriteLine(castle.Health);
                 return true;
             }
 
@@ -69,7 +63,6 @@ namespace SamuraiStandOff
         {
             // Attack the tower and reduce its health
             castle.TakeDamage(Damage);
-            Debug.WriteLine($"Enemy attacked tower for {Damage} damage!");
         }
 
         /*

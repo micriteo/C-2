@@ -34,7 +34,6 @@ namespace SamuraiStandOff
 
         }
 
-
         public void Update()
         {
 

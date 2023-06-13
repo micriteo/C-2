@@ -80,23 +80,11 @@ namespace SamuraiStandoff
 
             if (TargetedEnemy != null)
             {
-
-                //draw hitbox over character
-                //DEBUG CODE
-                
-                //Rectangle hitboxShape = new Rectangle();
-                //hitboxShape.Width = hitBox.Width;
-                //hitboxShape.Height = hitBox.Height;
-                //hitboxShape.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(1, 255, 255, 255));
-                //window.Children.Add(hitboxShape);
-                //Canvas.SetLeft(hitboxShape, hitBoxPos.X);
-                //Canvas.SetTop(hitboxShape, hitBoxPos.Y);
                 
                 //if not attacking an enemy
                 if (attackingEnemy == false)
                 {
                     attackingEnemy = true;
-                    Debug.WriteLine("Unit Attack");
 
                     CurrentImage.Source = ImageAttack.Source;
 
@@ -143,16 +131,6 @@ namespace SamuraiStandoff
             {
                 TargetedEnemy.Health -= Damage;
             }
-        }
-
-        public void Update()
-        {
-
-        }
-
-        public void Draw()
-        {
-
         }
     }
 }
