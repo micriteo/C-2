@@ -80,6 +80,7 @@ namespace SamuraiStandOff.Controllers
 
             media = new MediaPlayer();
             media.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/naruto_8bit.mp3"));
+            media.IsLoopingEnabled = true;
             media.Play();
 
 
@@ -267,6 +268,8 @@ namespace SamuraiStandOff.Controllers
         private void gameOverScene()
         {
             GameOver = true;
+
+            media.Pause();
 
             baseTower.Visibility = Visibility.Collapsed;
             healthIndicator.Visibility = Visibility.Collapsed;
