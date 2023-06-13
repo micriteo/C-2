@@ -48,6 +48,7 @@
     <Content Remove="Assets\mathew_idle.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Assets\Audio\naruto_8bit.mp3" />
     <None Remove="Assets\coin.png" />
     <None Remove="Assets\Images\attackBuff.png" />
     <None Remove="Assets\Images\buff.gif" />
@@ -68,6 +69,9 @@
     <None Remove="Views\ScrollPage.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Assets\Audio\naruto_8bit.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\backgroung.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

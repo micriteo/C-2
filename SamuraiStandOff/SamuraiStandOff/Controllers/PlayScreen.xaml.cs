@@ -23,6 +23,8 @@ using SamuraiStandOff.Model;
 using Windows.Storage;
 using Newtonsoft.Json;
 using Microsoft.UI.Xaml.Markup;
+using Windows.Media.Playback;
+using Windows.Media.Core;
 
 
 
@@ -37,6 +39,7 @@ namespace SamuraiStandOff.Controllers
     /// </summary>
     public sealed partial class PlayScreen : Page
     {
+        private MediaPlayer media;
         private Castle castle;
         //lists holding the current unit and enemy data
         private List<Enemy> enemies = new();
@@ -66,9 +69,7 @@ namespace SamuraiStandOff.Controllers
             Current = this;
             InitializeComponent();
             GameOver = false;
-            castle = new Castle(100);
-
-            //path.DisplayWaypoints(MainCanvas);
+            castle = new Castle(300);
 
             //spawn stuff
             Task task = SpawnEnemies(MainCanvas);
@@ -76,6 +77,11 @@ namespace SamuraiStandOff.Controllers
             //Assign starting money balance
             money.Currency = Constants.startBalance;
             moneyTextBlock.Text = money.Currency.ToString();
+
+            media = new MediaPlayer();
+            media.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/naruto_8bit.mp3"));
+            media.Play();
+
 
             //Create unit panel buttons and attach methods to XAML ui elements
             string meleeName = "Melee - " + Constants.meleePrice.ToString();
@@ -91,7 +97,7 @@ namespace SamuraiStandOff.Controllers
                     Stretch = Stretch.Fill
                 },
                
-                FontSize = 14, // Pixel-like font size
+                FontSize = 14, //Pixel font size
             };
             button1.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Button_PointerPressed), true);
             button1.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(Button_PointerMoved), true);
@@ -122,7 +128,6 @@ namespace SamuraiStandOff.Controllers
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(100);
             //enemy move function
-            //timer.Tick += functionName;
             timer.Tick += UnitAttackAsync;
             timer.Start();
 
@@ -172,13 +177,13 @@ namespace SamuraiStandOff.Controllers
         }
         private void UpdateHealthIndicator()
         {
-            if (castle.Health > 0) // only update if health is above 0
+            if (castle.Health > 0) //only update if health is above 0
             {
-                // calculate ratio of green to red
+                //calculate ratio of green to red
                 double greenRatio = (double)castle.Health / 100;
                 double redRatio = 1 - greenRatio;
 
-                // update healthIndicator's Fill property
+                //update healthIndicator's Fill property
                 healthIndicator.Fill = new LinearGradientBrush
                 {
                     StartPoint = new Point(0, 0),
@@ -197,19 +202,18 @@ namespace SamuraiStandOff.Controllers
         }
         private void GameLoopTimer_Tick(object sender, object e)
         {
-            // Update the game state
+            //Update the game state
             UpdateGame();
         }
 
         private void AttackEvent_Handler(string message)
         {
-            // Write the attack message to the debug output
-            Debug.WriteLine(message);
+
         }
 
         private void UpdateGame()
         {
-            Debug.WriteLine(IsGamePaused);
+            //Debug.WriteLine(IsGamePaused);
             double delta = gameLoopTimer.Interval.TotalSeconds;
 
             if (enemies.Count == 0 && GameOver == false && IsGamePaused == false)
@@ -221,17 +225,15 @@ namespace SamuraiStandOff.Controllers
                 }
                 else
                 {
-                    Debug.WriteLine("Wave " + WaveCount + " complete!");
                     WaveCount++;
                     wave.WaveNumber = WaveCount;
-                    Debug.WriteLine(wave.WaveNumber);
                     waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
                     Task task = SpawnEnemies(MainCanvas);
                     turn = 0;
                 }
             }
 
-            // Update enemies
+            //Update enemies
             foreach (var enemy in enemies.ToList())
             {
                 if (MainCanvas.Children.Contains(enemy.PlaceHolder))
@@ -241,7 +243,7 @@ namespace SamuraiStandOff.Controllers
                     enemy.AttackEvent += AttackEvent_Handler;
                     enemy.UpdateAttackCooldown(delta);
 
-                    // Check if the enemy is within attack range of a tower
+                    //Check if the enemy is within attack range of a tower
 
                     if (enemy.FindCastle(castle))
                     {
@@ -251,10 +253,10 @@ namespace SamuraiStandOff.Controllers
                             UpdateHealthIndicator();
                             enemy.ResetAttackCooldown();
                         }
-                        enemy.Move(castle, 0); // Stop the enemy's movement
+                        enemy.Move(castle, 0); //Stop the enemy's movement
                     }
-                    enemy.Move(castle, delta); // Move the enemy along the path
-                    MainCanvas.Children.Add(enemy.PlaceHolder); // Add the enemy's placeholder to the canvas
+                    enemy.Move(castle, delta); //Move the enemy along the path
+                    MainCanvas.Children.Add(enemy.PlaceHolder); //Add the enemy's placeholder to the canvas
                 }
             }
             UnitAttackAsync(this, null);
@@ -265,7 +267,6 @@ namespace SamuraiStandOff.Controllers
         private void gameOverScene()
         {
             GameOver = true;
-            Debug.WriteLine("Entering gameOverScene");
 
             baseTower.Visibility = Visibility.Collapsed;
             healthIndicator.Visibility = Visibility.Collapsed;
@@ -273,7 +274,7 @@ namespace SamuraiStandOff.Controllers
 
             //remove all placed units
             StackPanel parentContainer = buttonPanel;
-            // Remove all unit elements from the draggable panel
+            //Remove all unit elements from the draggable panel
             foreach (UIElement element in parentContainer.Children.ToList())
             {
                 if (element is Button button)
@@ -306,17 +307,14 @@ namespace SamuraiStandOff.Controllers
             }
 
             //try changing the background here, before navigating
-            MainCanvas.Background = null; // Clearing background
+            MainCanvas.Background = null; //Clearing background
             MainCanvas.Background = new ImageBrush
             {
                 ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/gameOver.png")),
                 Stretch = Stretch.Fill
             };
-            Debug.WriteLine("Background should now be GameOver image");
 
             playFrame.Navigate(typeof(GameOver), MainCanvas);
-
-            Debug.WriteLine("Exiting gameOverScene");
         }
 
         private void TransitionToScrollPage()
@@ -327,7 +325,6 @@ namespace SamuraiStandOff.Controllers
             scrollWin.Content = page;
             scrollWin.Activate();
             IsGamePaused = true;
-            Debug.WriteLine("Game is paused");
         }
 
         public void closeScrollWindow()
@@ -337,12 +334,11 @@ namespace SamuraiStandOff.Controllers
 
         public void ApplyDamageBuffToAllUnits(int buffAmount)
         {
-            // iterate over all units
+            //iterate over all units
             foreach (var unit in unitList)
             {
-                // increase the unit's damage by the buff amount
+                //increase the unit's damage by the buff amount
                 unit.Damage += buffAmount;
-                Debug.WriteLine(unit.Damage.ToString());
             }
         }
 
@@ -351,7 +347,6 @@ namespace SamuraiStandOff.Controllers
             foreach (var unit in unitList)
             {
                 unit.FireRate += buffAmount;
-                Debug.WriteLine(unit.FireRate.ToString());
             }
         }
 
@@ -360,7 +355,6 @@ namespace SamuraiStandOff.Controllers
             foreach(var unit in enemies)
             {
                 unit.Health -= debuffAmount;
-                Debug.WriteLine(unit.Health.ToString());
             }
         }
 
@@ -369,10 +363,8 @@ namespace SamuraiStandOff.Controllers
             foreach(var unit in enemies)
             {
                 unit.PowerLevel -= defbuffAmount;
-                Debug.WriteLine(unit.PowerLevel.ToString());
             }
         }
-
 
         public void addMoney(int sum)
         {
@@ -514,10 +506,6 @@ namespace SamuraiStandOff.Controllers
             image.VerticalAlignment = VerticalAlignment.Center;
             return image;
         }
-
-
-        //-----------------------------------------------------------
-
     }
 }
 

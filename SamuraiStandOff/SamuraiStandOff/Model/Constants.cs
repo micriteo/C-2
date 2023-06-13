@@ -10,13 +10,13 @@ namespace SamuraiStandOff
     {
         public const int rangePrice = 200;
         public const int meleePrice = 100;
-        public const int startBalance = 500;
+        public const int startBalance = 200;
         public const int bowPrice = 200;
 
         // Enemy stats
-        public const int enemyMeleeCost = 50;
-        public const int enemySpeedCost = 25;
-        public const int enemyTankCost = 200;
+        public const int enemyMeleeCost = 12;
+        public const int enemySpeedCost = 6;
+        public const int enemyTankCost = 25;
 
     }
 }
