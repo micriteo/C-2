@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +39,10 @@ namespace SamuraiStandOff.Controllers
                 if (wavePower - emnemyPwr >= 0)
                 {
                     wavePower -= emnemyPwr;
-                    enemies.Add(possibleEnemies[rand].Clone());
+                    Enemy enemy = possibleEnemies[rand].Clone();
+                    enemy.Health += wavePower;
+                    Debug.WriteLine("EnemyType: "+ enemy +" HP: "+ enemy.Health);
+                    enemies.Add(enemy);
                 }
             }
             return enemies;
