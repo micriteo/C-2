@@ -104,15 +104,15 @@ namespace SamuraiStandoff
                             // Add money depending on enemy class
                             if (TargetedEnemy is Melee_Enemy)
                             {
-                                screen.addMoney(Constants.enemyMeleeCost);
+                                screen.AddMoney(Constants.enemyMeleeCost);
                             }
                             if (TargetedEnemy is Speed_Enemy)
                             {
-                                screen.addMoney(Constants.enemySpeedCost);
+                                screen.AddMoney(Constants.enemySpeedCost);
                             }
                             if (TargetedEnemy is Tank_Enemy)
                             {
-                                screen.addMoney(Constants.enemyTankCost);
+                                screen.AddMoney(Constants.enemyTankCost);
                             }
                             window.Children.Remove(TargetedEnemy.PlaceHolder);
                             TargetedEnemy.PlaceHolder.Visibility = Visibility.Collapsed;

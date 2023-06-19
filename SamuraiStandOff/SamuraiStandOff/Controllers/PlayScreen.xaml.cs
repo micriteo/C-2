@@ -52,9 +52,7 @@ namespace SamuraiStandOff.Controllers
         public static PlayScreen Current { get; private set; }
         private DispatcherTimer gameLoopTimer;
         SpawnEnemy enemySpawner = new();
-        EnemyPath path = new();
         private Money money;
-        private Wave wave;
         private int WaveCount = 1;
         private bool GameOver;
         public Window scrollWin;
@@ -64,7 +62,6 @@ namespace SamuraiStandOff.Controllers
 
         public PlayScreen()
         {
-            wave = new Wave(0);
             money = new Money(Constants.startBalance);
             Current = this;
             InitializeComponent();
@@ -151,14 +148,6 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
-        public static void SpawnTower(List<Tower> towers, Canvas gameCanvas)
-        {
-            foreach (var tower in towers)
-            {
-                gameCanvas.Children.Add(tower.PlaceHolder);
-            }
-        }
-
         //event handler for units attack
         private async void UnitAttackAsync(object sender, object e)
         {
@@ -169,12 +158,6 @@ namespace SamuraiStandOff.Controllers
                     await unit.FindOrAttackTarget(enemies, MainCanvas, this);
                 }
             }
-        }
-
-        private void damageButton_Click(object sender, RoutedEventArgs e)
-        {
-            castle.Health -= 10;
-            UpdateHealthIndicator();
         }
 
         private void UpdateHealthIndicator()
@@ -232,7 +215,6 @@ namespace SamuraiStandOff.Controllers
                 else
                 {
                     WaveCount++;
-                    wave.WaveNumber = WaveCount;
                     waveCountLabel.Text = "Wave: " + WaveCount; //Update the wave count
                     Task task = SpawnEnemies(MainCanvas);
                     turn = 0;
@@ -340,41 +322,41 @@ namespace SamuraiStandOff.Controllers
             scrollWin.Close();
         }
 
-        public void ApplyDamageBuffToAllUnits(int buffAmount)
+        public void ApplyDamageBuff(int amount)
         {
             //iterate over all units
             foreach (var unit in unitList)
             {
                 //increase the unit's damage by the buff amount
-                unit.Damage += buffAmount;
+                unit.Damage += amount;
             }
         }
 
-        public void RangeBuffToAllUnits(int buffAmount)
+        public void ApplyRangeBuff(int amount)
         {
             foreach (var unit in unitList)
             {
-                unit.Range += buffAmount;
+                unit.Range += amount;
             }
         }
 
-        public void HealthDecreaseDebuff(int debuffAmount)
+        public void ApplyHealthDecreaseDebuff(int amount)
         {
             foreach(var unit in enemies)
             {
-                unit.Health -= debuffAmount;
+                unit.Health -= amount;
             }
         }
 
-        public void DamageDecreaseDebuff(int defbuffAmount)
+        public void ApplyDamageDebuff(int amount)
         {
             foreach(var unit in enemies)
             {
-                unit.PowerLevel -= defbuffAmount;
+                unit.PowerLevel -= amount;
             }
         }
 
-        public void addMoney(int sum)
+        public void AddMoney(int sum)
         {
             if (sum > 0)
             {
@@ -390,7 +372,7 @@ namespace SamuraiStandOff.Controllers
             }
         }
 
-        public void removeMoney(int sum)
+        public void RemoveMoney(int sum)
         {
             if (sum > 0)
             {
@@ -423,14 +405,14 @@ namespace SamuraiStandOff.Controllers
             //Check whether a player can afford a unit
             if (money.Currency < Constants.meleePrice) { return; }
             //Subtract price of the unit
-            removeMoney(Constants.meleePrice);
+            RemoveMoney(Constants.meleePrice);
 
             Button buttonOG = (Button)sender;
             //Get location of mouse and create a vector2 object
             Vector2 posUnitMelee = new((float)e.GetCurrentPoint(MainCanvas).Position.X, (float)e.GetCurrentPoint(MainCanvas).Position.Y);
             //Get Image for Melee Unit
-            Image imgMeleeIdle = getUnitImageIdle(1);
-            Image imgMeleeAttack = getUnitImageAttack(1);
+            Image imgMeleeIdle = GetUnitImageIdle(1);
+            Image imgMeleeAttack = GetUnitImageAttack(1);
             //Calculate unit position
             double unitPosLeft = (float)e.GetCurrentPoint(MainCanvas).Position.X - imgMeleeIdle.ActualWidth / 2;
             double unitPosTop = (float)e.GetCurrentPoint(MainCanvas).Position.Y - imgMeleeIdle.ActualHeight / 2;
@@ -450,14 +432,14 @@ namespace SamuraiStandOff.Controllers
             // Check whether a player can afford a unit
             if (money.Currency < Constants.rangePrice) { return; }
             // Subtract price of the unit
-            removeMoney(Constants.rangePrice);
+            RemoveMoney(Constants.rangePrice);
 
             Button buttonOG = (Button)sender;
             //Get location of mouse and create a vector2 object
             Vector2 posUnitRange = new((float)e.GetCurrentPoint(MainCanvas).Position.X, (float)e.GetCurrentPoint(MainCanvas).Position.Y);
             //Get Image for Melee Unit
-            Image imgRangeIdle = getUnitImageIdle(2);
-            Image imgRangeAttack = getUnitImageAttack(2);
+            Image imgRangeIdle = GetUnitImageIdle(2);
+            Image imgRangeAttack = GetUnitImageAttack(2);
             //calculate unit position
             double unitPosLeft = (float)e.GetCurrentPoint(MainCanvas).Position.X - imgRangeIdle.ActualWidth / 2;
             double unitPosTop = (float)e.GetCurrentPoint(MainCanvas).Position.Y - imgRangeAttack.ActualHeight / 2;
@@ -473,7 +455,7 @@ namespace SamuraiStandOff.Controllers
         }
 
         //1-melee, 2-range
-        public Image getUnitImageIdle(int unitNumber)
+        public Image GetUnitImageIdle(int unitNumber)
         {
             Image image = new Image();
             // Get appropriate image
@@ -498,7 +480,7 @@ namespace SamuraiStandOff.Controllers
         }
 
         //1-melee, 2-range
-        public Image getUnitImageAttack(int unitNumber)
+        public Image GetUnitImageAttack(int unitNumber)
         {
             Image image = new Image();
             // Get appropriate image

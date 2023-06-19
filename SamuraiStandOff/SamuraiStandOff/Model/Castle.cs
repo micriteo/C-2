@@ -33,10 +33,5 @@ namespace SamuraiStandOff
             Health -= damage;
 
         }
-
-        public void Update()
-        {
-
-        }
     }
 }

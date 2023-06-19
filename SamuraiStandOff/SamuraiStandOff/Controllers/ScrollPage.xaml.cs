@@ -35,7 +35,7 @@ namespace SamuraiStandOff.Controllers
         {
             mainScreen.IsGamePaused = false;
             //Apply the buff first
-            mainScreen.ApplyDamageBuffToAllUnits(10);
+            mainScreen.ApplyDamageBuff(10);
             //Close window
             mainScreen.closeScrollWindow();
         }
@@ -45,7 +45,7 @@ namespace SamuraiStandOff.Controllers
         {
             mainScreen.IsGamePaused = false;
             //Apply the buff first
-            mainScreen.RangeBuffToAllUnits(10);
+            mainScreen.ApplyRangeBuff(10);
             //Close window
             mainScreen.closeScrollWindow();
         }
@@ -54,7 +54,7 @@ namespace SamuraiStandOff.Controllers
         {
             mainScreen.IsGamePaused = false;
             //Apply the debuff first
-            mainScreen.HealthDecreaseDebuff(10);
+            mainScreen.ApplyHealthDecreaseDebuff(10);
             //Close window
             mainScreen.closeScrollWindow();
         }
@@ -63,7 +63,7 @@ namespace SamuraiStandOff.Controllers
         {
             mainScreen.IsGamePaused = false;
             //Apply the debuff first
-            mainScreen.DamageDecreaseDebuff(10);
+            mainScreen.ApplyDamageDebuff(10);
             //Close window
             mainScreen.closeScrollWindow();
         }

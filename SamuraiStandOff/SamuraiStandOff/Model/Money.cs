@@ -14,23 +14,5 @@ namespace SamuraiStandOff.Model
         {
             Currency = startingCurrency;
         }
-
-        public void AddCurrency(int amount)
-        {
-            Currency += amount;
-        }
-
-        public bool SpendCurrency(int amount)
-        {
-            if (Currency >= amount)
-            {
-                Currency -= amount;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 }
