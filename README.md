@@ -16,7 +16,7 @@ The game was developed by 2nd year IT students:
 <b>Supported platforms</b> PC, Windows
 
 1. Download the release of the game
-2. Launch the EXE file 
+2. Open the SamuraiStandOff/SamuraiStandOff.sln and run the game
 
 
 
