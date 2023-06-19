@@ -1,4 +1,4 @@
-<h1> Shogun Stand </h1>
+<h1> Shogun Standoff </h1>
 <hr>
 <h2> Introduction </h2>
 
@@ -134,7 +134,7 @@ The higher the unit's level, the more expensive it will be to upgrade it. The pl
 Of course, the stronger the enemies, the more gold they will drop. The player will have to find the right balance between upgrading their units and buying new ones.
 
 # Class Diagram
-![class.png](images/class.png)
+![class.png](images/ShogunStandoff_ClassDiagram_v2.png)
 
 
 # Development Timeline 
